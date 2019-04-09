@@ -13,4 +13,12 @@ class PagesController {
       require_once('views/pages/error.php');
     }
     
+    public function logIn() {
+        require_once ('views/pages/logIn.php');
+    }
+    
+    public function registerUser() {
+        require_once ('views/pages/registerUser.php');
+    }
+    
 }
