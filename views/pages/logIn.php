@@ -10,4 +10,6 @@
 
 </form>
 
-<p>Don't have an account? <a href='?controller=Pages&action=registerUser'>Sign up now</a>.</p>
+<p>
+Don't have an account? <a href='?controller=Pages&action=registerUser'>Sign up now</a>.
+</p>

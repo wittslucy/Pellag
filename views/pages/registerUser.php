@@ -14,6 +14,4 @@
     <input type="password" name="password" required>
 
     <button type="btn btn-secondary">Submit</button>
-
-
 </form>
