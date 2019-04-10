@@ -1,9 +1,10 @@
-<div class="form-container">
-    <p>This is the requested product:</p>
 
-    <p>Product ID: <?php echo $product->id; ?></p>
-    <p>Product Name: <?php echo $product->name; ?></p>
-    <p>Product Price: £<?php echo $product->price; ?></p>
+<div class="form-container">
+    <p>This is the requested Post:</p>
+
+    <p>Post ID: <?php echo $individualPost['post_id']; ?></p>
+    <p>Post Title: <?php echo $individualPost['post_title']; ?></p>
+    <p>Post Content: <?php echo $individualPost['post_content']; ?></p>
     <?php $file = 'views/images/' . $product->name . '.jpeg'; ?>
 
     <?php if (file_exists($file)) : ?>

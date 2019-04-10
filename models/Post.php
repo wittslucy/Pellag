@@ -26,38 +26,38 @@
         {
             $pdo = MY_PDO::getInstance();
 
-            $sqlQuery = 'SELECT * FROM blogSite.blog_post';
+            $sqlQuery = 'SELECT * FROM blogSite.blog_post LEFT JOIN blogSite.blog_user bu on blog_post.user_id = bu.user_id';
 
             $result = $pdo->run($sqlQuery);
 
             if ($result)
             {
                 $allPosts = $result->fetchAll(PDO::FETCH_ASSOC);
-                print_r($allPosts);
-            }
-
-            else {
-                $allPosts = 'no posts available';
             }
 
             return $allPosts;
 
         }
 
+        /**
+         * @param $post_id
+         * @return mixed
+         */
         public static function find($post_id)
         {
             //use intval to make sure $id is an integer
             $post_id = intval($post_id);
 
-            $sqlQuery = 'SELECT * FROM blog_post WHERE post_id = :post_id';
+            $sqlQuery = 'SELECT * FROM blogSite.blog_post WHERE post_id = :post_id';
             $pdo = MY_PDO::getInstance();
+
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
-            $post = $result->fetch();
+
+            $post = $result->fetch(PDO::FETCH_ASSOC);
 
             if ($post) {
                 return $post;
             }
-
             //replace with a more meaningful exception
             throw Exception('A real exception should go here');
 
@@ -106,7 +106,7 @@
         public static function add()
         {
             $pdo = MY_PDO::getInstance();
-            $sqlQuery = 'Insert into blog_post(post_author, post_title, post_content, date_created) values (:post_author, :post_title, :post_content, :date_created)';
+            $sqlQuery = 'Insert into blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
 
             $req = $pdo->run($sqlQuery);
 

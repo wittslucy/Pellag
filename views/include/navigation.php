@@ -9,16 +9,16 @@
                 <a class="nav-link <?php if ($CURRENT_PAGE === 'home') { ?> active <?php }?>" href="?controller=Pages&action=home">HOME</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($CURRENT_PAGE === 'readAll') { ?> active <?php }?>" href="?controller=Post&action=readAll">ALL PRODUCTS</a>
+                <a class="nav-link <?php if ($CURRENT_PAGE === 'readAll') { ?> active <?php }?>" href="?controller=Post&action=readAll">ALL POSTS</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($CURRENT_PAGE === 'create') { ?> active <?php }?>" href="?controller=Post&action=create">CREATE NEW PRODUCT</a>
+                <a class="nav-link <?php if ($CURRENT_PAGE === 'create') { ?> active <?php }?>" href="?controller=Post&action=create">CREATE NEW POST</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($CURRENT_PAGE === 'login') { ?> active <?php }?>" href="?controller=Pages&action=logIn">LOGIN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php if ($CURRENT_PAGE === 'register') { ?> active <?php }?>" href="?controller=Pages&action=registerUser">REGISTER</a>
+                <a class="nav-link <?php if ($CURRENT_PAGE === 'registerUser') { ?> active <?php }?>" href="?controller=Pages&action=registerUser">REGISTER</a>
             </li>
 
         </ul>

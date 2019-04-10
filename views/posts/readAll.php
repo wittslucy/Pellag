@@ -1,18 +1,36 @@
 <div class="form-container">
 
+    <p>Here is a list of all Posts:</p>
 
-    <p>Here is a list of all products:</p>
+    <div class="card-deck">
 
-    <?php print_r($allPosts); ?>
+        <?php foreach ($allPosts as $Post) : ?>
+            <div class="card">
+                <div class="card-body">
+                    <div class="btn-group-sm" role="group" aria-label="Basic example">
+                        <a class="btn btn-secondary"
+                           href='?controller=Post&action=read&post_id=<?php echo $Post['post_id']; ?>'>
+                            See the Post information
+                        </a>
+                        <a class="btn btn-secondary"
+                           href='?controller=Post&action=delete&post_id=<?php echo $Post['post_id']; ?>'>
+                            Delete Post
+                        </a>
+                        <a class="btn btn-secondary"
+                           href='?controller=Post&action=update&post_id=<?php echo $Post['post_id']; ?>'>
+                            Update Post
+                        </a>
+                    </div>
+                    <h5 class="card-title"><?php echo $Post['post_title']; ?></h5>
+                    <p class="card-text"><?php echo $Post['post_content']; ?></p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Created on <?php echo $Post['date_created']; ?>
+                        by <?php echo $Post['first_name'] . ' ' . $Post['last_name']; ?></small>
+                </div>
+            </div>
 
-    <?php foreach ($allPosts as $Post) : ?>
-        <p>
-            <?php echo $Post->post_title; ?>
-            <a href='?controller=post&action=read&id=<?php echo $Post->post_id; ?>'>See product information</a> &nbsp;
-            &nbsp;
-            <a href='?controller=post&action=delete&id=<?php echo $Post->post_id; ?>'>Delete Product</a> &nbsp; &nbsp;
-            <a href='?controller=post&action=update&id=<?php echo $Post->post_id; ?>'>Update Product</a> &nbsp;
-        </p>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
 
 </div>
