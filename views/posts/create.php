@@ -1,25 +1,29 @@
 <div class="form-container">
-    <h2>Fill in the following form to create a new product:</h2>
+    <h2>Create a new post below:</h2>
 
+    <!--if the uploader doesn't work just return code to form action="". Need to use postadd() to add to database?-->
+    
     <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="productName">Name</label>
-            <input type="text" class="form-control" id="productName" aria-describedby="productName"
-                   placeholder="Enter product name">
+            <label for="PostTitle">Title</label>
+            <input type="text" class="form-control" id="post_title" #aria-describedby="productName"#
+                   placeholder="Enter post title" required>
         </div>
         <div class="form-group">
-            <label for="productPrice">Price</label>
-            <input type="text" class="form-control" id="productPrice" placeholder="Product Price">
+            <label for="PostContent">Body</label>
+            <input type="text" class="form-control" id="post_content" placeholder="Enter post content" required>
         </div>
 
         <div class="form-group">
+            <label> Include an image? </label>
+            <br>
             <input type="hidden"
                    name="MAX_FILE_SIZE"
                    value="10000000"
             />
-            <input type="file" name="myUploader" class="w3-btn w3-pink" required/>
+            <input type="file" name="uploadimage" class="w3-btn w3-pink"/>
         </div>
-        <button type="submit" value="Add Product" class="btn btn-primary">Add Product</button>
+        <button type="submit" value="createpost" class="btn btn-primary">Publish Post</button>
 
     </form>
 </div>
