@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Pellag/Database/PDO_config.php</file>
             <file>file:/C:/xampp/htdocs/Pellag/index.php</file>
-            <file>file:/C:/xampp/htdocs/Pellag/views/pages/home.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/models/Post.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/views/posts/create.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/controllers/PostController.php</file>
             <file>file:/C:/xampp/htdocs/Pellag/routes.php</file>
         </group>
     </open-files>
