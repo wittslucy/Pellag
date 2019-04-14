@@ -1,5 +1,8 @@
 <?php
 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     class Post
     {
         // we define 3 attributes
@@ -9,9 +12,14 @@
         public $post_title;
         public $date_created;
 
+        /** @var MY_PDO $pdo */
+        public $pdo;
 
         public function __construct($post_id, $post_author, $post_title, $post_content, $date_created)
         {
+            /** @var MY_PDO $pdo */
+            $this->pdo = MY_PDO::getInstance();
+
             $this->post_id = $post_id;
             $this->post_author = $post_author;
             $this->post_title = $post_title;
@@ -28,6 +36,7 @@
 
             $sqlQuery = 'SELECT * FROM blogSite.blog_post LEFT JOIN blogSite.blog_user bu on blog_post.user_id = bu.user_id';
 
+            /** @var MY_PDO $pdo */
             $result = $pdo->run($sqlQuery);
 
             if ($result)
@@ -45,12 +54,11 @@
          */
         public static function find($post_id)
         {
+            $pdo = MY_PDO::getInstance();
             //use intval to make sure $id is an integer
             $post_id = intval($post_id);
 
             $sqlQuery = 'SELECT * FROM blogSite.blog_post WHERE post_id = :post_id';
-            $pdo = MY_PDO::getInstance();
-
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
 
             $post = $result->fetch(PDO::FETCH_ASSOC);
@@ -66,6 +74,7 @@
         public static function update($post_id)
         {
             $pdo = MY_PDO::getInstance();
+            
             $sqlQuery = 'Update blog_post set post_title=:post_title, date_created=:date_created, post_author=:post_author, post_content=:post_content where post_id=:post_id';
             $req = $pdo->run($sqlQuery);
 
