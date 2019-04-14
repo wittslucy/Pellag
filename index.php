@@ -16,6 +16,8 @@ $CURRENT_PAGE and how to display Title in the browser's Tab-->
 <body>
 
 <?php require_once 'Database/MY_PDO.php'; ?>
+    <!--all the database connection stuff
+    
 <!--each page has two components, the controller and action
 so any other link must contain those components-->
 
@@ -42,7 +44,7 @@ else :
 
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+        <span class="text-muted">&copy; Pellag </span>
     </div>
 </footer>
 
