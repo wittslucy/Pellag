@@ -30,6 +30,12 @@
             return self::$instance;
         }
 
+        // a proxy to native PDO methods
+        public function __call($method, $args)
+        {
+            return call_user_func_array(array($this->pdo, $method), $args);
+        }
+
         // a helper function to run prepared statements smoothly
         /**
          * @param $sql
@@ -38,6 +44,7 @@
          */
         public function run($sql, $args = [])
         {
+
             if (!$args)
             {
                 return $this->pdo->query($sql);
