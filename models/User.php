@@ -1,6 +1,5 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+    require_once 'Model.php';
 
     /**
      * Created by PhpStorm.
@@ -8,7 +7,7 @@
      * Date: 2019-04-14
      * Time: 11:22
      */
-    class User
+    class User extends Model
     {
 
         // we define 3 attributes
@@ -20,14 +19,9 @@
         public $password;
         public $image_id;
 
-        /** @var MY_PDO $pdo */
-        public $pdo;
-
         public function __construct($user_id, $first_name, $last_name, $bio, $email, $password)
         {
-            /** @var MY_PDO $pdo */
-            $this->pdo = MY_PDO::getInstance();
-
+            parent::__construct();
             $this->user_id = $user_id;
             $this->first_name = $first_name;
             $this->last_name = $last_name;
@@ -146,8 +140,8 @@
                         $_SESSION['user_id'] = $user['user_id'];
                         $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
 
-                        //TODO: Redirect!
-                        echo 'You have been logged in!';
+                        // Redirect to the home page.
+                        header('Location: /', true,  302);
 
                     } else {
                         //$validPassword was FALSE. Passwords do not match.

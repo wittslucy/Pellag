@@ -5,8 +5,8 @@
         public function readAll()
         {
             // Store all the posts in a variable
-            $allPosts = Post::all();
-            require_once 'views/posts/readAll.php';
+            $context['allPosts'] = Post::all();
+            return render('views/posts/readAll.php', $context);
         }
 
         public function read()
@@ -17,16 +17,14 @@
             if (isset($_GET['post_id'])) {
                 try {
                     // we use the given id to get the correct post
-                    $individualPost = Post::find($_GET['post_id']);
-                    require_once 'views/posts/read.php';
+                    $context['individualPost'] = Post::find($_GET['post_id']);
+                    return render('views/posts/read.php', $context);
 
                 } catch (Exception $ex) {
-                    call('Pages', 'error');
+                    return call('Pages', 'error');
                 }
             }
-
-            call('Pages', 'error');
-
+            return call('Pages', 'error');
         }
 
         public function create()
@@ -36,13 +34,11 @@
             // else it's a POST so add to the database and redirect to readAll action
 
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                require_once 'views/posts/create.php';
-            } else {
-                Post::add();
-                $allProducts = Post::all(); // $allProducts is used within the view
-                require_once 'views/posts/readAll.php';
+                return render('views/posts/create.php');
             }
-
+            Post::add();
+            $context['allProducts'] = Post::all(); // $allProducts is used within the view
+            return render('views/posts/readAll.php', $context);
         }
 //
 //        public function update()
