@@ -6,3 +6,10 @@
  * and open the template in the editor.
  */
 
+session_start();
+
+if(!isset($SESSION['user_id']))
+{
+   require (''); 
+}
+
