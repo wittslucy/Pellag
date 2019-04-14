@@ -1,4 +1,4 @@
-<h1>Important</h1>
+# Important
 
 Copy the file PDO_config.php.default 
 and remove the 'default' bit. 

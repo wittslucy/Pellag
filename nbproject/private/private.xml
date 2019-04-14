@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/pellag/controllers/pages_controller.php</file>
-            <file>file:/C:/xampp/htdocs/pellag/controllers/product_controller.php</file>
-            <file>file:/C:/xampp/htdocs/pellag/routes.php</file>
-            <file>file:/C:/xampp/htdocs/pellag/index.php</file>
-            <file>file:/C:/xampp/htdocs/pellag/views/pages/home.php</file>
-            <file>file:/C:/xampp/htdocs/pellag/models/product.php</file>
-            <file>file:/C:/xampp/htdocs/pellag/views/layout.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/index.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/models/Post.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/views/posts/create.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/controllers/PostController.php</file>
+            <file>file:/C:/xampp/htdocs/Pellag/routes.php</file>
         </group>
     </open-files>
 </project-private>

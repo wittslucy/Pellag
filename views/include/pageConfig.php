@@ -14,11 +14,11 @@
             $CURRENT_PAGE = 'create';
             $PAGE_TITLE = 'Create New Post';
             break;
-        case '/?controller=Pages&action=login':
-            $CURRENT_PAGE = 'login';
+        case '/?controller=User&action=logIn':
+            $CURRENT_PAGE = 'logIn';
             $PAGE_TITLE = 'Login';
             break;
-        case '/?controller=Pages&action=registerUser':
+        case '/?controller=User&action=registerUser':
             $CURRENT_PAGE = 'registerUser';
             $PAGE_TITLE = 'Register';
             break;
