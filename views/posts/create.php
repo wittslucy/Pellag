@@ -2,12 +2,11 @@
     <h2>Create a new post below:</h2>
 
     <!--if the uploader doesn't work just return code to form action="". Need to use postadd() to add to database?-->
-    
-    <form action="" method="POST" class="w3-container" enctype="multipart/form-data">
+
+    <form action="" method="POST" class="" enctype="multipart/form-data">
         <div class="form-group">
             <label for="PostTitle">Title</label>
-            <input type="text" class="form-control" id="post_title" #aria-describedby="productName"#
-                   placeholder="Enter post title" required>
+            <input type="text" class="form-control" id="post_title" #aria-describedby="productName" placeholder="Enter post title" required>
         </div>
         <div class="form-group">
             <label for="PostContent">Body</label>
