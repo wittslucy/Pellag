@@ -1,9 +1,8 @@
 <?php
 
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+    require_once 'Model.php';
 
-    class Post
+    class Post extends Model
     {
         // we define 3 attributes
         public $post_id;
@@ -12,14 +11,9 @@
         public $post_title;
         public $date_created;
 
-        /** @var MY_PDO $pdo */
-        public $pdo;
-
         public function __construct($post_id, $user_id, $post_title, $post_content, $date_created)
         {
-            /** @var MY_PDO $pdo */
-            $this->pdo = MY_PDO::getInstance();
-
+            parent::__construct();
             $this->post_id = $post_id;
             $this->user_id = $user_id;
             $this->post_title = $post_title;
@@ -75,7 +69,7 @@
         {
             $pdo = MY_PDO::getInstance();
             
-            $sqlQuery = 'Update blog_post set post_title=:post_title, date_created=:date_created, post_author=:post_author, post_content=:post_content where post_id=:post_id';
+            $sqlQuery = 'Update blog_post set post_title=:post_title, date_created=:date_created, user_id=:user_id, post_content=:post_content where post_id=:post_id';
             $req = $pdo->run($sqlQuery);
 
             // set name and price parameters and execute
@@ -85,8 +79,8 @@
             if (isset($_POST['post_content']) && $_POST['post_content'] !== '') {
                 $filteredPostContent = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
             }
-            if (isset($_POST['post_author']) && $_POST['post_author'] !== '') {
-                $filteredPostAuthor = filter_input(INPUT_POST, 'post_author', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
+                $filteredPostAuthor = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
             }
             if (isset($_POST['date_created']) && $_POST['date_created'] !== '') {
                 $date_created = $_POST['date_created'];
@@ -94,11 +88,11 @@
 
             $post_title = $filteredPostTitle;
             $post_content = $filteredPostContent;
-            $post_author = $filteredPostAuthor;
+            $user_id = $filteredPostAuthor;
 
 
             $req->bindParam(':post_id', $post_id);
-            $req->bindParam(':post_author', $post_author);
+            $req->bindParam(':user_id', $user_id);
             $req->bindParam(':post_title', $post_title);
             $req->bindParam(':post_content', $post_content);
             $req->bindParam(':date_created', $date_created);
@@ -126,8 +120,8 @@
             if (isset($_POST['post_content']) && $_POST['post_content'] !== '') {
                 $filteredPostContent = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
             }
-            if (isset($_POST['post_author']) && $_POST['post_author'] !== '') {
-                $filteredPostAuthor = filter_input(INPUT_POST, 'post_author', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
+                $filteredPostAuthor = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
             }
             if (isset($_POST['date_created']) && $_POST['date_created'] !== '') {
                 $date_created = $_POST['date_created'];
@@ -135,9 +129,9 @@
 
             $post_title = $filteredPostTitle;
             $post_content = $filteredPostContent;
-            $post_author = $filteredPostAuthor;
+            $user_id = $filteredPostAuthor;
 
-            $req->bindParam(':post_author', $post_author);
+            $req->bindParam(':user_id', $user_id);
             $req->bindParam(':post_title', $post_title);
             $req->bindParam(':post_content', $post_content);
             $req->bindParam(':date_created', $date_created);

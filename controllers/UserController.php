@@ -9,11 +9,10 @@
             // else it's a POST so add to the database and redirect to readAll action
 
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                require_once 'views/user/registerUser.php';
-            } else {
-                User::create();
+                return render('views/user/registerUser.php');
             }
-            require_once 'views/user/registerUser.php';
+            User::create();
+            return render('views/user/registerUser.php');
         }
 
         public function logIn()
@@ -23,11 +22,10 @@
             // else it's a POST so add to the database and redirect to readAll action
 
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                require_once 'views/user/logIn.php';
-            } else {
-                User::login();
+                return render('views/user/logIn.php');
             }
-            require_once 'views/user/logIn.php';
+            User::login();
+            return render('views/user/logIn.php');
         }
 
         public function logOut()
@@ -37,11 +35,10 @@
             // else it's a POST so add to the database and redirect to readAll action
 
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                require_once 'views/user/logOut.php';
-            } else {
-                User::logout();
+                return render('views/user/logOut.php');
             }
-            require_once 'views/user/logOut.php';
+            User::logout();
+            return render('views/user/logOut.php');
         }
 
     }

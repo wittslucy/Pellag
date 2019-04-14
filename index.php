@@ -1,54 +1,24 @@
-<!--pageConfig has all the info about what is the
-$CURRENT_PAGE and how to display Title in the browser's Tab-->
-<?php include 'views/include/pageConfig.php'; ?>
+<?php
+    // Initialize the session.
+    session_start();
 
-<!DOCTYPE html>
-<html lang="en">
+    // Global user object, is populated from the database by looking up the user,
+    // via the 'user_id' SESSION variable populated in the login form.
+    require_once 'Database/MY_PDO.php';
+    $user = NULL;
+    if (isset($_SESSION['user_id'])) {
+        $pdo = MY_PDO::getInstance();
+        $stmt = $pdo->prepare('SELECT * FROM blog_user WHERE user_id = :user_id');
+        $stmt->bindValue(':user_id', $_SESSION['user_id']);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-<head>
-    <!--head has all the info about what should be in the html head,
-    also it loads all the meta only on the Home Page-->
-    <?php include 'views/include/head.php'; ?>
-    <!--Add the custom CSS link-->
-    <link rel="stylesheet" type="text/css" href='views/css/styles.css'/>
-</head>
-
-<body>
-
-<?php require_once 'Database/MY_PDO.php'; ?>
-    <!--all the database connection stuff
-    
-<!--each page has two components, the controller and action
-so any other link must contain those components-->
-
-<?php if (isset($_GET['controller'], $_GET['action'])) :
-    $controller = $_GET['controller'];
-    $action = $_GET['action'];
-else :
-    $controller = 'Pages';
-    $action = 'home'; ?>
-<?php endif; ?>
-
-
-<header>
-    <!--Page holding all navigation elements-->
-    <?php include 'views/include/navigation.php'; ?>
-</header>
-
-<main>
-    <!--main component-->
-    <div class="container">
-        <?php require_once 'routes.php'; ?>
-    </div>
-</main>
-
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted">&copy; Pellag </span>
-    </div>
-</footer>
-
-
-</body>
-
-</html>
+    // Parse the url and determine which controller to route to and call it.
+    // It returns a string representing the content to be placed in the body
+    // of the page.
+    require_once 'routes.php';
+    $context['content'] = route();
+    // Render the html template, and populated the context with a 'content'
+    // variable representing the page content.
+    echo render('template.php', $context);
