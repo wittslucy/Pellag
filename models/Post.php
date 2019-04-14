@@ -4,16 +4,16 @@
     {
         // we define 3 attributes
         public $post_id;
-        public $post_author;
+        public $user_id;
         public $post_content;
         public $post_title;
         public $date_created;
 
 
-        public function __construct($post_id, $post_author, $post_title, $post_content, $date_created)
+        public function __construct($post_id, $user_id, $post_title, $post_content, $date_created)
         {
             $this->post_id = $post_id;
-            $this->post_author = $post_author;
+            $this->user_id = $user_id;
             $this->post_title = $post_title;
             $this->post_content = $post_content;
             $this->date_created = $date_created;
