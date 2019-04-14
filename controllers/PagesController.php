@@ -1,25 +1,20 @@
 <?php
 
-class PagesController {
-   
-    public function home() {
-      //example data to use in the home page
-      $first_name = 'Lisa';
-      $last_name  = 'Simpson';
-      require_once 'views/pages/home.php' ;
-    }
+    class PagesController
+    {
 
-    public function error() {
-      require_once 'views/pages/error.php';
-    }
+        public function home()
+        {
+            //example data to use in the home page
+            $first_name = 'Lisa';
+            $last_name = 'Simpson';
+            require_once 'views/pages/home.php';
+        }
 
-    public function logIn() {
-        require_once 'views/pages/logIn.php';
-    }
+        public function error()
+        {
+            require_once 'views/pages/error.php';
+        }
 
-    public function registerUser() {
-        require_once 'views/pages/registerUser.php';
-    }
 
-    
-}
+    }
