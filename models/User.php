@@ -17,14 +17,16 @@
         public $bio;
         public $email;
         public $password;
-        public $image_id;
+        public $date_created;
+        public $last_login;
 
-        public function __construct($user_id, $first_name, $last_name, $bio, $email, $password)
+        public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password)
         {
             parent::__construct();
             $this->user_id = $user_id;
             $this->first_name = $first_name;
             $this->last_name = $last_name;
+            $this->date_created = $date_created;
             $this->bio = $bio;
             $this->email = $email;
             $this->password = $password;
@@ -43,6 +45,7 @@
                 $last_name = !empty($_POST['last_name']) ? trim($_POST['last_name']) : null;
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $bio = !empty($_POST['bio']) ? trim($_POST['bio']) : null;
+                $date_created = date('Y-m-d');
                 $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
                 //TODO: Add password confirmation test - ALEX
@@ -51,7 +54,7 @@
                 //the prepared statement is built and executed.
 
                 //Now, we need to check if the supplied username already exists.
-                $sql = 'SELECT COUNT(blogSite.blog_user.email) AS num FROM blogSite.blog_user WHERE email = :email';
+                $sql = 'SELECT COUNT(blog_site.blog_user.email) AS num FROM blog_site.blog_user WHERE email = :email';
 
                 $stmt = $pdo->prepare($sql);
 
@@ -76,12 +79,13 @@
                 $passwordHash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
 
                 //Construct the SQL statement and prepare it.
-                $sql = 'Insert into blogSite.blog_user(first_name, last_name, email, bio, password) values (:first_name, :last_name, :email, :bio, :password)';
+                $sql = 'Insert into blog_site.blog_user(first_name, last_name, date_created, email, bio, password) values (:first_name, :last_name, :date_created, :email, :bio, :password)';
                 $stmt = $pdo->prepare($sql);
 
                 //Bind the provided username to our prepared statement.
                 $stmt->bindValue(':first_name', $first_name);
                 $stmt->bindValue(':last_name', $last_name);
+                $stmt->bindValue(':date_created', $date_created);
                 $stmt->bindValue(':email', $email);
                 $stmt->bindValue(':bio', $bio);
                 $stmt->bindValue(':password', $passwordHash);
@@ -112,7 +116,7 @@
                 $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
 
                 //Retrieve the user account information for the given email - does this email exists in DB.
-                $sql = 'SELECT * FROM blogSite.blog_user WHERE email = :email';
+                $sql = 'SELECT * FROM blog_site.blog_user WHERE email = :email';
                 $stmt = $pdo->prepare($sql);
                 //Bind value.
                 $stmt->bindValue(':email', $email);
@@ -141,13 +145,31 @@
                         $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
 
                         // Redirect to the home page.
-                        header('Location: /', true,  302);
+                        header('Location: /index.php', true, 302);
 
                     } else {
                         //$validPassword was FALSE. Passwords do not match.
                         die('Incorrect username / password combination!');
                     }
                 }
+
+            }
+        }
+
+        public static function logout()
+        {
+            $pdo = MY_PDO::getInstance();
+
+            //If the POST var "login" exists (our submit button), then we can
+            //assume that the user has submitted the login form.
+            if (isset($_POST['logout'])) {
+
+                // make sure you don't do unset($_SESSION);
+                unset($_SESSION['user_id']);
+                session_destroy();
+                // Redirect to the home page.
+
+                header('Location: /', true, 302);
 
             }
         }

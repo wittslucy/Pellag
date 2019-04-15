@@ -18,7 +18,12 @@
                 <a class="nav-link <?php if ($CURRENT_PAGE === 'create') { ?> active <?php } ?>"
                    href="?controller=Post&action=create">CREATE NEW POST</a>
             </li>
-            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
+            <?php if (isset($_SESSION['user_id']) === true) : ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($CURRENT_PAGE === 'logOut') { ?> active <?php } ?>"
+                       href="?controller=User&action=logOut">LOGOUT</a>
+                </li>
+            <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'logIn') { ?> active <?php } ?>"
                        href="?controller=User&action=logIn">LOGIN</a>
@@ -26,11 +31,6 @@
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'registerUser') { ?> active <?php } ?>"
                        href="?controller=User&action=registerUser">REGISTER</a>
-                </li>
-            <?php else: ?>
-                <li class="nav-item">
-                    <a class="nav-link <?php if ($CURRENT_PAGE === 'logOut') { ?> active <?php } ?>"
-                       href="?controller=User&action=logOut">LOGOUT</a>
                 </li>
             <?php endif; ?>
 
