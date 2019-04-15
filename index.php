@@ -44,7 +44,7 @@ else :
 
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">&copy; Pellag </span>
+        <p class="text-muted text-center">&copy; Pellag </p>
     </div>
 </footer>
 
