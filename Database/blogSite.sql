@@ -89,18 +89,18 @@ INSERT INTO blog_post (post_title, post_content, user_id, date_created)
 
 # Stored procedure to edit a blog post
 CREATE DEFINER=`root`@`localhost`  
-PROCEDURE `EditBlogPost` (INOUT `BlogTitle` VARCHAR(100), INOUT `BlogContent` TEXT, INOUT `post_id` INT)  
+PROCEDURE `EditBlogPost` (INOUT `BlogTitle` VARCHAR(100), INOUT `BlogContent` TEXT, INOUT `PostID` INT)
 BEGIN
     UPDATE blog_post
-    SET last_update = curdate(), blog_title = `BlogTitle`, blog_content = `BlogContent`
-    WHERE post_id = `PostID`;
+    SET last_update = curdate(), blog_post.post_title = `BlogTitle`, blog_post.post_content = `BlogContent`
+    WHERE blog_post.post_id = `PostID`;
 END$$
 
 # Stored procedure to delete a blog post
 CREATE DEFINER=`root`@`localhost`
 PROCEDURE `DeleteBlogPost` (INOUT `PostID` INT)
 BEGIN
-    DELETE FROM blog_post WHERE post_id = `PostID`;
+    DELETE FROM blog_post WHERE blog_post.post_id = `PostID`;
 END$$
 
 # Stored procedure to add a comment
@@ -112,11 +112,11 @@ INSERT INTO comment (comment_content, post_id, user_id, date_created)
 
 # Stored procedure to edit a comment
 CREATE DEFINER=`root`@`localhost`  
-PROCEDURE `EditComment` (INOUT `CommentContent` VARCHAR (255), INOUT `comment_id` INT)  
+PROCEDURE `EditComment` (INOUT `CommentContent` VARCHAR (255), INOUT `CommentID` INT)
 BEGIN
     UPDATE comment
     SET last_update = curdate(), comment_content = `CommentContent`
-    WHERE comment_id = `CommentID`;
+    WHERE comment.comment_id = `CommentID`;
 END$$
 
 # Stored procedure to delete a comment
@@ -148,7 +148,7 @@ CREATE DEFINER=`root`@`localhost`
 PROCEDURE `SearchPostsByID` (INOUT `PostID` INT)
 BEGIN
     SELECT * FROM blog_post 
-        WHERE blog_post.post_id = `PostID`
+        WHERE blog_post.post_id = `PostID`;
 END$$
 
 # Stored procedure to select blog posts with a certain word in the title
@@ -157,7 +157,6 @@ PROCEDURE `SearchPostsByKeyword`(INOUT `Keyword` VARCHAR(30))
 BEGIN 
     SELECT * FROM `blog_site`.`blog_post` WHERE (CONVERT(`post_content` USING utf8) LIKE '%'+@Keyword+'%' OR CONVERT(`post_title` USING utf8) LIKE '%'+@Keyword+'%');
 END
-
 
 DELIMITER ;
 # End of procedures

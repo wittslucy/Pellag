@@ -28,7 +28,7 @@
         {
             $pdo = MY_PDO::getInstance();
 
-            $sqlQuery = 'SELECT * FROM blogSite.blog_post LEFT JOIN blogSite.blog_user bu on blog_post.user_id = bu.user_id';
+            $sqlQuery = 'SELECT * FROM blog_site.blog_post LEFT JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id';
 
             /** @var MY_PDO $pdo */
             $result = $pdo->run($sqlQuery);
@@ -52,7 +52,7 @@
             //use intval to make sure $id is an integer
             $post_id = intval($post_id);
 
-            $sqlQuery = 'SELECT * FROM blogSite.blog_post WHERE post_id = :post_id';
+            $sqlQuery = 'SELECT * FROM blog_site.blog_post WHERE blog_post.post_id = :post_id';
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
 
             $post = $result->fetch(PDO::FETCH_ASSOC);
@@ -181,7 +181,7 @@
             //make sure $id is an integer
             $post_id = intval($post_id);
             $pdo = MY_PDO::getInstance();
-            $sqlQuery = 'delete FROM blogSite.blog_post WHERE post_id = :post_id';
+            $sqlQuery = 'delete FROM blog_site.blog_post WHERE blog_post.post_id = :post_id';
             $pdo->run($sqlQuery, array('post_id' => $post_id));
         }
 
