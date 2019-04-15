@@ -96,7 +96,8 @@
                 //If the signup process is successful.
                 if ($result) {
                     //What you do here is up to you!
-                    echo 'Thank you for registering with our website.';
+                    // Redirect to the home page.
+                    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
                 }
 
             }
@@ -145,7 +146,7 @@
                         $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
 
                         // Redirect to the home page.
-                        header('Location: /index.php', true, 302);
+                        header('Location: /pellag/index.php', true, 302);
 
                     } else {
                         //$validPassword was FALSE. Passwords do not match.
@@ -168,8 +169,7 @@
                 unset($_SESSION['user_id']);
                 session_destroy();
                 // Redirect to the home page.
-
-                header('Location: /', true, 302);
+                header('Location: /pellag/index.php', true, 302);
 
             }
         }
