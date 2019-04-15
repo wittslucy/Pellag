@@ -14,11 +14,11 @@
                 <a class="nav-link <?php if ($CURRENT_PAGE === 'readAll') { ?> active <?php } ?>"
                    href="?controller=Post&action=readAll">ALL POSTS</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link <?php if ($CURRENT_PAGE === 'create') { ?> active <?php } ?>"
-                   href="?controller=Post&action=create">CREATE NEW POST</a>
-            </li>
             <?php if (isset($_SESSION['user_id']) === true) : ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($CURRENT_PAGE === 'create') { ?> active <?php } ?>"
+                       href="?controller=Post&action=create">CREATE NEW POST</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'logOut') { ?> active <?php } ?>"
                        href="?controller=User&action=logOut">LOGOUT</a>
