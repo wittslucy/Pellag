@@ -37,8 +37,8 @@
                 return render('views/posts/create.php');
             }
             Post::add();
-            $context['allProducts'] = Post::all(); // $allProducts is used within the view
-            return render('views/posts/readAll.php', $context);
+            $context['allPosts'] = Post::all();
+            return render('views/posts/readAll.php', $context); 
         }
 //
 //        public function update()
