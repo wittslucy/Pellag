@@ -106,40 +106,35 @@
 
         }
 
-        public static function add()
+                public static function add()
         {
             $pdo = MY_PDO::getInstance();
-            $sqlQuery = 'Insert into blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
 
-            $req = $pdo->run($sqlQuery);
+            //If the POST var "register" exists (our submit button), then we can
+            //assume that the user has submitted the registration form.
+            if (isset($_POST['createpost'])) {
+                
+                //Retrieve the field values from our registration form.
+                $user_id = $_SESSION ['user_id'];
+                $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
+                $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
+                $date_created = date('Y-m-d');
+                
+                //Construct the SQL statement and prepare it.
+                $sql = 'Insert into blog_site.blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
+                $stmt = $pdo->prepare($sql);
 
-            // set name and price parameters and execute
-            if (isset($_POST['post_title']) && $_POST['post_title'] !== '') {
-                $filteredPostTitle = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
+                //Bind the provided username to our prepared statement.
+                $stmt->bindValue(':user_id', $user_id);
+                $stmt->bindValue(':post_title', $post_title);
+                $stmt->bindValue(':post_content', $post_content);
+                $stmt->bindValue(':date_created', $date_created);
+
+                //Execute the statement and insert the new account.
+                $result = $stmt->execute();
+
             }
-            if (isset($_POST['post_content']) && $_POST['post_content'] !== '') {
-                $filteredPostContent = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
-                $filteredPostAuthor = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['date_created']) && $_POST['date_created'] !== '') {
-                $date_created = $_POST['date_created'];
-            }
 
-            $post_title = $filteredPostTitle;
-            $post_content = $filteredPostContent;
-            $user_id = $filteredPostAuthor;
-
-            $req->bindParam(':user_id', $user_id);
-            $req->bindParam(':post_title', $post_title);
-            $req->bindParam(':post_content', $post_content);
-            $req->bindParam(':date_created', $date_created);
-
-            $req->execute();
-
-            //upload product image
-//            self::uploadFile($post_title);
         }
 
         const AllowedTypes = ['image/jpeg', 'image/jpg'];
