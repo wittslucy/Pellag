@@ -46,7 +46,16 @@
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $bio = !empty($_POST['bio']) ? trim($_POST['bio']) : null;
                 $date_created = date('Y-m-d');
-                $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+                $password1 = !empty($_POST['password1']) ? trim($_POST['password1']) : null;
+                $password2 = !empty($_POST['password2']) ? trim($_POST['password2']) : null;
+                
+                if (strcmp($password1, $password2) == 0){
+                    echo "Passwords match";
+                }else{
+                    echo "Passwords do not match";
+                }
+             
+{
 
                 //TODO: Add password confirmation test - ALEX
                 //TODO: ADD: Error checking (username characters, password length, etc). ALEX
@@ -103,7 +112,10 @@
             }
 
         }
+        
+       
 
+        }
         public static function login()
         {
             $pdo = MY_PDO::getInstance();
@@ -115,7 +127,7 @@
                 //Retrieve the field values from our login form.
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
-
+                
                 //Retrieve the user account information for the given email - does this email exists in DB.
                 $sql = 'SELECT * FROM blog_site.blog_user WHERE email = :email';
                 $stmt = $pdo->prepare($sql);
@@ -126,6 +138,8 @@
                 //Fetch row.
                 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+               
+/*
                 //If $row is FALSE.
                 if ($user === false) {
                     //Could not find a user with that email!
@@ -134,7 +148,8 @@
                 } else {
                     //User account found. Check to see if the given password matches the
                     //password hash that we stored in our users table.
-
+}                 */
+                
                     //Compare the passwords.
                     $validPassword = password_verify($passwordAttempt, $user['password']);
 
@@ -148,6 +163,9 @@
                         // Redirect to the home page.
                         header('Location: /pellag/index.php', true, 302);
 
+                        header('Location: /pellag/index.php', true, 302);
+
+
                     } else {
                         //$validPassword was FALSE. Passwords do not match.
                         die('Incorrect username / password combination!');
@@ -155,8 +173,8 @@
                 }
 
             }
-        }
-
+        
+        
         public static function logout()
         {
             $pdo = MY_PDO::getInstance();
