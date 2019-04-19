@@ -62,11 +62,10 @@
 //
 //        }
 //
-//        public function delete()
-//        {
-//            Post::remove($_GET['id']);
-//            $allProducts = Post::all();
-//            require_once 'views/posts/readAll.php';
-//        }
-
+        public function delete()
+        {
+            Post::remove($_GET['post_id']);
+            $context['allPosts'] = Post::all();
+            return render('views/posts/readAll.php', $context);
+        }
     }

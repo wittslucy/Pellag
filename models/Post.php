@@ -173,11 +173,13 @@
 
         public static function remove($post_id)
         {
+            $pdo = MY_PDO::getInstance();
             //make sure $id is an integer
             $post_id = intval($post_id);
-            $pdo = MY_PDO::getInstance();
-            $sqlQuery = 'delete FROM blog_site.blog_post WHERE blog_post.post_id = :post_id';
-            $pdo->run($sqlQuery, array('post_id' => $post_id));
+            $sql = 'delete FROM blog_site.blog_post WHERE blog_post.post_id = :post_id';
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':post_id', $post_id);
+            $result = $stmt->execute();
         }
 
     }

@@ -10,15 +10,7 @@
                     <div class="btn-group-sm" role="group" aria-label="Basic example">
                         <a class="btn btn-secondary"
                            href='?controller=Post&action=read&post_id=<?php echo $Post['post_id']; ?>'>
-                            See the Post information
-                        </a>
-                        <a class="btn btn-secondary"
-                           href='?controller=Post&action=delete&post_id=<?php echo $Post['post_id']; ?>'>
-                            Delete Post
-                        </a>
-                        <a class="btn btn-secondary"
-                           href='?controller=Post&action=update&post_id=<?php echo $Post['post_id']; ?>'>
-                            Update Post
+                            View
                         </a>
                     </div>
                     <h5 class="card-title"><?php echo $Post['post_title']; ?></h5>
