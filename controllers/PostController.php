@@ -27,7 +27,7 @@
             return call('Pages', 'error');
         }
 
-        public function create()
+       public function create()
         {
             // we expect a url of form ?controller=posts&action=create
             // if it's a GET request display a blank form for creating a new product
@@ -62,11 +62,10 @@
 //
 //        }
 //
-//        public function delete()
-//        {
-//            Post::remove($_GET['id']);
-//            $allProducts = Post::all();
-//            require_once 'views/posts/readAll.php';
-//        }
-
+        public function delete()
+        {
+            Post::remove($_GET['post_id']);
+            $context['allPosts'] = Post::all();
+            return render('views/posts/readAll.php', $context);
+        }
     }

@@ -8,29 +8,29 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
                 <a class="nav-link <?php if ($CURRENT_PAGE === 'home') { ?> active <?php } ?>"
-                   href="?controller=Pages&action=home">HOME</a>
+                   href="index.php?controller=Pages&action=home">HOME</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link <?php if ($CURRENT_PAGE === 'readAll') { ?> active <?php } ?>"
-                   href="?controller=Post&action=readAll">ALL POSTS</a>
+                   href="index.php?controller=Post&action=readAll">ALL POSTS</a>
             </li>
             <?php if (isset($_SESSION['user_id']) === true) : ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'create') { ?> active <?php } ?>"
-                       href="?controller=Post&action=create">CREATE NEW POST</a>
+                       href="index.php?controller=Post&action=create">CREATE NEW POST</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'logOut') { ?> active <?php } ?>"
-                       href="?controller=User&action=logOut">LOGOUT</a>
+                       href="index.php?controller=User&action=logOut">LOGOUT</a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'logIn') { ?> active <?php } ?>"
-                       href="?controller=User&action=logIn">LOGIN</a>
+                       href="index.php?controller=User&action=logIn">LOGIN</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'registerUser') { ?> active <?php } ?>"
-                       href="?controller=User&action=registerUser">REGISTER</a>
+                       href="index.php?controller=User&action=registerUser">REGISTER</a>
                 </li>
             <?php endif; ?>
 
