@@ -20,7 +20,7 @@
         public $date_created;
         public $last_login;
 
-        public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password)
+        public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login)
         {
             parent::__construct();
             $this->user_id = $user_id;
@@ -30,6 +30,7 @@
             $this->bio = $bio;
             $this->email = $email;
             $this->password = $password;
+            $this->last_login = $last_login;
         }
 
         public static function create()
@@ -90,12 +91,15 @@
                 if ($result) {
                     //What you do here is up to you!
                     // Redirect to the home page.
-                    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
-                }
+                echo '<script type="text/javascript">'; 
+                echo 'alert("Registration successful");'; 
+                echo 'window.location.href = "/pellag/index.php?controller=User&action=logIn";';
+                echo '</script>';
+                   }
             }
         }
         
-       public static function login()
+        public static function login()
         {
             $pdo = MY_PDO::getInstance();
             //If the POST var "login" exists (our submit button), then we can
@@ -113,35 +117,29 @@
                 //Execute.
                 $stmt->execute();
                 //Fetch row.
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-               
-/*
-                //If $row is FALSE.
-                if ($user === false) {
-                    //Could not find a user with that email!
-                    //PS: You might want to handle this error in a more user-friendly manner!
-                    die('Incorrect username / password combination!');
-                } else {
-                    //User account found. Check to see if the given password matches the
-                    //password hash that we stored in our users table.
-}                 */
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);               
                 
-                    //Compare the passwords.
-                    $validPassword = password_verify($passwordAttempt, $user['password']);
-                    //If $validPassword is TRUE, the login has been successful.
-                    if ($validPassword) {
-                        //Provide the user with a login session.
-                        $_SESSION['user_id'] = $user['user_id'];
-                        $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
-                        // Redirect to the home page.
-                        header('Location: /pellag/index.php', true, 302);
-                        header('Location: /pellag/index.php', true, 302);
-                    } else {
-                        //$validPassword was FALSE. Passwords do not match.
-                        die('Incorrect username / password combination!');
-                    }
-                }
+                //Compare the passwords.
+                $validPassword = password_verify($passwordAttempt, $user['password']);
+                //If $validPassword is TRUE, the login has been successful.
+                if ($validPassword) {
+                    //update last loggined in
+                    $query = 'UPDATE blog_site.blog_user SET last_login = NOW() WHERE email = :email';
+                    $statement = $pdo->prepare($query);
+                    $statement->bindValue(':email',$email);
+                    $statement->execute();
+                    //Provide the user with a login session.
+                    $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
+                    // Redirect to the home page.
+                    header('Location: /pellag/index.php', true, 302);
+                    header('Location: /pellag/index.php', true, 302);
+                } else {
+                    //$validPassword was FALSE. Passwords do not match.
+                   ?> <script> alert ("You have entered an invalid email/password")</script> <?php
+                }                
             }
+        }
         
         
         public static function logout()

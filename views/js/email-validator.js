@@ -5,7 +5,7 @@ function validateEmail(e){
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
         return true;
     }
-    alert("You have entered an invalid email address!")
+    alert("You have entered an invalid email/password")
     return false;
 }
 
