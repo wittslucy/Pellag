@@ -1,6 +1,6 @@
 <?php
     require_once 'Model.php';
-
+    
     /**
      * Created by PhpStorm.
      * User: Art3mis
@@ -20,7 +20,7 @@
         public $date_created;
         public $last_login;
 
-        public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password)
+        public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login)
         {
             parent::__construct();
             $this->user_id = $user_id;
@@ -30,9 +30,11 @@
             $this->bio = $bio;
             $this->email = $email;
             $this->password = $password;
+            $this->last_login = $last_login;
         }
 
         public static function create()
+                
         {
             $pdo = MY_PDO::getInstance();
 
@@ -46,51 +48,36 @@
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $bio = !empty($_POST['bio']) ? trim($_POST['bio']) : null;
                 $date_created = date('Y-m-d');
-                $password1 = !empty($_POST['password1']) ? trim($_POST['password1']) : null;
-                $password2 = !empty($_POST['password2']) ? trim($_POST['password2']) : null;
+                $password = !empty($_POST['password']) ? trim($_POST['password']) : null;  
                 
-                if (strcmp($password1, $password2) == 0){
-                    echo "Passwords match";
-                }else{
-                    echo "Passwords do not match";
-                }
-             
-{
-
-                //TODO: Add password confirmation test - ALEX
-                //TODO: ADD: Error checking (username characters, password length, etc). ALEX
-                //Basically, you will need to add your own error checking BEFORE
-                //the prepared statement is built and executed.
-
+                
                 //Now, we need to check if the supplied username already exists.
                 $sql = 'SELECT COUNT(blog_site.blog_user.email) AS num FROM blog_site.blog_user WHERE email = :email';
-
+                
                 $stmt = $pdo->prepare($sql);
-
+                
                 //Bind the provided username to our prepared statement.
                 $stmt->bindValue(':email', $email);
-
+                
                 //Execute.
                 $stmt->execute();
-
+                
                 //Fetch the row.
+                
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                //If the provided username already exists - display error.
-                //TO ADD - Your own method of handling this error. For example purposes,
-                //I'm just going to kill the script completely, as error handling is outside
-                //the scope of this tutorial.
+                //If the provided username already exists - error is displayed using AJAX
+                //
+                //If user ignores AJAX statment, they are redirected back to the register page
                 if ($row['num'] > 0) {
-                    die('That email already exists!');
+                    die(header('Location: /pellag/index.php?controller=User&action=registerUser', true, 302));
                 }
+             
 
                 //Hash the password as we do NOT want to store our passwords in plain text.
                 $passwordHash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
-
                 //Construct the SQL statement and prepare it.
                 $sql = 'Insert into blog_site.blog_user(first_name, last_name, date_created, email, bio, password) values (:first_name, :last_name, :date_created, :email, :bio, :password)';
                 $stmt = $pdo->prepare($sql);
-
                 //Bind the provided username to our prepared statement.
                 $stmt->bindValue(':first_name', $first_name);
                 $stmt->bindValue(':last_name', $last_name);
@@ -98,32 +85,26 @@
                 $stmt->bindValue(':email', $email);
                 $stmt->bindValue(':bio', $bio);
                 $stmt->bindValue(':password', $passwordHash);
-
                 //Execute the statement and insert the new account.
                 $result = $stmt->execute();
-
                 //If the signup process is successful.
                 if ($result) {
                     //What you do here is up to you!
                     // Redirect to the home page.
-                    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
-                }
-
+                echo '<script type="text/javascript">'; 
+                echo 'alert("Registration successful");'; 
+                echo 'window.location.href = "/pellag/index.php?controller=User&action=logIn";';
+                echo '</script>';
+                   }
             }
-
         }
         
-       
-
-        }
         public static function login()
         {
             $pdo = MY_PDO::getInstance();
-
             //If the POST var "login" exists (our submit button), then we can
             //assume that the user has submitted the login form.
             if (isset($_POST['login'])) {
-
                 //Retrieve the field values from our login form.
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
@@ -136,43 +117,29 @@
                 //Execute.
                 $stmt->execute();
                 //Fetch row.
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-               
-/*
-                //If $row is FALSE.
-                if ($user === false) {
-                    //Could not find a user with that email!
-                    //PS: You might want to handle this error in a more user-friendly manner!
-                    die('Incorrect username / password combination!');
-                } else {
-                    //User account found. Check to see if the given password matches the
-                    //password hash that we stored in our users table.
-}                 */
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);               
                 
-                    //Compare the passwords.
-                    $validPassword = password_verify($passwordAttempt, $user['password']);
-
-                    //If $validPassword is TRUE, the login has been successful.
-                    if ($validPassword) {
-
-                        //Provide the user with a login session.
-                        $_SESSION['user_id'] = $user['user_id'];
-                        $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
-
-                        // Redirect to the home page.
-                        header('Location: /pellag/index.php', true, 302);
-
-                        header('Location: /pellag/index.php', true, 302);
-
-
-                    } else {
-                        //$validPassword was FALSE. Passwords do not match.
-                        die('Incorrect username / password combination!');
-                    }
-                }
-
+                //Compare the passwords.
+                $validPassword = password_verify($passwordAttempt, $user['password']);
+                //If $validPassword is TRUE, the login has been successful.
+                if ($validPassword) {
+                    //update last loggined in
+                    $query = 'UPDATE blog_site.blog_user SET last_login = NOW() WHERE email = :email';
+                    $statement = $pdo->prepare($query);
+                    $statement->bindValue(':email',$email);
+                    $statement->execute();
+                    //Provide the user with a login session.
+                    $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
+                    // Redirect to the home page.
+                    header('Location: /pellag/index.php', true, 302);
+                    header('Location: /pellag/index.php', true, 302);
+                } else {
+                    //$validPassword was FALSE. Passwords do not match.
+                   ?> <script> alert ("You have entered an invalid email/password")</script> <?php
+                }                
             }
+        }
         
         
         public static function logout()
