@@ -2,42 +2,19 @@
     <div class="row home-page-row">
         <div class="item">
             <div class="card">
-                <div class="card-header">
-                    RECENT POSTS
-                </div>
+                <div class="card-header">MOST RECENT POSTS</div>
                 <div class="card-body">
-                    <h5>NOTE: Requires SQL to generate a list of 10 most recent posts</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                        <?php foreach ($allPosts as $Post) : ?>
+                            <li class="list-group-item"><?= $Post['post_title']; ?><br><small> created on <?= $Post['date_created']; ?> by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small></li>
+                        <?php endforeach; ?>
                     </ul>
                     <p></p>
                     <a href="index.php?controller=Post&action=readAll" class="btn btn-primary">ALL POSTS</a>
                 </div>
             </div>
         </div>
-        <div class="item">
-            <div class="card">
-                <div class="card-header">
-                    NEW USERS
-                </div>
-                <div class="card-body">
-                    <h5>NOTE: Requires SQL to generate a list of 10 most recently registered users</h5>
-                    <p>Maybe a number of posts created and take the user to the page with posts sorted by the new
-                        author</p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+
         <div class="item">
             <div class="card">
                 <div class="card-header">
@@ -187,7 +164,3 @@
         </div>
     </div>
 </div>
-
-
-
-

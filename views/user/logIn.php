@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container card-post">
     <h2>Please fill in your credentials to log in</h2>
 
     <form action="" method="POST" enctype="multipart/form-data" onsubmit="return validateEmail()">
@@ -14,11 +14,13 @@
 
         <input type="submit" name='login' class="btn btn-primary" />
     </form>
+
+    <div class="form-container">
+        <h2>
+            Don't have an account? <a href='?controller=User&action=registerUser'>Sign up now</a>.
+        </h2>
+    </div
 </div>
 
-<div class="form-container">
-    <h2>
-        Don't have an account? <a href='?controller=User&action=registerUser'>Sign up now</a>.
-    </h2>
-</div
+
 

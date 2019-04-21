@@ -42,7 +42,7 @@ main {
 }
 
 main > .container {
-    padding: 60px 15px 0;
+    padding: 1rem 0;
 }
 
 .container {
@@ -173,4 +173,10 @@ main > .container {
 
 .exists{
     color: red;
+}
+
+.card-post {
+    width: 60%;
+    margin: 1rem auto;
+
 }

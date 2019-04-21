@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<div class="form-container">
+<div class="form-container card-post">
     <h2>PLEASE REGISTER BELOW</h2>
 
     <form id="form" name="form" action="" method="POST" enctype="multipart/form-data" class="registerForm" >
@@ -47,5 +45,3 @@
         <script src="views/js/form-checker.js"></script>
         
 </div>
-
-</html>
