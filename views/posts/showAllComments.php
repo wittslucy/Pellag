@@ -8,24 +8,20 @@
                     by <?= $Comment['first_name']; ?> <?= $Comment['last_name']; ?></small>
             </div>
             <div class="card-body">
-                <p class="card-text post-text" style="text-overflow: ellipsis"><?= $Comment['comment_content']; ?></p>
-                <div class="btn-group-sm" role="group" aria-label="Basic example">
+                <p class="card-text post-text"><?= $Comment['comment_content']; ?></p>
+                <!--    only comment author or post_author can delete the post-->
+                <?php if (isset($_SESSION['user_id']) && ($_SESSION['user_id'] === $Comment['comment_author'] ||
+                        $_SESSION['user_id'] === $Comment['post_author'])) : ?>
 
-                    <!--    only comment author or post_author can delete the post-->
-                    <?php if ($_SESSION['user_id'] && ($_SESSION['user_id'] === $Comment['comment_author'] ||
-                            $_SESSION['user_id'] === $Comment['post_author'])) : ?>
+                    <div class="btn-group-sm" role="group" aria-label="Basic example">
                         <a class="btn btn-secondary"
                            href='?controller=Comment&action=delete&comment_id=<?= $Comment['comment_id']; ?>'>
                             DELETE
                         </a>
-                    <?php endif ?>
-
-                </div>
+                    </div>
+                <?php endif ?>
             </div>
-
-
-
-
+            
         </div>
 
     <?php endforeach; ?>
@@ -34,17 +30,18 @@
     <div class="alert alert-info">This post does not have any comments yet</div>
 <?php endif ?>
 
-<?php if ($_SESSION['user_id']) : ?>
 <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Create a comment">
     <a class="btn btn-secondary"
        href='?controller=Post&action=read&post_id=<?= $Comment['post_id']; ?>'>
         BACK TO THE POST
     </a>
-    <a class="btn btn-secondary"
-       href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
-        ADD A COMMENT
-    </a>
+    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
+        <a class="btn btn-secondary"
+           href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
+            ADD A COMMENT
+        </a>
+    <?php endif ?>
 </div>
-<?php endif ?>
+
 
 
