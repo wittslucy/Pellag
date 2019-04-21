@@ -133,7 +133,6 @@
                     $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
                     // Redirect to the home page.
                     header('Location: /pellag/index.php', true, 302);
-                    header('Location: /pellag/index.php', true, 302);
                 } else {
                     //$validPassword was FALSE. Passwords do not match.
                    ?> <script> alert ("You have entered an invalid email/password")</script> <?php

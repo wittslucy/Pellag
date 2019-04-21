@@ -1,26 +1,42 @@
-
 <div class="form-container">
-    <p>This is the requested Post:</p>
+    <div class="card card-post">
+        <div class="card-header" style="text-align: center">
+            <h5 class="card-title"><?= $individualPost['post_title']; ?></h5>
+            <p class="card-text post-text"><?= $individualPost['first_name']; ?> <?= $individualPost['last_name']; ?></p>
+            <p class="card-text post-text"><i class="fas fa-calendar-day"></i> <?= $individualPost['date_created']; ?></p>
+        </div>
+        <div class="card-body">
+            <p class="card-text post-text"><?= $individualPost['post_content']; ?></p>
+        </div>
 
-    <p>Post ID: <?php echo $individualPost['post_id']; ?></p>
-    <p>Post Title: <?php echo $individualPost['post_title']; ?></p>
-    <p>Post Content: <?php echo $individualPost['post_content']; ?></p>
-<!--    <?php $file = 'views/images/' . $post->name . '.jpeg'; ?>
+    </div>
 
-    <?php if (file_exists($file)) : ?>
-        <img src='$file' width='150'/>
-    <?php else : ?>
-        <img src='views/images/standard/_noproductimage.png' width='150'/>
-    <?php endif; ?>
--->
-    <a class="btn btn-secondary"
-        href='?controller=Post&action=delete&post_id=<?php echo $individualPost['post_id']; ?>'>
-        Delete Post
+    <!--    only author can delete the post-->
+    <?php if ($_SESSION['user_id'] && $_SESSION['user_id'] === $individualPost['user_id']) : ?>
+    <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Delete the post">
+    <a class="btn btn-secondary "
+       href='?controller=Post&action=delete&post_id=<?php echo $individualPost['post_id']; ?>'>
+        DELETE
     </a>
+    </div>
+    <?php endif ?>
+
+</div>
+
+
 <!--    <a class="btn btn-secondary"
         href='?controller=Post&action=update&post_id=<?php echo $individualpost['post_id']; ?>'>
         Update Post
     </a>
+
 -->
-</div>
+<!--    <?php // $file = 'views/images/' . $post->name . '.jpeg'; ?>
+
+    <?php // if (file_exists($file)) : ?>
+        <img src='$file' width='150'/>
+    <?php // else : ?>
+        <img src='views/images/standard/_noproductimage.png' width='150'/>
+    <?php // endif; ?>
+-->
+
 	

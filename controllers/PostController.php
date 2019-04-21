@@ -1,11 +1,14 @@
 <?php
 
+    require_once 'models/Comment.php';
+
     class PostController
     {
         public function readAll()
         {
             // Store all the posts in a variable
             $context['allPosts'] = Post::all();
+            //$context['allCommentsCounts'] = Comment::allCommentsCounts();
             return render('views/posts/readAll.php', $context);
         }
 
@@ -27,7 +30,10 @@
             return call('Pages', 'error');
         }
 
-       public function create()
+        /**
+         * @return false|string
+         */
+        public function create()
         {
             // we expect a url of form ?controller=posts&action=create
             // if it's a GET request display a blank form for creating a new product
@@ -38,7 +44,7 @@
             }
             Post::add();
             $context['allPosts'] = Post::all();
-            return render('views/posts/readAll.php', $context); 
+            header('Location: /pellag/index.php?controller=Post&action=readAll', true, 302);
         }
 //
 //        public function update()

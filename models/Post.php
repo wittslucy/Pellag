@@ -28,14 +28,42 @@
         {
             $pdo = MY_PDO::getInstance();
 
-            $sqlQuery = 'SELECT * FROM blog_site.blog_post LEFT JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id';
+            $sqlQuery = <<<EOT
+SELECT *, (SELECT COUNT(comment_id) FROM blog_site.comment WHERE blog_site.comment.post_id = blog_site.blog_post.post_id) as allCommentsCounts
+FROM blog_site.blog_post  
+  LEFT JOIN blog_site.blog_user user on blog_post.user_id = user.user_id 
+ORDER BY blog_post.date_created DESC
+EOT;
+            /** @var MY_PDO $pdo */
+            $result = $pdo->run($sqlQuery);
+
+            if ($result) {
+                $allPosts = $result->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $allPosts = array();
+            }
+
+
+            return $allPosts;
+
+        }
+
+        /**
+         * @return array
+         */
+        public static function tenMostRecent()
+        {
+            $pdo = MY_PDO::getInstance();
+
+            $sqlQuery = 'SELECT * FROM blog_site.blog_post LEFT JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id ORDER BY blog_post.date_created desc LIMIT 10';
 
             /** @var MY_PDO $pdo */
             $result = $pdo->run($sqlQuery);
 
-            if ($result)
-            {
+            if ($result) {
                 $allPosts = $result->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $allPosts = array();
             }
 
             return $allPosts;
@@ -52,7 +80,7 @@
             //use intval to make sure $id is an integer
             $post_id = intval($post_id);
 
-            $sqlQuery = 'SELECT * FROM blog_site.blog_post WHERE blog_post.post_id = :post_id';
+            $sqlQuery = 'SELECT * FROM blog_site.blog_post LEFT JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id WHERE blog_post.post_id = :post_id';
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
 
             $post = $result->fetch(PDO::FETCH_ASSOC);
@@ -60,15 +88,17 @@
             if ($post) {
                 return $post;
             }
-            //replace with a more meaningful exception
-            throw Exception('A real exception should go here');
+
+            $post = array();
+
+            return $post;
 
         }
 
         public static function update($post_id)
         {
             $pdo = MY_PDO::getInstance();
-            
+
             $sqlQuery = 'Update blog_post set post_title=:post_title, date_created=:date_created, user_id=:user_id, post_content=:post_content where post_id=:post_id';
             $req = $pdo->run($sqlQuery);
 
@@ -100,26 +130,26 @@
             $req->execute();
 
             //upload product image if it exists
-//            if (!empty($_FILES[self::InputKey]['name'])) {
-//                self::uploadFile($post_title);
-//            }
+            //            if (!empty($_FILES[self::InputKey]['name'])) {
+            //                self::uploadFile($post_title);
+            //            }
 
         }
 
-                public static function add()
+        public static function add()
         {
             $pdo = MY_PDO::getInstance();
 
             //If the POST var "register" exists (our submit button), then we can
             //assume that the user has submitted the registration form.
             if (isset($_POST['createpost'])) {
-                
+
                 //Retrieve the field values from our registration form.
                 $user_id = $_SESSION ['user_id'];
                 $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
                 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
                 $date_created = date('Y-m-d');
-                
+
                 //Construct the SQL statement and prepare it.
                 $sql = 'Insert into blog_site.blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
                 $stmt = $pdo->prepare($sql);
@@ -142,34 +172,34 @@
 
         //die() function calls replaced with trigger_error() calls
         //replace with structured exception handling
-//        public static function uploadFile($name)
-//        {
-//            if (empty($_FILES[self::InputKey])) {
-//                //die("File Missing!");
-//                trigger_error('File Missing!');
-//            }
-//
-//            if ($_FILES[self::InputKey]['error'] > 0) {
-//                trigger_error('Handle the error! ' . $_FILES[self::InputKey]['error']);
-//            }
-//
-//            if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes, true)) {
-//                trigger_error('Handle File Type Not Allowed: ' . $_FILES[self::InputKey]['type']);
-//            }
-//
-//            $tempFile = $_FILES[self::InputKey]['tmp_name'];
-//            $path = '/Users/Art3mis/Projects/SkyGetIntoTech/Projects/Blog-Pellag/src/views/images';
-//            $destinationFile = $path . $name . '.jpeg';
-//
-//            if (!move_uploaded_file($tempFile, $destinationFile)) {
-//                trigger_error('Handle Error');
-//            }
-//
-//            //Clean up the temp file
-//            if (file_exists($tempFile)) {
-//                unlink($tempFile);
-//            }
-//        }
+        //        public static function uploadFile($name)
+        //        {
+        //            if (empty($_FILES[self::InputKey])) {
+        //                //die("File Missing!");
+        //                trigger_error('File Missing!');
+        //            }
+        //
+        //            if ($_FILES[self::InputKey]['error'] > 0) {
+        //                trigger_error('Handle the error! ' . $_FILES[self::InputKey]['error']);
+        //            }
+        //
+        //            if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes, true)) {
+        //                trigger_error('Handle File Type Not Allowed: ' . $_FILES[self::InputKey]['type']);
+        //            }
+        //
+        //            $tempFile = $_FILES[self::InputKey]['tmp_name'];
+        //            $path = '/Users/Art3mis/Projects/SkyGetIntoTech/Projects/Blog-Pellag/src/views/images';
+        //            $destinationFile = $path . $name . '.jpeg';
+        //
+        //            if (!move_uploaded_file($tempFile, $destinationFile)) {
+        //                trigger_error('Handle Error');
+        //            }
+        //
+        //            //Clean up the temp file
+        //            if (file_exists($tempFile)) {
+        //                unlink($tempFile);
+        //            }
+        //        }
 
         public static function remove($post_id)
         {

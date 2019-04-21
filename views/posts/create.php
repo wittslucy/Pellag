@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container card-post">
     <h2>Create a new post below:</h2>
 
     <form action="" method="POST" enctype="multipart/form-data">
