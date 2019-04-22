@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">JOIN THE CREATORS</h5>
-                    <p class="card-text">Follow the ling below to register to our blog</p>
+                    <p class="card-text">Follow the link below to register to our blog</p>
                     <a href="index.php?controller=User&action=registerUser" class="btn btn-primary">REGISTER</a>
                 </div>
             </div>
