@@ -211,5 +211,28 @@ EOT;
             $stmt->bindValue(':post_id', $post_id);
             $result = $stmt->execute();
         }
+        
+        public static function getMyPosts()
+        {
+            $pdo = MY_PDO::getInstance();
+            
+            $user_id = $_SESSION ['user_id'];
+            
+                
+            $sqlQuery = 'SELECT * FROM blog_site.blog_post JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id WHERE blog_post.user_id=:user_id';
+            
+            $result = $pdo->run($sqlQuery, ['user_id' => $user_id]);
 
+            if ($result) {
+                $myPosts = $result->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $myPosts = array();
+            }
+
+            return $myPosts;
+
+        }
+        
+        
+ 
     }

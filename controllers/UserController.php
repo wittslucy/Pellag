@@ -1,5 +1,6 @@
 <?php
 
+    require_once "models/Post.php";
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     class UserController
@@ -45,12 +46,15 @@
         
         public function dashboard()
         {
-            
+            $context['allPosts'] = Post::tenMostRecent();
+            $context['myPosts'] = Post::getMyPosts();
+
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                return render('views/user/dashboard.php');
+                return render('views/user/dashboard.php', $context);
             }
             User::dashboard();
-            return render('views/user/dashboard.php');
+            
+            return render('views/user/dashboard.php', $context);
         }
 
     }

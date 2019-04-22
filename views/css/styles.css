@@ -246,3 +246,20 @@ main > .container {
     padding: 0;
   }
 }
+
+/* Collapsible button for viewing your own posts on dashboard */
+.list-group-item .btn-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Icon when the collapsible content is shown */
+.list-group-item .btn-info:after {
+  content: "-";
+}
+
+/* Icon when the collapsible content is hidden */
+.list-group-item .btn-info.collapsed:after {
+  content: "+";
+}

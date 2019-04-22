@@ -131,6 +131,7 @@
                     //Provide the user with a login session.
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['first_name'] = $user['first_name'];
+                    $_SESSION['bio'] = $user ['bio'];
                     $_SESSION['logged_in'] = time(); 
                     // Redirect to the home page.
                     header('Location: /pellag/index.php?controller=User&action=dashboard', true, 302);
