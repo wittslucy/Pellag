@@ -40,8 +40,8 @@ else :
     </div>
 </main>
 
-<footer class="footer">
-    <div class="container">
+<footer id="footer">
+    <div class="container footer-container">
         <span class="text-muted">&copy; Pellag </span>
     </div>
 </footer>

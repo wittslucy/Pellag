@@ -53,6 +53,7 @@
             'Pages' => ['home', 'error',],
             'User' => ['logIn', 'logOut', 'registerUser', 'dashboard'],
             'Post' => ['readAll', 'read', 'create', 'update', 'delete'],
+            'Comment' => ['create', 'showAllComments', 'delete'],
             'controllerXXX' => ['actionYYY', 'actionZZZ'],
         );
 
