@@ -19,8 +19,8 @@
         public $password;
         public $date_created;
         public $last_login;
-
-        public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login)
+    
+    public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login)
         {
             parent::__construct();
             $this->user_id = $user_id;
@@ -130,10 +130,10 @@
                     $statement->execute();
                     //Provide the user with a login session.
                     $_SESSION['user_id'] = $user['user_id'];
-                    $_SESSION['logged_in'] = time(); // TODO: Add last_logged_in to user DB
+                    $_SESSION['first_name'] = $user['first_name'];
+                    $_SESSION['logged_in'] = time(); 
                     // Redirect to the home page.
-                    header('Location: /pellag/index.php', true, 302);
-                    header('Location: /pellag/index.php', true, 302);
+                    header('Location: /pellag/index.php?controller=User&action=dashboard', true, 302);
                 } else {
                     //$validPassword was FALSE. Passwords do not match.
                    ?> <script> alert ("You have entered an invalid email/password")</script> <?php
@@ -158,5 +158,5 @@
 
             }
         }
-
+        
     }

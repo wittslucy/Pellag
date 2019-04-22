@@ -23,6 +23,10 @@
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'logOut') { ?> active <?php } ?>"
                        href="index.php?controller=User&action=logOut">LOGOUT</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($CURRENT_PAGE === 'dashboard') { ?> active <?php } ?>"
+                       href="index.php?controller=User&action=dashboard">DASHBOARD</a>
+                </li>
             <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link <?php if ($CURRENT_PAGE === 'logIn') { ?> active <?php } ?>"

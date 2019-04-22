@@ -22,6 +22,10 @@
             $CURRENT_PAGE = 'registerUser';
             $PAGE_TITLE = 'Register';
             break;
+        case '/pellag/index.php?controller=User&action=dashboard':
+            $CURRENT_PAGE = 'dashboard';
+            $PAGE_TITLE = 'dashboard';
+            break;
         default:
             $CURRENT_PAGE = 'home';
             $PAGE_TITLE = 'Home';

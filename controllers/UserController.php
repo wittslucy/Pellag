@@ -42,5 +42,15 @@
             User::logout();
             return render('views/user/logout.php');
         }
+        
+        public function dashboard()
+        {
+            
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/dashboard.php');
+            }
+            User::dashboard();
+            return render('views/user/dashboard.php');
+        }
 
     }
