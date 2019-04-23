@@ -56,7 +56,15 @@
     <div class="dashboardcard">
       <h3>Follow Me</h3>
       <p>Twitter:</p>
+      <p>
+        <a href="https://www.twitter.com/<?php echo $_SESSION['twitter_handle'];?>"><?php echo $_SESSION['twitter_handle'];?></a>
+      </p>
+      <a href="index.php?controller=User&action=editTwitter" class="btn btn-primary">Edit</a>
       <p>Instagram:</p>
+      <p>
+        <a href="https://www.instagram.com/<?php echo $_SESSION['instagram_handle'];?>"><?php echo $_SESSION['instagram_handle'];?></a>
+      </p>
+      <a href="index.php?controller=User&action=editInstagram" class="btn btn-primary">Edit</a>
     </div>
   </div>
 </div>

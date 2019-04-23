@@ -65,5 +65,24 @@
             User::editBio();
             return render('views/user/editBio.php');
         }
+        
+                
+         public function edittwitter()
+        {
+          if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/editTwitter.php');
+            }
+            User::edittwitter();
+            return render('views/user/editTwitter.php');
+        }
+        
+        public function editinstagram()
+        {
+          if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/editInstagram.php');
+            }
+            User::editinstagram();
+            return render('views/user/editInstagram.php');
+        }
 
     }
