@@ -28,7 +28,11 @@
                     <a class="nav-link <?= ($CURRENT_PAGE === 'logOut') ? 'active' : '' ?>"
                        href="index.php?controller=User&action=logOut">LOGOUT</a>
                 </li>
-            <?php else : ?>
+                <li class="nav-item">
+                    <a class="nav-link <?php if ($CURRENT_PAGE === 'dashboard') { ?> active <?php } ?>"
+                       href="index.php?controller=User&action=dashboard">DASHBOARD</a>
+                </li>
+            <?php else: ?>
                 <li class="nav-item">
                     <a class="nav-link <?= ($CURRENT_PAGE === 'logIn') ? 'active' : '' ?>"
                        href="index.php?controller=User&action=logIn">LOGIN</a>
