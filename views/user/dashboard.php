@@ -10,7 +10,8 @@
           <?php if($myPosts == []){ ?>
               <div class="dashboardcard">
                 <li class="list-group-item">
-                    <p>You have no posts</p>
+                    <p>You have no posts yet... Let's get started!</p>
+                    <a href="index.php?controller=Post&action=create" class="btn btn-primary">Create</a>
                 </li>
               </div>
            <?php } ?>
@@ -35,6 +36,7 @@
       <h2>About Me</h2>
       <div class="dashboardfakeimg" style="height:100px;">Image</div>
       <p><?php echo $_SESSION['bio'];?></p>
+      <a href="index.php?controller=User&action=editBio" class="btn btn-primary">Edit</a>
     </div>
     <div class="dashboardcard">
         

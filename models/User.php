@@ -160,4 +160,32 @@
             }
         }
         
+        
+        public static function editBio()
+        {
+            $pdo = MY_PDO::getInstance();
+            
+            if (isset($_POST['editBio'])) {
+
+            $bio=$_POST['bio'];
+            $user_id =$_SESSION['user_id'];
+   
+            //Execute the query
+
+           $sql = 'UPDATE blog_site.blog_user SET bio = :bio WHERE user_id = :user_id';
+           $stmt = $pdo->prepare($sql);
+           $stmt ->bindValue(':user_id', $user_id);
+           $stmt ->bindValue(':bio', $bio);
+           $stmt -> execute();
+           
+            
+            echo '<script type="text/javascript">';
+            echo 'alert ("Update successful - please log back in");';
+            echo 'window.location.href = "index.php?controller=User&action=logOut";';
+            echo '</script>';
+            
+            }
+        }
+         
     }
+ 
