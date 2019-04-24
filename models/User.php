@@ -20,7 +20,7 @@
         public $date_created;
         public $last_login;
     
-    public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login)
+    public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login, $twitter_handle, $instagram_handle)
         {
             parent::__construct();
             $this->user_id = $user_id;
@@ -31,6 +31,8 @@
             $this->email = $email;
             $this->password = $password;
             $this->last_login = $last_login;
+            $this->twitter_handle = $twitter_handle;
+            $this->instagram_handle = $instagram_handle;
         }
 
         public static function create()
