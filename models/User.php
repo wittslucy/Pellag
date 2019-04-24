@@ -132,6 +132,8 @@
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['first_name'] = $user['first_name'];
                     $_SESSION['bio'] = $user ['bio'];
+                    $_SESSION['twitter_handle'] = $user ['twitter_handle'];
+                    $_SESSION['instagram_handle'] = $user ['instagram_handle'];
                     $_SESSION['logged_in'] = time(); 
                     // Redirect to the home page.
                     header('Location: /pellag/index.php?controller=User&action=dashboard', true, 302);
@@ -160,4 +162,83 @@
             }
         }
         
+        
+        public static function editBio()
+        {
+            $pdo = MY_PDO::getInstance();
+            
+            if (isset($_POST['editBio'])) {
+
+            $bio=$_POST['bio'];
+            $user_id =$_SESSION['user_id'];
+   
+            //Execute the query
+
+           $sql = 'UPDATE blog_site.blog_user SET bio = :bio WHERE user_id = :user_id';
+           $stmt = $pdo->prepare($sql);
+           $stmt ->bindValue(':user_id', $user_id);
+           $stmt ->bindValue(':bio', $bio);
+           $stmt -> execute();
+           
+            
+            echo '<script type="text/javascript">';
+            echo 'alert ("Update successful - please log back in");';
+            echo 'window.location.href = "index.php?controller=User&action=logOut";';
+            echo '</script>';
+            
+            }
+        }
+      
+        public static function edittwitter()
+        {
+            $pdo = MY_PDO::getInstance();
+            
+            if (isset($_POST['edittwitter'])) {
+
+            $twitter_handle=$_POST['edittwitter'];
+            $user_id =$_SESSION['user_id'];
+   
+            //Execute the query
+
+           $sql = 'UPDATE blog_site.blog_user SET twitter_handle = :twitter_handle WHERE user_id = :user_id';
+           $stmt = $pdo->prepare($sql);
+           $stmt ->bindValue(':user_id', $user_id);
+           $stmt ->bindValue(':twitter_handle', $twitter_handle);
+           $stmt -> execute();
+           
+            
+            echo '<script type="text/javascript">';
+            echo 'alert ("Update successful - please log back in");';
+            echo 'window.location.href = "index.php?controller=User&action=logOut";';
+            echo '</script>';
+            
+            }
+        }
+        
+        public static function editinstagram()
+        {
+            $pdo = MY_PDO::getInstance();
+            
+            if (isset($_POST['editinstagram'])) {
+
+            $instagram_handle=$_POST['editinstagram'];
+            $user_id =$_SESSION['user_id'];
+   
+            //Execute the query
+
+           $sql = 'UPDATE blog_site.blog_user SET instagram_handle = :instagram_handle WHERE user_id = :user_id';
+           $stmt = $pdo->prepare($sql);
+           $stmt ->bindValue(':user_id', $user_id);
+           $stmt ->bindValue(':instagram_handle', $instagram_handle);
+           $stmt -> execute();
+           
+            
+            echo '<script type="text/javascript">';
+            echo 'alert ("Update successful - please log back in");';
+            echo 'window.location.href = "index.php?controller=User&action=logOut";';
+            echo '</script>';
+            
+            }
+        }
     }
+ 
