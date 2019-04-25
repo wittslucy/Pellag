@@ -2,8 +2,8 @@
 
 <form id="edittwitter" method="post"  action="">
     Twitter:
-    <input name="edittwitter" placeholder="Update your Twitter handle"></input>
+    <input name="edittwitter" class = "card-text" placeholder ="Update your Twitter handle"></input>
                 
-    <br><button id="edittwitter" type="submit" value="Update">Save</button> <br>
+    <br><button id="edittwitter" type="submit" class ="btn btn-primary" placeholder="Update">Save</button> <br>
    
 </form> 
