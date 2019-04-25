@@ -171,6 +171,79 @@ BEGIN
   FROM `blog_site`.`blog_post`
   WHERE (CONVERT(`post_content` USING utf8) LIKE '%' + @Keyword + '%' OR
          CONVERT(`post_title` USING utf8) LIKE '%' + @Keyword + '%');
-END
-DELIMITER;
+END$$
+DELIMITER ;
 # End of procedures
+
+# USERS AND PRIVELEGES
+# Create customer user
+DROP USER 'blogger'@'%';
+CREATE USER 'blogger'@'%' IDENTIFIED BY 'basicbl099er';
+GRANT USAGE ON *.* TO 'blogger'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+# Grant priveleges to customer
+GRANT SELECT, INSERT, UPDATE, DELETE ON `blog_site`.`blog_post` TO 'blogger'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `blog_site`.`blog_user` TO 'blogger'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `blog_site`.`comment` TO 'blogger'@'%';
+
+# Allow customer to access stored procedures
+GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE AddComment TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE AddUser TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteBlogPost TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteComment TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteUser TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE EditBlogPost TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE EditComment TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByAuthor TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByID TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE SelectAllPosts TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'blogger'@'%';
+
+# Create admin user
+DROP USER 'admin'@'%';
+CREATE USER 'admin'@'%' IDENTIFIED BY 'iminchar9e';
+GRANT USAGE ON *.* TO 'admin'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+# Grant priveleges to admin
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON `blog_site`.`blog_post` TO 'admin'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON `blog_site`.`blog_user` TO 'admin'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON `blog_site`.`comment` TO 'admin'@'%';
+
+# Allow admin to access stored procedures
+GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE AddComment TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE AddUser TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteBlogPost TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteComment TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteUser TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE EditBlogPost TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE EditComment TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByAuthor TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByID TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE SelectAllPosts TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'admin'@'%';
+
+# Create developer user
+DROP USER 'developer'@'%';
+CREATE USER 'developer'@'%' IDENTIFIED BY 'iminchar9e';
+GRANT USAGE ON *.* TO 'developer'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+# Grant priveleges to developer
+GRANT * ON `blog_site`.`blog_post` TO 'developer'@'%';
+GRANT * ON `blog_site`.`blog_user` TO 'developer'@'%';
+GRANT * ON `blog_site`.`comment` TO 'developer'@'%';
+
+# Allow developer to access stored procedures
+GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE AddComment TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE AddUser TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteBlogPost TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteComment TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteUser TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE EditBlogPost TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE EditComment TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByAuthor TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByID TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE SelectAllPosts TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'developer'@'%';
