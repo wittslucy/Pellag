@@ -6,7 +6,9 @@
     </div>
 
     <ul class="dashboardcard">
-        <h5>COMMENTS</h5>
+
+        <h5><?= count($allComments) === 1 ? count($allComments).' COMMENT' : count($allComments).' COMMENTS';?></h5>
+
         <?php foreach ($allComments as $Comment) : ?>
             <li class="list-group-item dashboardcard">
                 <small>Comment created on <?= $Comment['date_created']; ?>
