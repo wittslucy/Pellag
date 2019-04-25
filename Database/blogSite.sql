@@ -227,7 +227,7 @@ GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'admin'@'%';
 
 # Create developer user
 DROP USER 'developer'@'%';
-CREATE USER 'developer'@'%' IDENTIFIED BY 'iminchar9e';
+CREATE USER 'developer'@'%' IDENTIFIED BY 'igotdap0w3r';
 GRANT USAGE ON *.* TO 'developer'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
 
 # Grant priveleges to developer
