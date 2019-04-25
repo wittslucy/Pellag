@@ -1,4 +1,11 @@
-<?php foreach ($allPosts as $Post) : ?>
+<?php 
+if (isset($_SESSION['user_id'])) {
+   // logged in
+ } else {
+   header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
+ }
+
+foreach ($allPosts as $Post) : ?>
     <div class="card card-post">
         <div class="card-header">
             <h5 class="card-title"><?= $Post['post_title']; ?></h5>

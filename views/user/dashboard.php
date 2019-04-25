@@ -31,7 +31,17 @@
         <?php endforeach; ?>
        </div>
   </div>
+
   <div class="dashboardrightcolumn">
+    <div class="dashboardcard">
+        <div id="search-box-container" >
+        <label>Search for a post...</label>
+        <input  type="text" id="search-data" name="searchData" placeholder="Search By Post Title (word length should be greater than 3) ..." autocomplete="off" />
+      </div>
+      <div id="search-result-container" style="display:none; ">
+      </div>
+    </div>
+  
     <div class="dashboardcard">
       <h2>About Me</h2>
       <div class="dashboardfakeimg" style="height:100px;">Image</div>
