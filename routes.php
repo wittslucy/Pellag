@@ -52,7 +52,7 @@
         $controllers = array(
             'Pages' => ['home', 'error',],
             'User' => ['logIn', 'logOut', 'registerUser', 'dashboard', 'editBio', 'editTwitter', 'editInstagram'],
-            'Post' => ['readAll', 'read', 'create', 'update', 'delete'],
+            'Post' => ['readAll', 'read', 'create', 'delete', 'update'],
             'Comment' => ['create', 'showAllComments', 'delete'],
             'controllerXXX' => ['actionYYY', 'actionZZZ'],
         );

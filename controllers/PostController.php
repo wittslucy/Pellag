@@ -46,28 +46,20 @@
             $context['allPosts'] = Post::all();
             header('Location: /pellag/index.php?controller=Post&action=readAll', true, 302);
         }
-//
-//        public function update()
-//        {
-//            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//
-//                // we use the given id to get the correct product
-//                if (isset($_GET['id'])) {
-//                    $individualProduct = Post::find($_GET['id']);
-//                    require_once 'views/posts/update.php';
-//                }
-//                call('pages', 'error');
-//
-//            } else {
-//                // create an id
-//                $id = $_GET['id'];
-//                Post::update($id);
-//                $allProducts = Post::all();
-//                require_once 'views/posts/readAll.php';
-//            }
-//
-//        }
-//
+
+        public function update()
+        {
+            // we expect a url of form ?controller=posts&action=update
+            // if it's a GET request display a blank form for updating a post
+            // else it's a POST so add to the database and redirect to readAll action
+
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/posts/update.php');
+            }
+            Post::update();
+            $context['allPosts'] = Post::all();
+            header('Location: /pellag/index.php?controller=Post&action=readAll', true, 302);
+        }
         public function delete()
         {
             Post::remove($_GET['post_id']);

@@ -99,40 +99,26 @@ EOT;
         {
             $pdo = MY_PDO::getInstance();
 
-            $sqlQuery = 'Update blog_post set post_title=:post_title, date_created=:date_created, user_id=:user_id, post_content=:post_content where post_id=:post_id';
-            $req = $pdo->run($sqlQuery);
+                //Retrieve the field values from our registration form.
+                $post_id = intval($post_id);
+                $user_id = $_SESSION ['user_id'];
+                $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
+                $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
+                $date_created = date('Y-m-d');
 
-            // set name and price parameters and execute
-            if (isset($_POST['post_title']) && $_POST['post_title'] !== '') {
-                $filteredPostTitle = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['post_content']) && $_POST['post_content'] !== '') {
-                $filteredPostContent = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
-                $filteredPostAuthor = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['date_created']) && $_POST['date_created'] !== '') {
-                $date_created = $_POST['date_created'];
-            }
+                //Construct the SQL statement and prepare it.
+                $sql = 'Update blog_site.blog_post set(post_id, user_id, post_title, post_content, date_created) values (:post_id, :user_id, :post_title, :post_content, :date_created)';
+                $stmt = $pdo->prepare($sql);
 
-            $post_title = $filteredPostTitle;
-            $post_content = $filteredPostContent;
-            $user_id = $filteredPostAuthor;
+                //Bind the provided username to our prepared statement.
+                $stmt->bindValue(':post_id', $post_id);
+                $stmt->bindValue(':user_id', $user_id);
+                $stmt->bindValue(':post_title', $post_title);
+                $stmt->bindValue(':post_content', $post_content);
+                $stmt->bindValue(':date_created', $date_created);
 
-
-            $req->bindParam(':post_id', $post_id);
-            $req->bindParam(':user_id', $user_id);
-            $req->bindParam(':post_title', $post_title);
-            $req->bindParam(':post_content', $post_content);
-            $req->bindParam(':date_created', $date_created);
-
-            $req->execute();
-
-            //upload product image if it exists
-            //            if (!empty($_FILES[self::InputKey]['name'])) {
-            //                self::uploadFile($post_title);
-            //            }
+                //Execute the statement and insert the new account.
+                $result = $stmt->execute();
 
         }
 
@@ -140,12 +126,9 @@ EOT;
         {
             $pdo = MY_PDO::getInstance();
 
-            //If the POST var "register" exists (our submit button), then we can
-            //assume that the user has submitted the registration form.
-            if (isset($_POST['createpost'])) {
-
                 //Retrieve the field values from our registration form.
                 $user_id = $_SESSION ['user_id'];
+                $post_id = intval($post_id);
                 $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
                 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
                 $date_created = date('Y-m-d');
@@ -162,8 +145,6 @@ EOT;
 
                 //Execute the statement and insert the new account.
                 $result = $stmt->execute();
-
-            }
 
         }
 
