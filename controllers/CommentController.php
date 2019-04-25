@@ -1,5 +1,8 @@
 <?php
 
+    require_once 'models/User.php';
+    require_once 'models/Post.php';
+
     class CommentController
     {
 
@@ -42,9 +45,18 @@
 
         public function delete()
         {
-            Comment::remove($_GET['comment_id']);
-            $context['allComments'] = Comment::allComments();
-            return render('views/posts/showAllComments.php', $context);
-        }
+            if ($_GET['comment_id']) {
 
+                try {
+                    $post = Post::find_by_comment($_GET['comment_id']);
+                    Comment::remove($_GET['comment_id']);
+                    header("Location: /pellag/index.php?controller=Post&action=read&post_id={$post['post_id']}", true, 302);
+                } catch (Exception $ex) {
+                    return call('Pages', 'error');
+                }
+            }
+
+            return call('Pages', 'error');
+
+        }
     }

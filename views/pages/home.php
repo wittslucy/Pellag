@@ -10,7 +10,8 @@
                         <?php endforeach; ?>
                     </ul>
                     <p></p>
-                    <a href="index.php?controller=Post&action=readAll" class="btn btn-primary">ALL POSTS</a>
+                    <a href="index.php?controller=Post&action=readAll"
+                       class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL POSTS</a>
                 </div>
             </div>
         </div>
@@ -23,7 +24,8 @@
                 <div class="card-body">
                     <h5 class="card-title">JOIN THE CREATORS</h5>
                     <p class="card-text">Follow the link below to register to our blog</p>
-                    <a href="index.php?controller=User&action=registerUser" class="btn btn-primary">REGISTER</a>
+                    <a href="index.php?controller=User&action=registerUser"
+                       class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
                 </div>
             </div>
         </div>
@@ -42,7 +44,7 @@
                 <div class="carousel-item active">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" width="100px" height="100px" src="views/images/carousel/paula.jpg"
+                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/paula.jpg"
                                  alt="First slide - Paula">
                         </div>
                         <div class="wrapper-team-description">
@@ -50,7 +52,7 @@
                                 <h1>Paula</h1>
                             </div>
                             <div class="team-description-text">
-                                <p>It's awesome to write some stuff</p>
+                                <blockquote class="author-bio">Happy to write some stuff</blockquote>
                             </div>
                         </div>
                     </div>
@@ -59,7 +61,7 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" width="100px" height="100px" src="views/images/carousel/emma.jpg"
+                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/emma.jpg"
                                  alt="Second slide - Emma">
                         </div>
                         <div class="wrapper-team-description">
@@ -67,7 +69,7 @@
                                 <h1>Emma</h1>
                             </div>
                             <div class="team-description-text">
-                                <p>It's awesome to write some stuff</p>
+                                <blockquote class="author-bio"></blockquote>
                             </div>
                         </div>
                     </div>
@@ -75,7 +77,7 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" width="100" height="100" src="views/images/testC.jpeg"
+                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/testC.jpeg"
                                  alt="Third slide - Lucy">
                         </div>
                         <div class="wrapper-team-description">
@@ -83,7 +85,7 @@
                                 <h1>Lucy</h1>
                             </div>
                             <div class="team-description-text">
-                                <p>It's awesome to write some stuff</p>
+                                <blockquote class="author-bio"></blockquote>
                             </div>
                         </div>
                     </div>
@@ -91,7 +93,7 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" width="100" height="100" src="views/images/Bourneville.jpeg"
+                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/Bourneville.jpeg"
                                  alt="Fourth slide - Louise">
                         </div>
                         <div class="wrapper-team-description">
@@ -99,7 +101,7 @@
                                 <h1>Louise</h1>
                             </div>
                             <div class="team-description-text">
-                                <p>It's awesome to write some stuff</p>
+                                <blockquote class="author-bio"></blockquote>
                             </div>
                         </div>
                     </div>
@@ -107,7 +109,7 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" width="100px" height="100px" src="views/images/carousel/alex.jpg"
+                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/alex.jpg"
                                  alt="Fifth slide - Alex">
                         </div>
                         <div class="wrapper-team-description">
@@ -115,7 +117,7 @@
                                 <h1>Alex</h1>
                             </div>
                             <div class="team-description-text">
-                                <p>It's awesome to write some stuff</p>
+                                <blockquote class="author-bio"></blockquote>
                             </div>
                         </div>
                     </div>
@@ -123,7 +125,7 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" width="100px" height="100px" src="views/images/carousel/gillian.jpeg"
+                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/gillian.jpeg"
                                  alt="Sixth slide - Gillian">
                         </div>
                         <div class="wrapper-team-description">
@@ -131,7 +133,7 @@
                                 <h1>Gillian</h1>
                             </div>
                             <div class="team-description-text">
-                                <p>It's awesome to write some stuff</p>
+                                <blockquote class="author-bio"></blockquote>
                             </div>
                         </div>
                     </div>
