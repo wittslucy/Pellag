@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS blog_user
   email        varchar(255) not null,
   password     varchar(255) not null,
   date_created date         not null,
-  last_login   date
+  last_login   date, 
 twitter_handle varchar(255)    not null,
-instagram_handle varchar(255)  not null,
+instagram_handle varchar(255)  not null
 );
 
 # Populate table with test user
@@ -162,8 +162,8 @@ BEGIN
   WHERE blog_post.post_id = `PostID`;
 END$$
 
-# Stored procedure to select blog posts with a certain word in the title
-CREATE
+# Stored procedure to select blog posts with a certain word in the title - blanked out as not working
+/*CREATE
   DEFINER =`root`@`localhost`
   PROCEDURE `SearchPostsByKeyword`(INOUT `Keyword` VARCHAR(30))
 BEGIN
@@ -172,6 +172,7 @@ BEGIN
   WHERE (CONVERT(`post_content` USING utf8) LIKE '%' + @Keyword + '%' OR
          CONVERT(`post_title` USING utf8) LIKE '%' + @Keyword + '%');
 END$$
+*/
 DELIMITER ;
 # End of procedures
 
