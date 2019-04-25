@@ -80,8 +80,45 @@ EOT;
             //use intval to make sure $id is an integer
             $post_id = intval($post_id);
 
-            $sqlQuery = 'SELECT * FROM blog_site.blog_post LEFT JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id WHERE blog_post.post_id = :post_id';
+            $sqlQuery = <<<EOT
+SELECT *, (SELECT COUNT(comment_id) FROM blog_site.comment 
+WHERE blog_site.comment.post_id = blog_site.blog_post.post_id) as allCommentsCounts
+FROM blog_site.blog_post  
+  LEFT JOIN blog_site.blog_user user on blog_post.user_id = user.user_id 
+WHERE blog_post.post_id = :post_id
+EOT;
+
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
+
+            $post = $result->fetch(PDO::FETCH_ASSOC);
+
+            if ($post) {
+                return $post;
+            }
+
+            $post = array();
+
+            return $post;
+
+        }
+
+        /**
+         * @param $comment_id
+         * @return mixed
+         */
+        public static function find_by_comment($comment_id)
+        {
+            $pdo = MY_PDO::getInstance();
+            //use intval to make sure $id is an integer
+            $comment_id = intval($comment_id);
+
+            $sqlQuery = <<<EOT
+SELECT * FROM blog_site.blog_post 
+  LEFT JOIN blog_site.comment on comment.post_id = blog_post.post_id 
+WHERE comment.comment_id = :comment_id
+EOT;
+
+            $result = $pdo->run($sqlQuery, array('comment_id' => $comment_id));
 
             $post = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -211,16 +248,16 @@ EOT;
             $stmt->bindValue(':post_id', $post_id);
             $result = $stmt->execute();
         }
-        
+
         public static function getMyPosts()
         {
             $pdo = MY_PDO::getInstance();
-            
+
             $user_id = $_SESSION ['user_id'];
-            
-                
+
+
             $sqlQuery = 'SELECT * FROM blog_site.blog_post JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id WHERE blog_post.user_id=:user_id';
-            
+
             $result = $pdo->run($sqlQuery, ['user_id' => $user_id]);
 
             if ($result) {
@@ -232,7 +269,6 @@ EOT;
             return $myPosts;
 
         }
-        
-        
- 
+
+
     }

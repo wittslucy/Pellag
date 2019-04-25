@@ -136,9 +136,8 @@
                     $_SESSION['bio'] = $user ['bio'];
                     $_SESSION['twitter_handle'] = $user ['twitter_handle'];
                     $_SESSION['instagram_handle'] = $user ['instagram_handle'];
-                    $_SESSION['logged_in'] = time(); 
-                    // Redirect to the home page.
-                    header('Location: /pellag/index.php?controller=User&action=dashboard', true, 302);
+                    $_SESSION['logged_in'] = time();
+
                 } else {
                     //$validPassword was FALSE. Passwords do not match.
                    ?> <script> alert ("You have entered an invalid email/password")</script> <?php
