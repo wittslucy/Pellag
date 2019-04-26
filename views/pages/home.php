@@ -6,7 +6,10 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <?php foreach ($allPosts as $Post) : ?>
-                            <li class="list-group-item"><?= $Post['post_title']; ?><br><small> created on <?= $Post['date_created']; ?> by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small></li>
+                            <li class="list-group-item"><?= $Post['post_title']; ?><br>
+                                <small> created on <?= $Post['date_created']; ?>
+                                    by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                     <p></p>
@@ -16,19 +19,51 @@
             </div>
         </div>
 
-        <div class="item">
-            <div class="card">
-                <div class="card-header">
-                    JOIN US
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">JOIN THE CREATORS</h5>
-                    <p class="card-text">Follow the link below to register to our blog</p>
-                    <a href="index.php?controller=User&action=registerUser"
-                       class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
+        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
+            <div class="item">
+                <div class="card">
+                    <div class="card-header">
+                        GO TO YOUR DASHBOARD
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome to the Home Page</h5>
+                        <p class="card-text">Follow the link below to go to your dashboard</p>
+                        <a href="index.php?controller=User&action=dashboard"
+                           class="btn btn-primary">DASHBOARD</a>
+                    </div>
                 </div>
             </div>
-        </div>
+
+        <?php else : ?>
+
+            <div class="item">
+                <div class="card">
+                    <div class="card-header">
+                        JOIN US
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">JOIN THE CREATORS</h5>
+                        <p class="card-text">Follow the link below to register to our blog</p>
+                        <a href="index.php?controller=User&action=registerUser"
+                           class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="card">
+                    <div class="card-header">
+                        LOGIN
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">LOGIN</h5>
+                        <p class="card-text">Follow the link below to login to our blog</p>
+                        <a href="index.php?controller=User&action=logIn"
+                           class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+                    </div>
+                </div>
+            </div>
+        <?php endif ?>
+
     </div>
 </div>
 
@@ -44,7 +79,8 @@
                 <div class="carousel-item active">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/paula.jpg"
+                            <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
+                                 src="views/images/carousel/paula.jpg"
                                  alt="First slide - Paula">
                         </div>
                         <div class="wrapper-team-description">
@@ -61,7 +97,8 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/emma.jpg"
+                            <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
+                                 src="views/images/carousel/emma.jpg"
                                  alt="Second slide - Emma">
                         </div>
                         <div class="wrapper-team-description">
@@ -77,7 +114,8 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/testC.jpeg"
+                            <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
+                                 src="views/images/testC.jpeg"
                                  alt="Third slide - Lucy">
                         </div>
                         <div class="wrapper-team-description">
@@ -93,7 +131,8 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/Bourneville.jpeg"
+                            <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
+                                 src="views/images/Bourneville.jpeg"
                                  alt="Fourth slide - Louise">
                         </div>
                         <div class="wrapper-team-description">
@@ -109,7 +148,8 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/alex.jpg"
+                            <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
+                                 src="views/images/carousel/alex.jpg"
                                  alt="Fifth slide - Alex">
                         </div>
                         <div class="wrapper-team-description">
@@ -125,7 +165,8 @@
                 <div class="carousel-item">
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
-                            <img class="img-responsive" style="border-radius: 50%;"  width="150px" height="150px" src="views/images/carousel/gillian.jpeg"
+                            <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
+                                 src="views/images/carousel/gillian.jpeg"
                                  alt="Sixth slide - Gillian">
                         </div>
                         <div class="wrapper-team-description">
@@ -138,15 +179,15 @@
                         </div>
                     </div>
                 </div>
-                
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
         </div>
     </div>
-</div>
