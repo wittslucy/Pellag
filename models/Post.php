@@ -165,7 +165,6 @@ EOT;
 
                 //Retrieve the field values from our registration form.
                 $user_id = $_SESSION ['user_id'];
-                $post_id = intval($post_id);
                 $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
                 $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
                 $date_created = date('Y-m-d');
