@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS blog_user
   password     varchar(255) not null,
   date_created date         not null,
   last_login   date, 
-twitter_handle varchar(255)    not null,
-instagram_handle varchar(255)  not null
+twitter_handle varchar(255),
+instagram_handle varchar(255)
 );
 
 # Populate table with test user
