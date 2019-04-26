@@ -88,7 +88,7 @@
                                 <h1>Paula</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Happy to write some stuff</blockquote>
+                                <blockquote class="author-bio">Makes awesome cinnamon swirls, and holds the record for the first 'get in to techer' to get a job</blockquote>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                                 <h1>Emma</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio"></blockquote>
+                                <blockquote class="author-bio">Going off to Iceland soon and laughs at people falling over!</blockquote>
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
                             <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
-                                 src="views/images/testC.jpeg"
+                                 src="views/images/carousel/lucy.jpg"
                                  alt="Third slide - Lucy">
                         </div>
                         <div class="wrapper-team-description">
@@ -174,7 +174,7 @@
                                 <h1>Gillian</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio"></blockquote>
+                                <blockquote class="author-bio">Feeling more tired after this course than she did from running Stirling Marathon last year.</blockquote>
                             </div>
                         </div>
                     </div>
