@@ -10,16 +10,16 @@ use blog_site;
 # Create table for users
 CREATE TABLE IF NOT EXISTS blog_user
 (
-  user_id      int          not null primary key AUTO_INCREMENT,
-  first_name   varchar(30)  not null,
-  last_name    varchar(50)  not null,
-  bio          varchar(255),
-  email        varchar(255) not null,
-  password     varchar(255) not null,
-  date_created date         not null,
-  last_login   date, 
-twitter_handle varchar(255),
-instagram_handle varchar(255)
+  user_id          int          not null primary key AUTO_INCREMENT,
+  first_name       varchar(30)  not null,
+  last_name        varchar(50)  not null,
+  bio              varchar(255),
+  email            varchar(255) not null,
+  password         varchar(255) not null,
+  date_created     date         not null,
+  last_login       date,
+  twitter_handle   varchar(255),
+  instagram_handle varchar(255)
 );
 
 # Populate table with test user
@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS blog_post
   last_update  date,
   post_title   varchar(100),
   FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE
+
 );
 
 # Populate table with test post
@@ -50,8 +52,11 @@ CREATE TABLE IF NOT EXISTS comment
   comment_content varchar(255),
   date_created    date not null,
   user_id         int  not null,
-  FOREIGN KEY (user_id) REFERENCES blog_user (user_id),
+  FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE,
   FOREIGN KEY (post_id) REFERENCES blog_post (post_id)
+    ON DELETE CASCADE
+
 );
 
 # Populate table with test comment
