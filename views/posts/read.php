@@ -1,3 +1,7 @@
+<?php if (!isset($_SESSION['user_id'])) {
+    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
+} ?>
+
 <div class="form-container">
     <div class="card card-post">
         <div class="card-header" style="text-align: center">

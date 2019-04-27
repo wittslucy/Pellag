@@ -1,3 +1,7 @@
+<?php if (!isset($_SESSION['user_id'])) {
+    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
+} ?>
+
 <div class="form-container" style="width: 70%; margin: 0 auto">
     <div class="dashboardcard">
         <h5 style="text-align: center">Create a new post below:</h5>

@@ -60,6 +60,28 @@
 
         }
 
+        /**
+         * @return array
+         */
+        public static function tenMostRecent()
+        {
+            $pdo = MY_PDO::getInstance();
+
+            $sqlQuery = 'SELECT * FROM blog_site.comment LEFT JOIN blog_site.blog_post bp on comment.post_id = bp.post_id ORDER BY comment.date_created desc LIMIT 10';
+
+            /** @var MY_PDO $pdo */
+            $result = $pdo->run($sqlQuery);
+
+            if ($result) {
+                $allComments = $result->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $allComments = array();
+            }
+
+            return $allComments;
+
+        }
+
 
         /**
          * Get all comments for this specific post id; will be displayed when clicked on all comments
