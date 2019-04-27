@@ -17,6 +17,23 @@ body {
     text-align:center;
 }
 
+.social-media-buttons {
+    margin-bottom: 1rem;
+}
+
+.social-media-buttons > a {
+     color: black;
+     text-decoration: none;
+}
+.social-media-buttons > a:hover {
+    color: #666666;
+    text-decoration: none;
+}
+
+.social-media-buttons > a.btn  {
+    color: white;
+    text-decoration: none;
+}
 
 
 nav {

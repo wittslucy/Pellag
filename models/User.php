@@ -1,6 +1,6 @@
 <?php
     require_once 'Model.php';
-    
+
     /**
      * Created by PhpStorm.
      * User: Art3mis
@@ -19,7 +19,7 @@
         public $password;
         public $date_created;
         public $last_login;
-    
+
     public function __construct($user_id, $first_name, $date_created, $last_name, $bio, $email, $password, $last_login, $twitter_handle, $instagram_handle)
         {
             parent::__construct();
@@ -36,7 +36,7 @@
         }
 
         public static function create()
-                
+
         {
             $pdo = MY_PDO::getInstance();
 
@@ -50,22 +50,22 @@
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $bio = !empty($_POST['bio']) ? trim($_POST['bio']) : null;
                 $date_created = date('Y-m-d');
-                $password = !empty($_POST['password']) ? trim($_POST['password']) : null;  
-                
-                
+                $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+
+
                 //Now, we need to check if the supplied username already exists.
                 $sql = 'SELECT COUNT(blog_site.blog_user.email) AS num FROM blog_site.blog_user WHERE email = :email';
-                
+
                 $stmt = $pdo->prepare($sql);
-                
+
                 //Bind the provided username to our prepared statement.
                 $stmt->bindValue(':email', $email);
-                
+
                 //Execute.
                 $stmt->execute();
-                
+
                 //Fetch the row.
-                
+
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 //If the provided username already exists - error is displayed using AJAX
                 //
@@ -73,7 +73,7 @@
                 if ($row['num'] > 0) {
                     die(header('Location: /pellag/index.php?controller=User&action=registerUser', true, 302));
                 }
-             
+
 
                 //Hash the password as we do NOT want to store our passwords in plain text.
                 $passwordHash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
@@ -93,14 +93,14 @@
                 if ($result) {
                     //What you do here is up to you!
                     // Redirect to the home page.
-                echo '<script type="text/javascript">'; 
-                echo 'alert("Registration successful");'; 
+                echo '<script type="text/javascript">';
+                echo 'alert("Registration successful");';
                 echo 'window.location.href = "/pellag/index.php?controller=User&action=logIn";';
                 echo '</script>';
                    }
             }
         }
-        
+
         public static function login()
         {
             $pdo = MY_PDO::getInstance();
@@ -110,7 +110,7 @@
                 //Retrieve the field values from our login form.
                 $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
                 $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
-                
+
                 //Retrieve the user account information for the given email - does this email exists in DB.
                 $sql = 'SELECT * FROM blog_site.blog_user WHERE email = :email';
                 $stmt = $pdo->prepare($sql);
@@ -119,8 +119,8 @@
                 //Execute.
                 $stmt->execute();
                 //Fetch row.
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);               
-                
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
                 //Compare the passwords.
                 $validPassword = password_verify($passwordAttempt, $user['password']);
                 //If $validPassword is TRUE, the login has been successful.
@@ -141,11 +141,11 @@
                 } else {
                     //$validPassword was FALSE. Passwords do not match.
                    ?> <script> alert ("You have entered an invalid email/password")</script> <?php
-                }                
+                }
             }
         }
-        
-        
+
+
         public static function logout()
         {
             $pdo = MY_PDO::getInstance();
@@ -162,17 +162,17 @@
 
             }
         }
-        
-        
+
+
         public static function editBio()
         {
             $pdo = MY_PDO::getInstance();
-            
+
             if (isset($_POST['editBio'])) {
 
             $bio=$_POST['bio'];
             $user_id =$_SESSION['user_id'];
-   
+
             //Execute the query
 
            $sql = 'UPDATE blog_site.blog_user SET bio = :bio WHERE user_id = :user_id';
@@ -180,65 +180,65 @@
            $stmt ->bindValue(':user_id', $user_id);
            $stmt ->bindValue(':bio', $bio);
            $stmt -> execute();
-           
-            
+
+
             echo '<script type="text/javascript">';
             echo 'alert ("Update successful - please log back in");';
             echo 'window.location.href = "index.php?controller=User&action=logOut";';
             echo '</script>';
-            
+
             }
         }
-      
-        public static function edittwitter()
+
+        public static function editTwitter()
         {
             $pdo = MY_PDO::getInstance();
-            
+
             if (isset($_POST['edittwitter'])) {
 
             $twitter_handle=$_POST['edittwitter'];
             $user_id =$_SESSION['user_id'];
-   
+
             //Execute the query
 
-           $sql = 'UPDATE blog_site.blog_user SET twitter_handle = :twitter_handle WHERE user_id = :user_id';
+           $sql = 'UPDATE blog_site.blog_user SET blog_user.twitter_handle = :twitter_handle WHERE blog_user.user_id = :user_id';
            $stmt = $pdo->prepare($sql);
            $stmt ->bindValue(':user_id', $user_id);
            $stmt ->bindValue(':twitter_handle', $twitter_handle);
            $stmt -> execute();
-           
-            
+
+
             echo '<script type="text/javascript">';
             echo 'alert ("Update successful - please log back in");';
             echo 'window.location.href = "index.php?controller=User&action=logOut";';
             echo '</script>';
-            
+
             }
         }
-        
-        public static function editinstagram()
+
+        public static function editInstagram()
         {
             $pdo = MY_PDO::getInstance();
-            
+
             if (isset($_POST['editinstagram'])) {
 
             $instagram_handle=$_POST['editinstagram'];
             $user_id =$_SESSION['user_id'];
-   
+
             //Execute the query
 
-           $sql = 'UPDATE blog_site.blog_user SET instagram_handle = :instagram_handle WHERE user_id = :user_id';
+           $sql = 'UPDATE blog_site.blog_user SET blog_user.instagram_handle = :instagram_handle WHERE blog_user.user_id = :user_id';
            $stmt = $pdo->prepare($sql);
            $stmt ->bindValue(':user_id', $user_id);
            $stmt ->bindValue(':instagram_handle', $instagram_handle);
            $stmt -> execute();
-           
-            
+
+
             echo '<script type="text/javascript">';
             echo 'alert ("Update successful - please log back in");';
             echo 'window.location.href = "index.php?controller=User&action=logOut";';
             echo '</script>';
-            
+
             }
         }
     }
