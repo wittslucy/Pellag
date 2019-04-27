@@ -1,53 +1,49 @@
 <div class="container">
     <div class="row home-page-row">
-
-        <div class="card">
-            <div class="card-header">MOST RECENT POSTS</div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <?php foreach ($allPosts as $Post) : ?>
-                        <li class="list-group-item"><?= $Post['post_title']; ?><br>
-                            <small> created on <?= $Post['date_created']; ?>
-                                by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <div class="card-footer">
-                <a href="index.php?controller=Post&action=readAll"
-                   class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL POSTS</a>
-            </div>
-        </div>
-
-
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
+            <div class="card">
+                <div class="card-header">MOST RECENT POSTS</div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($allPosts as $Post) : ?>
+                            <li class="list-group-item"><?= $Post['post_title']; ?><br>
+                                <small> created on <?= $Post['date_created']; ?>
+                                    by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="index.php?controller=Post&action=readAll"
+                       class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL POSTS</a>
+                </div>
+            </div>
+
 
             <div class="card">
-                <div class="card-header">
-                    GO TO YOUR DASHBOARD
-                </div>
+                <div class="card-header">MOST RECENT IMAGES</div>
                 <div class="card-body">
-                    <h5 class="card-title">Welcome to the Home Page</h5>
-                    <p class="card-text">Follow the link below to go to your dashboard</p>
-
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($allComments as $Comment) : ?>
+                            <li class="list-group-item">Post: <?= $Comment['post_title']; ?><br>
+                                <small> Comment created on <?= $Comment['date_created']; ?></small>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-
                 <div class="card-footer">
-                    <a href="index.php?controller=User&action=dashboard"
-                       class="btn btn-primary">DASHBOARD</a>
+                    <a href="index.php?controller=Post&action=readAll"
+                       class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL IMAGES</a>
                 </div>
             </div>
 
-
         <?php else : ?>
-
 
             <div class="card">
                 <div class="card-header">
                     JOIN US
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">JOIN THE CREATORS</h5>
                     <p class="card-text">Follow the link below to register to our blog</p>
                 </div>
                 <div class="card-footer">
@@ -61,8 +57,7 @@
                     LOGIN
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">LOGIN</h5>
-                    <p class="card-text">Follow the link below to login to our blog</p>
+                    <p class="card-text">If you're already registered, follow the link below to login</p>
 
                 </div>
                 <div class="card-footer">
@@ -70,7 +65,7 @@
                        class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
                 </div>
             </div>
-           
+
         <?php endif ?>
 
     </div>

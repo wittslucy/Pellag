@@ -43,6 +43,7 @@
             return call('Pages', 'error');
         }
 
+
         public function delete()
         {
             if ($_GET['comment_id']) {
