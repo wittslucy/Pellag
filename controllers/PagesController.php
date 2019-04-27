@@ -2,6 +2,7 @@
 
     require_once 'models/Post.php';
     require_once 'models/Comment.php';
+    require_once 'models/Image.php';
 
     class PagesController
     {
@@ -14,12 +15,16 @@
             $context['user'] = $user;
             $context['allPosts'] = Post::tenMostRecent();
             $context['allComments'] = Comment::tenMostRecent();
+            $context['allImages'] = Image::tenMostRecent();
             return render('views/pages/home.php', $context);
         }
 
         public function error(Exception $ex)
         {
-            $context['exception'] = $ex;
-            return render('views/pages/error.php', $context);
+            if ($ex) {
+                $context['exception'] = $ex;
+                return render('views/pages/error.php', $context);
+            }
+
         }
     }

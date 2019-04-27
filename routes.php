@@ -54,7 +54,7 @@
             'Pages' => ['home', 'error',],
             'User' => ['logIn', 'logOut', 'registerUser', 'dashboard', 'editBio', 'editTwitter', 'editInstagram'],
             'Post' => ['readAll', 'read', 'create', 'delete', 'update'],
-            'Image' => ['upload', 'viewAll'],
+            'Image' => ['upload', 'delete', 'viewAll'],
             'Comment' => ['create', 'showAllComments', 'delete'],
             'controllerXXX' => ['actionYYY', 'actionZZZ'],
         );

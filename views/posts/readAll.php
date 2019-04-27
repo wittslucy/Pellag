@@ -3,6 +3,18 @@
 } ?>
 
 <?php if (isset($allPosts) && is_array($allPosts) && count($allPosts) !== 0) : ?>
+
+    <div class="dashboardcard">
+        <h5 style="text-align: center">SEARCH POSTS</h5>
+        <input type="text" id="search-data" name="searchData" class="form-control"
+               placeholder="Post Title..."
+               autocomplete="off"/>
+        <small class="form-text text-muted">Word length should be greater than 3</small>
+
+        <div id="search-result-container" style="display:none; ">
+        </div>
+    </div>
+
     <?php foreach ($allPosts as $Post) : ?>
         <div class="card card-post">
             <div class="card-header">
@@ -12,11 +24,11 @@
                 <p class="card-text post-text text-truncate"
                    style="word-wrap: break-word;"><?= $Post['post_content']; ?></p>
                 <div class="btn-group-sm" role="group" aria-label="Basic example">
-                    <a class="btn btn-secondary"
+                    <a class="btn btn-custom"
                        href='?controller=Post&action=read&post_id=<?= $Post['post_id']; ?>'>
                         READ MORE
                     </a>
-                    <a class="btn btn-secondary"
+                    <a class="btn-custom btn"
                        href='?controller=Comment&action=showAllComments&post_id=<?= $Post['post_id']; ?>'>
                         <i class="far fa-comments"></i> <?= $Post['allCommentsCounts']; ?></a>
 
@@ -31,13 +43,12 @@
     <?php endforeach; ?>
 
 <?php else : ?>
-    <div class="dashboardcard">
-        <ul>
-            <li class="list-group-item">
-                <p>You have no posts yet... Let's get started!</p>
-                <a href="index.php?controller=Post&action=create" class="btn btn-primary">Create</a>
-            </li>
-        </ul>
+
+    <div class="dashboardcard button-center">
+        <blockquote class="author-bio">You have no posts yet...</blockquote>
+    </div>
+    <div class="button-center">
+        <a href="index.php?controller=Post&action=create" class="btn-custom btn btn-center">Let's get started!</a>
     </div>
 <?php endif; ?>
 
