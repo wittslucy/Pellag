@@ -112,7 +112,7 @@
                                 <h1>Emma</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Going off to Iceland soon and laughs at people falling
+                                <blockquote class="author-bio">Goes off to Iceland soon, and she laughs at people falling
                                     over!
                                 </blockquote>
                             </div>
@@ -140,7 +140,7 @@
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
                             <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
-                                 src="views/images/Bourneville.jpeg"
+                                 src="views/images/carousel/louise.JPG"
                                  alt="Fourth slide - Louise">
                         </div>
                         <div class="wrapper-team-description">
@@ -148,7 +148,7 @@
                                 <h1>Louise</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio"></blockquote>
+                                <blockquote class="author-bio">Louise subscribes to yoga, and she likes music, la la la</blockquote>
                             </div>
                         </div>
                     </div>
