@@ -1,3 +1,7 @@
+<?php if (!isset($_SESSION['user_id'])) {
+    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
+} ?>
+
 <?php if (isset($allComments) && is_array($allComments) && count($allComments) !== 0) : ?>
     <div class="dashboardcard">
         <h5><?= $allComments[0]['post_title']; ?></h5>

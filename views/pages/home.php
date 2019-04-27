@@ -1,67 +1,70 @@
 <div class="container">
     <div class="row home-page-row">
-        <div class="item">
-            <div class="card">
-                <div class="card-header">MOST RECENT POSTS</div>
-                <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <?php foreach ($allPosts as $Post) : ?>
-                            <li class="list-group-item"><?= $Post['post_title']; ?><br>
-                                <small> created on <?= $Post['date_created']; ?>
-                                    by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <p></p>
-                    <a href="index.php?controller=Post&action=readAll"
-                       class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL POSTS</a>
-                </div>
+
+        <div class="card">
+            <div class="card-header">MOST RECENT POSTS</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <?php foreach ($allPosts as $Post) : ?>
+                        <li class="list-group-item"><?= $Post['post_title']; ?><br>
+                            <small> created on <?= $Post['date_created']; ?>
+                                by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="card-footer">
+                <a href="index.php?controller=Post&action=readAll"
+                   class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL POSTS</a>
             </div>
         </div>
 
+
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
-            <div class="item">
-                <div class="card">
-                    <div class="card-header">
-                        GO TO YOUR DASHBOARD
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Welcome to the Home Page</h5>
-                        <p class="card-text">Follow the link below to go to your dashboard</p>
-                        <a href="index.php?controller=User&action=dashboard"
-                           class="btn btn-primary">DASHBOARD</a>
-                    </div>
+
+            <div class="card">
+                <div class="card-header">
+                    GO TO YOUR DASHBOARD
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Welcome to the Home Page</h5>
+                    <p class="card-text">Follow the link below to go to your dashboard</p>
+
+                </div>
+                <div class="card-footer">
+                    <a href="index.php?controller=User&action=dashboard"
+                       class="btn btn-primary">DASHBOARD</a>
                 </div>
             </div>
+
 
         <?php else : ?>
 
-            <div class="item">
-                <div class="card">
-                    <div class="card-header">
-                        JOIN US
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">JOIN THE CREATORS</h5>
-                        <p class="card-text">Follow the link below to register to our blog</p>
-                        <a href="index.php?controller=User&action=registerUser"
-                           class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
-                    </div>
+
+            <div class="card">
+                <div class="card-header">
+                    JOIN US
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">JOIN THE CREATORS</h5>
+                    <p class="card-text">Follow the link below to register to our blog</p>
+                    <a href="index.php?controller=User&action=registerUser"
+                       class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
                 </div>
             </div>
-            <div class="item">
-                <div class="card">
-                    <div class="card-header">
-                        LOGIN
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">LOGIN</h5>
-                        <p class="card-text">Follow the link below to login to our blog</p>
-                        <a href="index.php?controller=User&action=logIn"
-                           class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
-                    </div>
+
+            <div class="card">
+                <div class="card-header">
+                    LOGIN
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">LOGIN</h5>
+                    <p class="card-text">Follow the link below to login to our blog</p>
+                    <a href="index.php?controller=User&action=logIn"
+                       class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
                 </div>
             </div>
+           
         <?php endif ?>
 
     </div>
@@ -88,7 +91,9 @@
                                 <h1>Paula</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Makes awesome cinnamon swirls, and holds the record for the first 'get in to techer' to get a job</blockquote>
+                                <blockquote class="author-bio">Makes awesome cinnamon swirls, and holds the record for
+                                    the first 'get in to techer' to get a job
+                                </blockquote>
                             </div>
                         </div>
                     </div>
@@ -106,7 +111,9 @@
                                 <h1>Emma</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Going off to Iceland soon and laughs at people falling over!</blockquote>
+                                <blockquote class="author-bio">Going off to Iceland soon and laughs at people falling
+                                    over!
+                                </blockquote>
                             </div>
                         </div>
                     </div>
@@ -174,7 +181,9 @@
                                 <h1>Gillian</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Feeling more tired after this course than she did from running Stirling Marathon last year.</blockquote>
+                                <blockquote class="author-bio">Feeling more tired after this course than she did from
+                                    running Stirling Marathon last year.
+                                </blockquote>
                             </div>
                         </div>
                     </div>
