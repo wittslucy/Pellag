@@ -1,6 +1,6 @@
 <?php
 
-   
+
     class ImageController {
 
         public function upload()
@@ -13,7 +13,8 @@
                 return render('views/posts/upload.php');
             }
             Image::upload();
-            return render('views/posts/upload.php');
+            
+           header('Location: /pellag/index.php?controller=Image&action=viewAll', true, 302);
         }
    
            public function viewAll()
