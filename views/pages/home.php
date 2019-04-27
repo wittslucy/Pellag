@@ -31,6 +31,7 @@
                     <p class="card-text">Follow the link below to go to your dashboard</p>
 
                 </div>
+
                 <div class="card-footer">
                     <a href="index.php?controller=User&action=dashboard"
                        class="btn btn-primary">DASHBOARD</a>
@@ -48,6 +49,8 @@
                 <div class="card-body">
                     <h5 class="card-title">JOIN THE CREATORS</h5>
                     <p class="card-text">Follow the link below to register to our blog</p>
+                </div>
+                <div class="card-footer">
                     <a href="index.php?controller=User&action=registerUser"
                        class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
                 </div>
@@ -60,6 +63,9 @@
                 <div class="card-body">
                     <h5 class="card-title">LOGIN</h5>
                     <p class="card-text">Follow the link below to login to our blog</p>
+
+                </div>
+                <div class="card-footer">
                     <a href="index.php?controller=User&action=logIn"
                        class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
                 </div>
