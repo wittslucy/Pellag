@@ -136,87 +136,54 @@ EOT;
         {
             $pdo = MY_PDO::getInstance();
 
-                //Retrieve the field values from our registration form.
+            if (isset($_POST['updatepost'])) {
                 $post_id = intval($post_id);
-                $user_id = $_SESSION ['user_id'];
-                $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
-                $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
-                $date_created = date('Y-m-d');
+
+                //Retrieve the field values from our registration form./*/
+                $post_title = $_POST['post_title'];
+                $post_content = $_POST['post_content'];
+                $last_update = date('Y-m-d');
 
                 //Construct the SQL statement and prepare it.
-                $sql = 'Update blog_site.blog_post set(post_id, user_id, post_title, post_content, date_created) values (:post_id, :user_id, :post_title, :post_content, :date_created)';
+                $sql = 'UPDATE blog_site.blog_post set blog_post.last_update= :last_update where blog_post.post_id = :post_id';
                 $stmt = $pdo->prepare($sql);
 
                 //Bind the provided username to our prepared statement.
                 $stmt->bindValue(':post_id', $post_id);
-                $stmt->bindValue(':user_id', $user_id);
                 $stmt->bindValue(':post_title', $post_title);
                 $stmt->bindValue(':post_content', $post_content);
-                $stmt->bindValue(':date_created', $date_created);
+                $stmt->bindValue(':last_updated', $last_update);
 
                 //Execute the statement and insert the new account.
                 $result = $stmt->execute();
-
+                print_r($result);
+            }
         }
 
         public static function add()
         {
             $pdo = MY_PDO::getInstance();
 
-                //Retrieve the field values from our registration form.
-                $user_id = $_SESSION ['user_id'];
-                $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
-                $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
-                $date_created = date('Y-m-d');
+            //Retrieve the field values from our registration form.
+            $user_id = $_SESSION ['user_id'];
+            $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
+            $date_created = date('Y-m-d');
 
-                //Construct the SQL statement and prepare it.
-                $sql = 'Insert into blog_site.blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
-                $stmt = $pdo->prepare($sql);
+            //Construct the SQL statement and prepare it.
+            $sql = 'Insert into blog_site.blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
+            $stmt = $pdo->prepare($sql);
 
-                //Bind the provided username to our prepared statement.
-                $stmt->bindValue(':user_id', $user_id);
-                $stmt->bindValue(':post_title', $post_title);
-                $stmt->bindValue(':post_content', $post_content);
-                $stmt->bindValue(':date_created', $date_created);
+            //Bind the provided username to our prepared statement.
+            $stmt->bindValue(':user_id', $user_id);
+            $stmt->bindValue(':post_title', $post_title);
+            $stmt->bindValue(':post_content', $post_content);
+            $stmt->bindValue(':date_created', $date_created);
 
-                //Execute the statement and insert the new account.
-                $result = $stmt->execute();
+            //Execute the statement and insert the new account.
+            $result = $stmt->execute();
 
         }
-
-        const AllowedTypes = ['image/jpeg', 'image/jpg'];
-        const InputKey = 'myUploader';
-
-        //die() function calls replaced with trigger_error() calls
-        //replace with structured exception handling
-        //        public static function uploadFile($name)
-        //        {
-        //            if (empty($_FILES[self::InputKey])) {
-        //                //die("File Missing!");
-        //                trigger_error('File Missing!');
-        //            }
-        //
-        //            if ($_FILES[self::InputKey]['error'] > 0) {
-        //                trigger_error('Handle the error! ' . $_FILES[self::InputKey]['error']);
-        //            }
-        //
-        //            if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes, true)) {
-        //                trigger_error('Handle File Type Not Allowed: ' . $_FILES[self::InputKey]['type']);
-        //            }
-        //
-        //            $tempFile = $_FILES[self::InputKey]['tmp_name'];
-        //            $path = '/Users/Art3mis/Projects/SkyGetIntoTech/Projects/Blog-Pellag/src/views/images';
-        //            $destinationFile = $path . $name . '.jpeg';
-        //
-        //            if (!move_uploaded_file($tempFile, $destinationFile)) {
-        //                trigger_error('Handle Error');
-        //            }
-        //
-        //            //Clean up the temp file
-        //            if (file_exists($tempFile)) {
-        //                unlink($tempFile);
-        //            }
-        //        }
 
         public static function remove($post_id)
         {
