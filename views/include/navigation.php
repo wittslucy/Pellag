@@ -32,6 +32,14 @@
                         <a class="nav-link <?= ($CURRENT_PAGE === 'logOut') ? 'active' : '' ?>"
                            href="index.php?controller=User&action=logOut"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($CURRENT_PAGE === 'upload') ? 'active' : '' ?>"
+                         href="index.php?controller=Image&action=upload">UPLOAD IMAGE</a>
+                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if ($CURRENT_PAGE === 'viewAll') { ?> active <?php } ?>"
+                         href="index.php?controller=Image&action=viewAll">GALLERY</a>
+                     </li>
                 <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link <?= ($CURRENT_PAGE === 'registerUser') ? 'active' : '' ?>"

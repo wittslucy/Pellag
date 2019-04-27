@@ -63,6 +63,16 @@ CREATE TABLE IF NOT EXISTS comment
 INSERT INTO comment (post_id, comment_content, date_created, user_id)
 VALUES (1, 'I am a test comment', curdate(), 1);
 
+CREATE TABLE `gallery` (
+  `gallery_id` int(11) NOT NULL primary key AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `image_title` varchar(255) NOT NULL,
+  `image_description` varchar(255) NOT NULL,
+  `image_name` varchar(255) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE);
+
 # PROCEDURES
 
 DELIMITER $$
