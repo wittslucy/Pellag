@@ -13,7 +13,7 @@
                 <input name="editinstagram" id="editinstagram" type="text" class="form-control" placeholder="Update your Instagram handler"/>
             </div>
 
-            <button type="submit" id="editinstagram" name="editinstagram" class="btn btn-primary">SAVE</button>
+            <input type="submit" id="editinstagram" class="btn btn-primary"/>
 
         </form>
     </div>

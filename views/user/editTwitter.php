@@ -12,7 +12,7 @@
                 <input name="edittwitter" id="edittwitter" type="text" class="form-control" placeholder="Update your Twitter handler"/>
             </div>
 
-            <button type="submit" id="edittwitter" name="edittwitter" class="btn btn-primary">SAVE</button>
+            <input type="submit" id="edittwitter" class="btn btn-primary"/>
 
         </form>
     </div>

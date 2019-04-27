@@ -28,6 +28,10 @@
                href='?controller=Post&action=readAll'>
                 BACK TO ALL POSTS
             </a>
+            <a class="btn btn-success"
+               href='?controller=Post&action=update&post_id=<?php echo $individualPost['post_id']; ?>'>
+                UPDATE
+            </a>
             <a class="btn btn-warning"
                href='?controller=Post&action=delete&post_id=<?php echo $individualPost['post_id']; ?>'>
                 DELETE

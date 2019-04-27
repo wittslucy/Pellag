@@ -61,7 +61,8 @@
                     <blockquote class="author-bio">
                         <?= $_SESSION['bio']; ?>
                     </blockquote>
-                    <a href="index.php?controller=User&action=editBio" class="btn btn-primary">EDIT</a>
+                    <a href="index.php?controller=User&action=editBio" class="btn btn-primary"><i
+                                class="fas fa-user-edit"></i></a>
                 </div>
             <?php else : ?>
                 <div style="margin: 1rem auto">
@@ -92,31 +93,56 @@
         <div class="dashboardcard">
             <h5>FOLLOW ME</h5>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"></i>
-                    <?php if ($_SESSION['instagram_handle']): ?>
+                <li class="list-group-item">
+                    <?php if ($_SESSION['twitter_handle']): ?>
 
-                        <div class="buttons">
-                            <a href="https://www.twitter.com/<?= $_SESSION['twitter_handle']; ?>"><i
-                                        class="fab fa-twitter fa-2x"></i> <?= $_SESSION['twitter_handle']; ?></a>
-                            <a href="index.php?controller=User&action=editTwitter" class="btn btn-primary"> EDIT</a>
+                        <div class="social-media-buttons mb-2">
+                            <div>
+                                <a href="https://www.twitter.com/<?= $_SESSION['twitter_handle']; ?>">
+                                    <i class="fab fa-twitter fa-2x"></i> <?= $_SESSION['twitter_handle']; ?></a>
+                            </div>
+                            <div class="social-media-buttons mb-2">
+                                <a href="index.php?controller=User&action=editTwitter" class="btn btn-primary"><i
+                                            class="fas fa-user-edit"></i></a>
+                            </div>
+
                         </div>
 
                     <?php else : ?>
-                        <p><i class="fab fa-twitter fa-2x"></i> No account linked</p>
-                        <a href="index.php?controller=User&action=editTwitter" class="btn btn-primary"> ADD</a>
+                        <div class="social-media-buttons mb-2">
+                            <p><i class="fab fa-twitter fa-2x"></i> No account linked</p>
+                        </div>
+                        <div class="social-media-buttons mb-2">
+                            <a href="index.php?controller=User&action=editTwitter" class="btn btn-primary"><i
+                                        class="fas fa-user-edit"></i></a>
+                        </div>
+
                     <?php endif ?>
                 </li>
 
                 <li class="list-group-item"></i>
                     <?php if ($_SESSION['instagram_handle']): ?>
-                        <div class="buttons">
-                            <a href="https://www.instagram.com/<?= $_SESSION['instagram_handle']; ?>"><i
-                                        class="fab fa-instagram fa-2x"> <?= $_SESSION['instagram_handle']; ?></a>
-                            <a href="index.php?controller=User&action=editInstagram" class="btn btn-primary"> EDIT</a>
+                        <div>
+                            <div class="social-media-buttons">
+                                <a href="https://www.instagram.com/<?= $_SESSION['instagram_handle']; ?>">
+                                    <i class="fab fa-instagram fa-2x"></i> <?= $_SESSION['instagram_handle']; ?></a>
+                            </div>
+
+                            <div class="social-media-buttons">
+                                <a href="index.php?controller=User&action=editInstagram" class="btn btn-primary">
+                                    <i class="fas fa-user-edit"></i></a>
+                            </div>
+
                         </div>
                     <?php else : ?>
-                        <p><i class="fab fa-instagram fa-2x"></i> No account linked</p>
-                        <a href="index.php?controller=User&action=editInstagram" class="btn btn-primary"> ADD</a>
+                        <div>
+                            <p><i class="fab fa-instagram fa-2x"></i> No account linked</p>
+                        </div>
+                        <div>
+                            <a href="index.php?controller=User&action=editInstagram" class="btn btn-primary">
+                                <i class="fas fa-user-edit"></i></a>
+                        </div>
+
                     <?php endif ?>
                 </li>
             </ul>

@@ -18,15 +18,6 @@
                 <small class="form-text text-muted">2500 characters</small>
             </div>
 
-            <div class="form-group">
-                <label> Include an image? </label>
-                <br>
-                <input type="hidden"
-                       name="MAX_FILE_SIZE"
-                       value="10000000"
-                />
-                <input type="file" name="uploadimage" class="w3-btn w3-pink"/>
-            </div>
             <button type="submit" name="createpost" class="btn btn-primary">Publish Post</button>
 
         </form>
