@@ -16,15 +16,11 @@ CREATE TABLE IF NOT EXISTS blog_user
   bio              varchar(255),
   email            varchar(255) not null,
   password         varchar(255) not null,
-  date_created     date         not null,
-  last_login       date,
+  date_created     timestamp    not null,
+  last_login       timestamp,
   twitter_handle   varchar(255),
   instagram_handle varchar(255)
 );
-
-# Populate table with test user
-INSERT INTO blog_user (first_name, last_name, bio, email, password, date_created, last_login)
-VALUES ('TestFirst', 'TestLast', 'I am a test', 'test@gmail.com', 'supersecure1!', curdate(), curdate());
 
 # Create table for posts	
 CREATE TABLE IF NOT EXISTS blog_post
@@ -32,17 +28,13 @@ CREATE TABLE IF NOT EXISTS blog_post
   post_id      int  not null primary key AUTO_INCREMENT,
   user_id      int  not null,
   post_content text,
-  date_created date not null,
-  last_update  date,
+  date_created timestamp not null,
+  last_update  timestamp,
   post_title   varchar(100),
   FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
     ON DELETE CASCADE
 
 );
-
-# Populate table with test post
-INSERT INTO blog_post (user_id, post_content, date_created, last_update, post_title)
-VALUES (1, 'Boring content here', curdate(), curdate(), 'I am a test post');
 
 # Create table for comments	
 CREATE TABLE IF NOT EXISTS comment
@@ -50,7 +42,7 @@ CREATE TABLE IF NOT EXISTS comment
   comment_id      int  not null primary key AUTO_INCREMENT,
   post_id         int  not null,
   comment_content varchar(255),
-  date_created    date not null,
+  date_created    timestamp not null,
   user_id         int  not null,
   FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
     ON DELETE CASCADE,
@@ -59,19 +51,17 @@ CREATE TABLE IF NOT EXISTS comment
 
 );
 
-# Populate table with test comment
-INSERT INTO comment (post_id, comment_content, date_created, user_id)
-VALUES (1, 'I am a test comment', curdate(), 1);
-
-CREATE TABLE `gallery` (
-  `gallery_id` int(11) NOT NULL primary key AUTO_INCREMENT,
-  `user_id` int NOT NULL,
-  `image_title` varchar(255) NOT NULL,
+CREATE TABLE `gallery`
+(
+  `gallery_id`        int(11)      NOT NULL primary key AUTO_INCREMENT,
+  `user_id`           int          NOT NULL,
+  `image_title`       varchar(255) NOT NULL,
   `image_description` varchar(255) NOT NULL,
-  `image_name` varchar(255) NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
-    ON DELETE CASCADE);
+  `image_name`        varchar(255) NOT NULL,
+  `date_added`        timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE
+);
 
 # PROCEDURES
 
@@ -177,18 +167,6 @@ BEGIN
   WHERE blog_post.post_id = `PostID`;
 END$$
 
-# Stored procedure to select blog posts with a certain word in the title - blanked out as not working
-/*CREATE
-  DEFINER =`root`@`localhost`
-  PROCEDURE `SearchPostsByKeyword`(INOUT `Keyword` VARCHAR(30))
-BEGIN
-  SELECT *
-  FROM `blog_site`.`blog_post`
-  WHERE (CONVERT(`post_content` USING utf8) LIKE '%' + @Keyword + '%' OR
-         CONVERT(`post_title` USING utf8) LIKE '%' + @Keyword + '%');
-END$$
-*/
-DELIMITER ;
 # End of procedures
 
 # USERS AND PRIVELEGES
@@ -246,9 +224,9 @@ CREATE USER 'developer'@'%' IDENTIFIED BY 'igotdap0w3r';
 GRANT USAGE ON *.* TO 'developer'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
 
 # Grant priveleges to developer
-GRANT * ON `blog_site`.`blog_post` TO 'developer'@'%';
-GRANT * ON `blog_site`.`blog_user` TO 'developer'@'%';
-GRANT * ON `blog_site`.`comment` TO 'developer'@'%';
+GRANT ALL ON `blog_site`.`blog_post` TO 'developer'@'%';
+GRANT ALL ON `blog_site`.`blog_user` TO 'developer'@'%';
+GRANT ALL ON `blog_site`.`comment` TO 'developer'@'%';
 
 # Allow developer to access stored procedures
 GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'developer'@'%';
