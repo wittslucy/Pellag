@@ -325,3 +325,8 @@ h2.gray {
 .list-group-item .btn-info.collapsed:after {
     content: "+";
 }
+
+.gallery-cards.card-deck {
+    width: 33%;
+    display: inline-block;
+}

@@ -51,6 +51,7 @@
                 $bio = !empty($_POST['bio']) ? trim($_POST['bio']) : null;
                 $date_created = date('Y-m-d');
                 $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+                $confirm_password =!empty($_POST['confirm_password']) ? trim($_POST['confirm_password']) :null;
 
 
                 //Now, we need to check if the supplied username already exists.
@@ -73,8 +74,10 @@
                 if ($row['num'] > 0) {
                     die(header('Location: /pellag/index.php?controller=User&action=registerUser', true, 302));
                 }
-
-
+                
+                if ($_POST["password"] === $_POST["confirm_password"]) {
+                    // success!
+                
                 //Hash the password as we do NOT want to store our passwords in plain text.
                 $passwordHash = password_hash($password, PASSWORD_BCRYPT, array("cost" => 12));
                 //Construct the SQL statement and prepare it.
@@ -98,6 +101,9 @@
                 echo 'window.location.href = "/pellag/index.php?controller=User&action=logIn";';
                 echo '</script>';
                    }
+                }else {
+                    die(header('Location: /pellag/index.php?controller=User&action=registerUser', true, 302));
+                }
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
 
-   
+
     class ImageController {
 
         public function upload()

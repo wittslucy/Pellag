@@ -52,9 +52,9 @@
         // Add an entry for each new controller and its actions
         $controllers = array(
             'Pages' => ['home', 'error',],
-            'User' => ['logIn', 'logOut', 'registerUser', 'dashboard', 'editBio', 'editTwitter', 'editInstagram'],
+            'User' => ['logIn', 'logOut', 'registerUser', 'dashboard', 'editBio', 'editTwitter', 'editInstagram',],
             'Post' => ['readAll', 'read', 'create', 'delete', 'update'],
-            'Image' => ['upload', 'delete', 'viewAll'],
+            'Image' => ['upload', 'delete', 'gallery', 'viewAll'],
             'Comment' => ['create', 'showAllComments', 'delete'],
             'controllerXXX' => ['actionYYY', 'actionZZZ'],
         );

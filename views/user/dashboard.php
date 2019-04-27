@@ -56,8 +56,6 @@
         <div class="dashboardcard">
 
             <h5>ABOUT ME</h5>
-            <div class="dashboardfakeimg" style="height:100px;">Image</div>
-
             <?php if ($_SESSION['bio']) : ?>
                 <div style="margin: 1rem auto">
                     <blockquote class="author-bio">
@@ -83,7 +81,10 @@
             <ul class="list-group list-group-flush posts-dashboard">
                 <?php foreach ($allPosts as $Post) : ?>
                     <li class="list-group-item">
-                        <a href="?controller=Post&action=read&post_id=<?= $Post['post_id']; ?>"><?= $Post['post_title']; ?></a><br>
+                        <a href="index.php?controller=Post&action=read&post_id=<?= $Post['post_id']; ?>">
+                            <?= $Post['post_title']; ?>
+                        </a>
+                        <br>
                         <small> created on <?= $Post['date_created']; ?>
                             by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
                     </li>
