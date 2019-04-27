@@ -1,6 +1,7 @@
 <?php
 
-    require_once  "models/Post.php";
+    require_once 'models/Post.php';
+    require_once 'models/Comment.php';
 
     class PagesController
     {
@@ -12,11 +13,13 @@
             // Example data to use in the home page.
             $context['user'] = $user;
             $context['allPosts'] = Post::tenMostRecent();
+            $context['allComments'] = Comment::tenMostRecent();
             return render('views/pages/home.php', $context);
         }
 
-        public function error()
+        public function error(Exception $ex)
         {
-            return render('views/pages/error.php');
+            $context['exception'] = $ex;
+            return render('views/pages/error.php', $context);
         }
     }

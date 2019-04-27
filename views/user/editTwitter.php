@@ -1,9 +1,20 @@
-<h1>Update Your Twitter</h1><br>
+<?php if (!isset($_SESSION['user_id'])) {
+    header('Location: /pellag/index.php?controller=User&action=logIn', true, 302);
+} ?>
 
-<form id="edittwitter" method="post"  action="">
-    Twitter:
-    <input name="edittwitter" placeholder="Update your Twitter handle"></input>
-                
-    <br><button id="edittwitter" type="submit" value="Update">Save</button> <br>
-   
-</form> 
+<div class="form-container" style="width: 70%; margin: 0 auto">
+    <div class="dashboardcard">
+        <h5 style="text-align: center"><i class="fab fa-twitter"></i> Update Your Twitter</h5>
+
+        <form id="edittwitter" method="post" action="">
+
+            <div class="form-group">
+                <input name="edittwitter" id="edittwitter" type="text" class="form-control" placeholder="Update your Twitter handler"/>
+            </div>
+
+            <input type="submit" id="edittwitter" class="btn btn-primary"/>
+
+        </form>
+    </div>
+</div>
+

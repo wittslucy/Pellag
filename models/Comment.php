@@ -60,6 +60,28 @@
 
         }
 
+        /**
+         * @return array
+         */
+        public static function tenMostRecent()
+        {
+            $pdo = MY_PDO::getInstance();
+
+            $sqlQuery = 'SELECT * FROM blog_site.comment LEFT JOIN blog_site.blog_post bp on comment.post_id = bp.post_id ORDER BY comment.date_created desc LIMIT 10';
+
+            /** @var MY_PDO $pdo */
+            $result = $pdo->run($sqlQuery);
+
+            if ($result) {
+                $allComments = $result->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                $allComments = array();
+            }
+
+            return $allComments;
+
+        }
+
 
         /**
          * Get all comments for this specific post id; will be displayed when clicked on all comments
@@ -74,7 +96,7 @@
 
             $post_id = intval($post_id);
 
-            $sqlQuery = 'SELECT *, comment.user_id as comment_author, bp.user_id as post_author FROM blog_site.comment LEFT JOIN blog_site.blog_post bp on comment.post_id = bp.post_id LEFT JOIN blog_site.blog_user bu on bp.user_id = bu.user_id WHERE comment.post_id = :post_id';
+            $sqlQuery = 'SELECT *, comment.user_id as comment_author, bp.date_created as post_date, bp.user_id as post_author FROM blog_site.comment LEFT JOIN blog_site.blog_post bp on comment.post_id = bp.post_id LEFT JOIN blog_site.blog_user bu on bp.user_id = bu.user_id WHERE comment.post_id = :post_id';
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
 
             //may be only one or many comments with same post_id

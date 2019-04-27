@@ -3,11 +3,12 @@
 body {
     margin: 0;
     font-size: 1rem;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Arial', serif;
     font-weight: 400;
     line-height: 1.5;
     min-height: 100vh;
     text-align: left;
+    background: #f1f1f1;
 }
 .jumbotron.jumbotron-nav {
     margin-bottom: 0;
@@ -15,6 +16,25 @@ body {
     padding: 0;
     text-align:center;
 }
+
+.social-media-buttons {
+    margin-bottom: 1rem;
+}
+
+.social-media-buttons > a {
+     color: black;
+     text-decoration: none;
+}
+.social-media-buttons > a:hover {
+    color: #666666;
+    text-decoration: none;
+}
+
+.social-media-buttons > a.btn  {
+    color: white;
+    text-decoration: none;
+}
+
 
 nav {
     border-top: 1px solid darkgrey;
@@ -73,9 +93,32 @@ main > .container {
 }
 
 .wrapper-team {
+    width: 100%;
     display: flex;
     justify-content: center;
 }
+
+.wrapper-team-description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+blockquote.author-bio {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1em;
+}
+
 
 .carousel.slide {
     margin-top: 1rem;
@@ -179,13 +222,6 @@ main > .container {
     width: 60%;
     margin: 1rem auto;
 
-}
-
-
-.dashboardbody {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
 }
 
 /* Header/Blog Title */

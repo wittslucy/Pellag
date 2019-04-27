@@ -80,8 +80,45 @@ EOT;
             //use intval to make sure $id is an integer
             $post_id = intval($post_id);
 
-            $sqlQuery = 'SELECT * FROM blog_site.blog_post LEFT JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id WHERE blog_post.post_id = :post_id';
+            $sqlQuery = <<<EOT
+SELECT *, (SELECT COUNT(comment_id) FROM blog_site.comment 
+WHERE blog_site.comment.post_id = blog_site.blog_post.post_id) as allCommentsCounts
+FROM blog_site.blog_post  
+  LEFT JOIN blog_site.blog_user user on blog_post.user_id = user.user_id 
+WHERE blog_post.post_id = :post_id
+EOT;
+
             $result = $pdo->run($sqlQuery, array('post_id' => $post_id));
+
+            $post = $result->fetch(PDO::FETCH_ASSOC);
+
+            if ($post) {
+                return $post;
+            }
+
+            $post = array();
+
+            return $post;
+
+        }
+
+        /**
+         * @param $comment_id
+         * @return mixed
+         */
+        public static function find_by_comment($comment_id)
+        {
+            $pdo = MY_PDO::getInstance();
+            //use intval to make sure $id is an integer
+            $comment_id = intval($comment_id);
+
+            $sqlQuery = <<<EOT
+SELECT * FROM blog_site.blog_post 
+  LEFT JOIN blog_site.comment on comment.post_id = blog_post.post_id 
+WHERE comment.comment_id = :comment_id
+EOT;
+
+            $result = $pdo->run($sqlQuery, array('comment_id' => $comment_id));
 
             $post = $result->fetch(PDO::FETCH_ASSOC);
 
@@ -99,107 +136,53 @@ EOT;
         {
             $pdo = MY_PDO::getInstance();
 
-            $sqlQuery = 'Update blog_post set post_title=:post_title, date_created=:date_created, user_id=:user_id, post_content=:post_content where post_id=:post_id';
-            $req = $pdo->run($sqlQuery);
+           // if (isset($_POST['updatepost'])) {
+                $post_id = intval($post_id);
 
-            // set name and price parameters and execute
-            if (isset($_POST['post_title']) && $_POST['post_title'] !== '') {
-                $filteredPostTitle = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['post_content']) && $_POST['post_content'] !== '') {
-                $filteredPostContent = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['user_id']) && $_POST['user_id'] !== '') {
-                $filteredPostAuthor = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
-            }
-            if (isset($_POST['date_created']) && $_POST['date_created'] !== '') {
-                $date_created = $_POST['date_created'];
-            }
+                //Retrieve the field values from our registration form./*/
+                $post_title = $_POST['post_title'];
+                $post_content = $_POST['post_content'];
+                $last_update = date('Y-m-d');
+                //Construct the SQL statement and prepare it.
+                $sql = 'UPDATE blog_site.blog_post set blog_post.post_title= :post_title, blog_post.post_content = :post_content, blog_post.last_update= :last_update where blog_post.post_id = :post_id';
+                $stmt = $pdo->prepare($sql);
 
-            $post_title = $filteredPostTitle;
-            $post_content = $filteredPostContent;
-            $user_id = $filteredPostAuthor;
+                //Bind the provided username to our prepared statement.
+                $stmt->bindValue(':post_id', $post_id);
+                $stmt->bindValue(':post_title', $post_title);
+                $stmt->bindValue(':post_content', $post_content);
+                $stmt->bindValue(':last_update', $last_update);
 
+                //Execute the statement and insert the new account.
+                $result = $stmt->execute();
 
-            $req->bindParam(':post_id', $post_id);
-            $req->bindParam(':user_id', $user_id);
-            $req->bindParam(':post_title', $post_title);
-            $req->bindParam(':post_content', $post_content);
-            $req->bindParam(':date_created', $date_created);
-
-            $req->execute();
-
-            //upload product image if it exists
-            //            if (!empty($_FILES[self::InputKey]['name'])) {
-            //                self::uploadFile($post_title);
-            //            }
-
+            //}
         }
 
         public static function add()
         {
             $pdo = MY_PDO::getInstance();
 
-            //If the POST var "register" exists (our submit button), then we can
-            //assume that the user has submitted the registration form.
-            if (isset($_POST['createpost'])) {
+            //Retrieve the field values from our registration form.
+            $user_id = $_SESSION ['user_id'];
+            $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
+            $date_created = date('Y-m-d');
 
-                //Retrieve the field values from our registration form.
-                $user_id = $_SESSION ['user_id'];
-                $post_title = filter_input(INPUT_POST, 'post_title', FILTER_SANITIZE_SPECIAL_CHARS);
-                $post_content = filter_input(INPUT_POST, 'post_content', FILTER_SANITIZE_SPECIAL_CHARS);
-                $date_created = date('Y-m-d');
+            //Construct the SQL statement and prepare it.
+            $sql = 'Insert into blog_site.blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
+            $stmt = $pdo->prepare($sql);
 
-                //Construct the SQL statement and prepare it.
-                $sql = 'Insert into blog_site.blog_post(user_id, post_title, post_content, date_created) values (:user_id, :post_title, :post_content, :date_created)';
-                $stmt = $pdo->prepare($sql);
+            //Bind the provided username to our prepared statement.
+            $stmt->bindValue(':user_id', $user_id);
+            $stmt->bindValue(':post_title', $post_title);
+            $stmt->bindValue(':post_content', $post_content);
+            $stmt->bindValue(':date_created', $date_created);
 
-                //Bind the provided username to our prepared statement.
-                $stmt->bindValue(':user_id', $user_id);
-                $stmt->bindValue(':post_title', $post_title);
-                $stmt->bindValue(':post_content', $post_content);
-                $stmt->bindValue(':date_created', $date_created);
-
-                //Execute the statement and insert the new account.
-                $result = $stmt->execute();
-
-            }
+            //Execute the statement and insert the new account.
+            $result = $stmt->execute();
 
         }
-
-        const AllowedTypes = ['image/jpeg', 'image/jpg'];
-        const InputKey = 'myUploader';
-
-        //die() function calls replaced with trigger_error() calls
-        //replace with structured exception handling
-        //        public static function uploadFile($name)
-        //        {
-        //            if (empty($_FILES[self::InputKey])) {
-        //                //die("File Missing!");
-        //                trigger_error('File Missing!');
-        //            }
-        //
-        //            if ($_FILES[self::InputKey]['error'] > 0) {
-        //                trigger_error('Handle the error! ' . $_FILES[self::InputKey]['error']);
-        //            }
-        //
-        //            if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes, true)) {
-        //                trigger_error('Handle File Type Not Allowed: ' . $_FILES[self::InputKey]['type']);
-        //            }
-        //
-        //            $tempFile = $_FILES[self::InputKey]['tmp_name'];
-        //            $path = '/Users/Art3mis/Projects/SkyGetIntoTech/Projects/Blog-Pellag/src/views/images';
-        //            $destinationFile = $path . $name . '.jpeg';
-        //
-        //            if (!move_uploaded_file($tempFile, $destinationFile)) {
-        //                trigger_error('Handle Error');
-        //            }
-        //
-        //            //Clean up the temp file
-        //            if (file_exists($tempFile)) {
-        //                unlink($tempFile);
-        //            }
-        //        }
 
         public static function remove($post_id)
         {
@@ -211,16 +194,16 @@ EOT;
             $stmt->bindValue(':post_id', $post_id);
             $result = $stmt->execute();
         }
-        
+
         public static function getMyPosts()
         {
             $pdo = MY_PDO::getInstance();
-            
+
             $user_id = $_SESSION ['user_id'];
-            
-                
+
+
             $sqlQuery = 'SELECT * FROM blog_site.blog_post JOIN blog_site.blog_user bu on blog_post.user_id = bu.user_id WHERE blog_post.user_id=:user_id';
-            
+
             $result = $pdo->run($sqlQuery, ['user_id' => $user_id]);
 
             if ($result) {
@@ -232,7 +215,6 @@ EOT;
             return $myPosts;
 
         }
-        
-        
- 
+
+
     }

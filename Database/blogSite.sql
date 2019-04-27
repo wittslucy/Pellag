@@ -10,16 +10,16 @@ use blog_site;
 # Create table for users
 CREATE TABLE IF NOT EXISTS blog_user
 (
-  user_id      int          not null primary key AUTO_INCREMENT,
-  first_name   varchar(30)  not null,
-  last_name    varchar(50)  not null,
-  bio          varchar(255),
-  email        varchar(255) not null,
-  password     varchar(255) not null,
-  date_created date         not null,
-  last_login   date
-twitter_handle varchar(255)    not null,
-instagram_handle varchar(255)  not null,
+  user_id          int          not null primary key AUTO_INCREMENT,
+  first_name       varchar(30)  not null,
+  last_name        varchar(50)  not null,
+  bio              varchar(255),
+  email            varchar(255) not null,
+  password         varchar(255) not null,
+  date_created     date         not null,
+  last_login       date,
+  twitter_handle   varchar(255),
+  instagram_handle varchar(255)
 );
 
 # Populate table with test user
@@ -36,6 +36,8 @@ CREATE TABLE IF NOT EXISTS blog_post
   last_update  date,
   post_title   varchar(100),
   FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE
+
 );
 
 # Populate table with test post
@@ -50,13 +52,26 @@ CREATE TABLE IF NOT EXISTS comment
   comment_content varchar(255),
   date_created    date not null,
   user_id         int  not null,
-  FOREIGN KEY (user_id) REFERENCES blog_user (user_id),
+  FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE,
   FOREIGN KEY (post_id) REFERENCES blog_post (post_id)
+    ON DELETE CASCADE
+
 );
 
 # Populate table with test comment
 INSERT INTO comment (post_id, comment_content, date_created, user_id)
 VALUES (1, 'I am a test comment', curdate(), 1);
+
+CREATE TABLE `gallery` (
+  `gallery_id` int(11) NOT NULL primary key AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `image_title` varchar(255) NOT NULL,
+  `image_description` varchar(255) NOT NULL,
+  `image_name` varchar(255) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (user_id) REFERENCES blog_user (user_id)
+    ON DELETE CASCADE);
 
 # PROCEDURES
 
@@ -162,8 +177,8 @@ BEGIN
   WHERE blog_post.post_id = `PostID`;
 END$$
 
-# Stored procedure to select blog posts with a certain word in the title
-CREATE
+# Stored procedure to select blog posts with a certain word in the title - blanked out as not working
+/*CREATE
   DEFINER =`root`@`localhost`
   PROCEDURE `SearchPostsByKeyword`(INOUT `Keyword` VARCHAR(30))
 BEGIN
@@ -171,6 +186,80 @@ BEGIN
   FROM `blog_site`.`blog_post`
   WHERE (CONVERT(`post_content` USING utf8) LIKE '%' + @Keyword + '%' OR
          CONVERT(`post_title` USING utf8) LIKE '%' + @Keyword + '%');
-END
-DELIMITER;
+END$$
+*/
+DELIMITER ;
 # End of procedures
+
+# USERS AND PRIVELEGES
+# Create customer user
+DROP USER 'blogger'@'%';
+CREATE USER 'blogger'@'%' IDENTIFIED BY 'basicbl099er';
+GRANT USAGE ON *.* TO 'blogger'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+# Grant priveleges to customer
+GRANT SELECT, INSERT, UPDATE, DELETE ON `blog_site`.`blog_post` TO 'blogger'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `blog_site`.`blog_user` TO 'blogger'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `blog_site`.`comment` TO 'blogger'@'%';
+
+# Allow customer to access stored procedures
+GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE AddComment TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE AddUser TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteBlogPost TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteComment TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteUser TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE EditBlogPost TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE EditComment TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByAuthor TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByID TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE SelectAllPosts TO 'blogger'@'%';
+GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'blogger'@'%';
+
+# Create admin user
+DROP USER 'admin'@'%';
+CREATE USER 'admin'@'%' IDENTIFIED BY 'iminchar9e';
+GRANT USAGE ON *.* TO 'admin'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+# Grant priveleges to admin
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON `blog_site`.`blog_post` TO 'admin'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON `blog_site`.`blog_user` TO 'admin'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE, REFERENCES ON `blog_site`.`comment` TO 'admin'@'%';
+
+# Allow admin to access stored procedures
+GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE AddComment TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE AddUser TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteBlogPost TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteComment TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteUser TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE EditBlogPost TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE EditComment TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByAuthor TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByID TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE SelectAllPosts TO 'admin'@'%';
+GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'admin'@'%';
+
+# Create developer user
+DROP USER 'developer'@'%';
+CREATE USER 'developer'@'%' IDENTIFIED BY 'igotdap0w3r';
+GRANT USAGE ON *.* TO 'developer'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
+
+# Grant priveleges to developer
+GRANT * ON `blog_site`.`blog_post` TO 'developer'@'%';
+GRANT * ON `blog_site`.`blog_user` TO 'developer'@'%';
+GRANT * ON `blog_site`.`comment` TO 'developer'@'%';
+
+# Allow developer to access stored procedures
+GRANT EXECUTE ON PROCEDURE AddBlogPost TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE AddComment TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE AddUser TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteBlogPost TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteComment TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE DeleteUser TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE EditBlogPost TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE EditComment TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByAuthor TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE SearchPostsByID TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE SelectAllPosts TO 'developer'@'%';
+GRANT EXECUTE ON PROCEDURE UpdateUserLastLogin TO 'developer'@'%';

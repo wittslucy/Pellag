@@ -46,28 +46,41 @@
             $context['allPosts'] = Post::all();
             header('Location: /pellag/index.php?controller=Post&action=readAll', true, 302);
         }
-//
-//        public function update()
-//        {
-//            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-//
-//                // we use the given id to get the correct product
-//                if (isset($_GET['id'])) {
-//                    $individualProduct = Post::find($_GET['id']);
-//                    require_once 'views/posts/update.php';
-//                }
-//                call('pages', 'error');
-//
-//            } else {
-//                // create an id
-//                $id = $_GET['id'];
-//                Post::update($id);
-//                $allProducts = Post::all();
-//                require_once 'views/posts/readAll.php';
-//            }
-//
-//        }
-//
+
+        public function update()
+        {
+            // pre-populates the form
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
+                if (isset($_GET['post_id'])) {
+                    try {
+                        // we use the given id to get the correct post
+
+                        $context['individualPost'] = Post::find($_GET['post_id']);
+                        return render('views/posts/update.php', $context);
+
+                    } catch (Exception $ex) {
+                        return call('Pages', 'error');
+                    }
+                }
+            } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_GET['post_id'])) {
+                    try {
+                        // we use the given id to get the correct post
+                        Post::update($_GET['post_id']);
+                        //$context['allPosts'] = Post::all();
+                        header('Location: /pellag/index.php?controller=Post&action=readAll', true, 302);
+
+                    } catch (Exception $ex) {
+                        return call('Pages', 'error', $ex);
+                    }
+                }
+            }
+
+            return call('Pages', 'error');
+        }
+
+
         public function delete()
         {
             Post::remove($_GET['post_id']);

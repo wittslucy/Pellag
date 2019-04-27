@@ -24,9 +24,10 @@
     /**
      * @param $controller
      * @param $action
+     * @param $param
      * @return mixed
      */
-    function call($controller, $action)
+    function call($controller, $action, $param = NULL)
     {
         // require the file that matches the controller name
         require_once 'controllers/' . $controller . 'controller.php';
@@ -42,7 +43,7 @@
             $controller = new $controllerClassName();
         }
         // call the requested action
-        return $controller->{$action}();
+        return $controller->{$action}($param);
     }
 
     function route()
@@ -52,7 +53,8 @@
         $controllers = array(
             'Pages' => ['home', 'error',],
             'User' => ['logIn', 'logOut', 'registerUser', 'dashboard', 'editBio', 'editTwitter', 'editInstagram'],
-            'Post' => ['readAll', 'read', 'create', 'update', 'delete'],
+            'Post' => ['readAll', 'read', 'create', 'delete', 'update'],
+            'Image' => ['upload', 'viewAll'],
             'Comment' => ['create', 'showAllComments', 'delete'],
             'controllerXXX' => ['actionYYY', 'actionZZZ'],
         );
