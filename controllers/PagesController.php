@@ -17,8 +17,9 @@
             return render('views/pages/home.php', $context);
         }
 
-        public function error()
+        public function error(Exception $ex)
         {
-            return render('views/pages/error.php');
+            $context['exception'] = $ex;
+            return render('views/pages/error.php', $context);
         }
     }

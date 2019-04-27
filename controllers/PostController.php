@@ -68,12 +68,11 @@
                     try {
                         // we use the given id to get the correct post
                         Post::update($_GET['post_id']);
-                        $context['allPosts'] = Post::all();
+                        //$context['allPosts'] = Post::all();
                         header('Location: /pellag/index.php?controller=Post&action=readAll', true, 302);
 
                     } catch (Exception $ex) {
-
-                        return call('Pages', 'error');
+                        return call('Pages', 'error', $ex);
                     }
                 }
             }
