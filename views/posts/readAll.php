@@ -36,7 +36,7 @@
 
             </div>
             <div class="card-footer">
-                <small class="text-muted">Created on <?= $Post['date_created']; ?>
+                <small class="text-muted">Created
                     by <?= $Post['first_name'] . ' ' . $Post['last_name']; ?></small>
             </div>
         </div>
