@@ -21,7 +21,7 @@
         <?php else: ?>
 
             <?php foreach ($myPosts as $Post) : ?>
-                <div class="dashboardcard" style="overflow-y: scroll;">
+                <div class="dashboardcard">
 
                     <li class="list-group-item"><?= $Post['post_title'] ?><br>
                         <small> created on <?= $Post['date_created']; ?>
