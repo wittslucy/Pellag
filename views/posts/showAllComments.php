@@ -16,7 +16,7 @@
         <?php foreach ($allComments as $Comment) : ?>
             <li class="list-group-item dashboardcard">
                 <small>Comment created 
-                    by <?= $Comment['first_name']; ?> <?= $Comment['last_name']; ?>
+                    by <?= $_SESSION['first_name']; ?> 
                 </small>
                 <button type="button" class="btn btn-info collapsed"
                         data-toggle="collapse"

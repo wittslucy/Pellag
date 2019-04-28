@@ -12,10 +12,10 @@
             </div>
             <div class="form-group">
                 <label for="post_content"></label>
-                <textarea rows="3" maxlength="2500" class="md-textarea form-control" name="post_content"
+                <textarea rows="3" maxlength="7500" class="md-textarea form-control" name="post_content"
                           id="post_content"
                           placeholder="Post Content"><?= $individualPost['post_content']; ?></textarea>
-                <small class="form-text text-muted">2500 characters</small>
+                <small class="form-text text-muted">7500 characters</small>
             </div>
 
             <button type="submit" name="updatepost" class="btn btn-custom"><i class="fas fa-save"></i> UPDATE</button>

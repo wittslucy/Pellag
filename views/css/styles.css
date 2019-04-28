@@ -30,10 +30,17 @@ nav {
     flex: 1;
 }
 
+#upper_right{
+    position: absolute;
+    top:2%;
+    right:2%;
+}
+
 .jumbotron.jumbotron-nav {
     margin: 0 auto;
     padding: 0;
     text-align: center;
+    width: 80%;
 }
 
 .jumbotron > img {
@@ -264,6 +271,7 @@ blockquote.author-bio {
     text-align: center;
     border: 1px solid #00868B;
     border-radius: 5px;
+    background:white;
 }
 
 /* Clear floats after the columns */
@@ -285,6 +293,7 @@ blockquote.author-bio {
     margin-top: 2%;
     max-height: 860px;
     overflow-y: auto;
+    background:white;
 }
 
 /* Right column */
