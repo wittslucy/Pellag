@@ -31,19 +31,21 @@
                     <ul class="list-group list-group-flush">
                         <?php if (isset($allImages) && $allImages) : ?>
                             <?php foreach ($allImages as $Image) : ?>
-                                <li class="list-group-item"><?= $Image['image_title']; ?><br>
+                                <li class="list-group-item">
+                                    <a href="?controller=Image&action=viewAll"<?php= $Image['image_title'];?><?=$Image['image_title']?><br></a>
+                                
                                     <small> Image added on <?= $Image['date_added']; ?>
                                         by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
                                 </li>
                             <?php endforeach; ?>
-                        <? else: ?>
+                        <?php else: ?>
                             <div class="dashboardcard button-center">
                                 <blockquote class="author-bio">No images in the gallery... </blockquote>
                             </div>
                             <div class="button-center">
                                 <a href="index.php?controller=Image&action=upload" class="btn-custom btn btn-center">Let's get started!</a>
                             </div>
-                        <? endif ?>
+                        <?php endif ?>
 
                     </ul>
                 </div>
