@@ -18,7 +18,7 @@
                                 <blockquote class="author-bio">You have no posts yet... </blockquote>
                             </div>
                             <div class="button-center">
-                                <a href="index.php?controller=Post&action=create" class="btn-custom btn-center">Let's get started!</a>
+                                <a href="index.php?controller=Post&action=create" class="btn-custom btn btn-center">Let's get started!</a>
                             </div>
                         <? endif ?>
                     </ul>
