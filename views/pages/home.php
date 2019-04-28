@@ -31,7 +31,9 @@
                     <ul class="list-group list-group-flush">
                         <?php if (isset($allImages) && $allImages) : ?>
                             <?php foreach ($allImages as $Image) : ?>
-                                <li class="list-group-item"><?= $Image['image_title']; ?><br>
+                                <li class="list-group-item">
+                                    <a href="?controller=Image&action=viewAll"<?php= $Image['image_title'];?><?=$Image['image_title']?><br></a>
+                                
                                     <small> Image added on <?= $Image['date_added']; ?>
                                         by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
                                 </li>

@@ -146,6 +146,11 @@ blockquote.author-bio {
     margin-top: 2rem;
 }
 
+.card-body {
+    max-height:300px;
+    overflow-y: auto;    
+}
+
 .form-container {
     padding: 20px;
 }
