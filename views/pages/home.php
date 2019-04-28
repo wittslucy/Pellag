@@ -158,7 +158,7 @@
                                 <h1>Louise</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio"> Often found trying to find parking spaces for her exceptionally large electric bike </blockquote>
+                                <blockquote class="author-bio"> Often trying to find parking spaces for her exceptionally large electric bike </blockquote>
                             </div>
                         </div>
                     </div>
