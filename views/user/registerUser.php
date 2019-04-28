@@ -47,7 +47,7 @@
                 <small class="form-text text-muted">255 characters</small>
             </div>
 
-            <button type="submit" name='registerUser' value="registration" class="btn btn-custom">REGISTER</button>
+            <button type="submit" name='registerUser' class="btn btn-custom">REGISTER</button>
         </form>
         <script src="views/js/email-checker.js"></script>
         <script src="views/js/password-checker.js"></script>

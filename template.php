@@ -33,6 +33,7 @@ else :
     <?php include 'views/include/navigation.php'; ?>
 </header>
 
+
 <main class="main-content">
     <!--main component-->
     <div class="container">
@@ -50,3 +51,16 @@ else :
 </body>
 
 </html>
+
+<script>
+    var images = [
+        'views/images/background/yellow.png',
+        'views/images/background/blue.png',
+        'views/images/background/red.png',
+        'views/images/background/dark-blue.png'];
+
+    setInterval(function () {
+        var url = images[Math.floor(Math.random() * images.length)];
+        document.body.style.backgroundImage = 'url(' + url + ')';
+    }, 10000);
+</script>
