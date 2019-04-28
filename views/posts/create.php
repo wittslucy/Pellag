@@ -16,8 +16,8 @@
 
             <div class="form-group">
                 <label for="post_content"></label>
-                <textarea rows="5" maxlength="2500" class="md-textarea form-control" name="post_content" id="post_content" placeholder="Post Content"></textarea>
-                <small class="form-text text-muted">2500 characters</small>
+                <textarea rows="5" maxlength="7500" class="md-textarea form-control" name="post_content" id="post_content" placeholder="Post Content"></textarea>
+                <small class="form-text text-muted">7500 characters</small>
             </div>
 
             <button type="submit" name="createpost" class="btn btn-custom"><i class="fas fa-save"></i> PUBLISH</button>

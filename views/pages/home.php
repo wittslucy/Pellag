@@ -36,14 +36,14 @@
                                         by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
                                 </li>
                             <?php endforeach; ?>
-                        <? else: ?>
+                        <?php else: ?>
                             <div class="dashboardcard button-center">
                                 <blockquote class="author-bio">No images in the gallery... </blockquote>
                             </div>
                             <div class="button-center">
                                 <a href="index.php?controller=Image&action=upload" class="btn-custom btn btn-center">Let's get started!</a>
                             </div>
-                        <? endif ?>
+                        <?php endif ?>
 
                     </ul>
                 </div>
