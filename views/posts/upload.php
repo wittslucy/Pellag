@@ -19,9 +19,8 @@
                     <input type="file" name="uploaded_file" placeholder="Choose file" class="form-control"/>
                     <small class="form-text text-muted">Only .jpeg, .jpg and .png files are accepted</small>
                 </div>
-                <div class="form-group">
-                    <input type="submit" name="upload" value="upload" class="btn btn-primary"/>
-                </div>
+                <button type="submit" name="upload" class="btn btn-custom"><i class="fas fa-upload"></i> UPLOAD</button>
+
             </fieldset>
         </form>
     </div>
