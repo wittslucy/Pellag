@@ -1,5 +1,6 @@
 <?php
 
+    require_once "models/Post.php";
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     class UserController
@@ -41,6 +42,47 @@
             }
             User::logout();
             return render('views/user/logout.php');
+        }
+        
+        public function dashboard()
+        {
+            $context['allPosts'] = Post::tenMostRecent();
+            $context['myPosts'] = Post::getMyPosts();
+
+            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/dashboard.php', $context);
+            }
+            User::dashboard();
+            
+            return render('views/user/dashboard.php', $context);
+        }
+        
+        public function editBio()
+        {
+          if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/editBio.php');
+            }
+            User::editBio();
+            return render('views/user/editBio.php');
+        }
+        
+                
+         public function edittwitter()
+        {
+          if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/editTwitter.php');
+            }
+            User::edittwitter();
+            return render('views/user/editTwitter.php');
+        }
+        
+        public function editinstagram()
+        {
+          if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                return render('views/user/editInstagram.php');
+            }
+            User::editinstagram();
+            return render('views/user/editInstagram.php');
         }
 
     }

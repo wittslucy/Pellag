@@ -1,5 +1,7 @@
-<div class="form-container">
-    <p>Oops, this is the error page.</p>
-    <img src="views/images/standard/_errorimage.jpg" width="150"/>
-    <p>It looks like something went wrong :(</p>
-</div>
+<?php if ($exception): ?>
+    <div class="form-container">
+        <div class="alert alert-warning" role="alert">
+            <?php xdebug_print_function_stack($exception); ?>
+        </div>
+    </div>
+<?php endif ?>

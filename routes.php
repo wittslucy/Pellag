@@ -24,9 +24,10 @@
     /**
      * @param $controller
      * @param $action
+     * @param $param
      * @return mixed
      */
-    function call($controller, $action)
+    function call($controller, $action, $param = NULL)
     {
         // require the file that matches the controller name
         require_once 'controllers/' . $controller . 'controller.php';
@@ -42,7 +43,7 @@
             $controller = new $controllerClassName();
         }
         // call the requested action
-        return $controller->{$action}();
+        return $controller->{$action}($param);
     }
 
     function route()
@@ -51,8 +52,10 @@
         // Add an entry for each new controller and its actions
         $controllers = array(
             'Pages' => ['home', 'error',],
-            'User' => ['logIn', 'logOut', 'registerUser'],
-            'Post' => ['readAll', 'read', 'create', 'update', 'delete'],
+            'User' => ['logIn', 'logOut', 'registerUser', 'dashboard', 'editBio', 'editTwitter', 'editInstagram',],
+            'Post' => ['readAll', 'read', 'create', 'delete', 'update'],
+            'Image' => ['upload', 'delete', 'gallery', 'viewAll'],
+            'Comment' => ['create', 'showAllComments', 'delete'],
             'controllerXXX' => ['actionYYY', 'actionZZZ'],
         );
 

@@ -33,15 +33,15 @@ else :
     <?php include 'views/include/navigation.php'; ?>
 </header>
 
-<main>
+<main class="main-content">
     <!--main component-->
     <div class="container">
         <?php echo $content; ?>
     </div>
 </main>
 
-<footer class="footer">
-    <div class="container">
+<footer id="footer">
+    <div class="container footer-container">
         <span class="text-muted">&copy; Pellag </span>
     </div>
 </footer>

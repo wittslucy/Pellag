@@ -1,32 +1,19 @@
-<div class="form-container">
+<div class="form-container card-post">
+    <h2>Update post below:</h2>
 
-<p>Fill in the following form to update an existing product:</p>
-<form action="" method="POST" class="w3-container" enctype="multipart/form-data">
-    <h2>Update Item</h2>
-    <p>
-        <input class="w3-input" type="text" name="name" value="<?= $product->name; ?>">
-        <label>Name</label>
-    </p>
-    <p>
-        <input class="w3-input" type="text" name="price" value="<?= $product->price; ?>">
-        <label>Price</label>
-    </p>
+    <form action="" id="updatepost" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="post_title"></label>
+            <input type="text" value="<?= $individualPost['post_title']; ?>" class="form-control" name="post_title" id="post_title" placeholder="Post title"
+                   required/>
+        </div>
+        <div class="form-group">
+            <label for="post_content"></label>
+            <textarea rows="3" maxlength="2500" class="md-textarea form-control" name="post_content" id="post_content" placeholder="Post Content"><?= $individualPost['post_content']; ?></textarea>
+            <small class="form-text text-muted">2500 characters</small>
+        </div>
 
-    <input type="hidden" name="MAX_FILE_SIZE" value="10000000"/>
-    <?php
-        $file = 'views/images/' . $product->name . '.jpeg';
-        if (file_exists($file)) {
-            $img = "<img src='$file' width='150' />";
-            echo $img;
-        } else {
-            echo "<img src='views/images/standard/_noproductimage.png' width='150' />";
-        }
+        <input type="submit" id="updatepost" class="btn btn-primary"/>
 
-    ?>
-    <br/>
-    <input type="file" name="myUploader" class="w3-btn w3-pink"/>
-    <p>
-        <input class="w3-btn w3-gray" type="submit" value="Update Product">
-    </p>
-</form>
+    </form>
 </div>
