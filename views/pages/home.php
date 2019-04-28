@@ -20,7 +20,7 @@
                             <div class="button-center">
                                 <a href="index.php?controller=Post&action=create" class="btn-custom btn btn-center">Let's get started!</a>
                             </div>
-                        <?php endif ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-        <?php endif ?>
+        <?php endif; ?>
     </div>
 </div>
 
