@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label for="comment_content"></label>
                     <textarea rows="3" maxlength="250" class="md-textarea form-control" name="comment_content"
-                              id="comment_content" placeholder="Comment Content"></textarea>
+                              id="comment_content" placeholder="Please make your comment here"></textarea>
                     <small class="form-text text-muted">250 characters</small>
                 </div>
 
