@@ -15,7 +15,8 @@
                 <blockquote class="author-bio">You have no posts yet...</blockquote>
             </div>
             <div class="button-center">
-                <a href="index.php?controller=Post&action=create" class="btn btn-custom btn-center">Let's get started!</a>
+                <a href="index.php?controller=Post&action=create" class="btn btn-custom btn-center">Let's get
+                    started!</a>
             </div>
         <?php else: ?>
 
@@ -101,16 +102,14 @@
                     <?php if ($_SESSION['twitter_handle']): ?>
 
                         <div class="social-media-buttons mb-2">
-                            <div>
-                                <a class="btn btn-custom" href="https://www.twitter.com/<?= $_SESSION['twitter_handle']; ?>">
-                                    <i class="fab fa-twitter fa-2x"></i> <?= $_SESSION['twitter_handle']; ?></a>
-                            </div>
-                            <div class="social-media-buttons mb-2">
-                                <a href="index.php?controller=User&action=editTwitter" class="btn btn-custom"><i
-                                            class="fas fa-user-edit"></i></a>
-                            </div>
-
+                            <a class="social-media" href="https://www.twitter.com/<?= $_SESSION['twitter_handle']; ?>">
+                                <i class="fab fa-twitter fa-2x"></i> <?= $_SESSION['twitter_handle']; ?></a>
                         </div>
+                        <div class="social-media-buttons mb-2">
+                            <a href="index.php?controller=User&action=editTwitter" class="btn btn-custom"><i
+                                        class="fas fa-user-edit"></i></a>
+                        </div>
+
 
                     <?php else : ?>
                         <div class="social-media-buttons mb-2">
@@ -126,23 +125,24 @@
 
                 <li class="list-group-item"></i>
                     <?php if ($_SESSION['instagram_handle']): ?>
-                        <div>
-                            <div class="social-media-buttons">
-                                <a class="btn btn-custom" href="https://www.instagram.com/<?= $_SESSION['instagram_handle']; ?>">
-                                    <i class="fab fa-instagram fa-2x"></i> <?= $_SESSION['instagram_handle']; ?></a>
-                            </div>
 
-                            <div class="social-media-buttons">
-                                <a href="index.php?controller=User&action=editInstagram" class="btn btn-custom">
-                                    <i class="fas fa-user-edit"></i></a>
-                            </div>
-
+                        <div class="social-media-buttons mb-2">
+                            <a class="social-media"
+                               href="https://www.instagram.com/<?= $_SESSION['instagram_handle']; ?>">
+                                <i class="fab fa-instagram fa-2x"></i> <?= $_SESSION['instagram_handle']; ?></a>
                         </div>
+
+                        <div class="social-media-buttons mb-2">
+                            <a href="index.php?controller=User&action=editInstagram" class="btn btn-custom">
+                                <i class="fas fa-user-edit"></i></a>
+                        </div>
+
+
                     <?php else : ?>
-                        <div>
+                        <div class="social-media-buttons mb-2">
                             <p><i class="fab fa-instagram fa-2x"></i> No account linked</p>
                         </div>
-                        <div>
+                        <div class="social-media-buttons mb-2">
                             <a href="index.php?controller=User&action=editInstagram" class="btn btn-custom">
                                 <i class="fas fa-user-edit"></i></a>
                         </div>

@@ -43,14 +43,14 @@
     </ul>
 
     <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Create a comment">
-        <a class="btn"
+        <a class="btn btn-custom"
            href='?controller=Post&action=read&post_id=<?= $_GET['post_id']; ?>'>
-            BACK TO THE POST
+            <i class="fas fa-backward"></i> BACK TO THE POST
         </a>
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
-            <a class="btn"
+            <a class="btn btn-custom"
                href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
-                ADD A COMMENT
+                <i class="fas fa-comment"></i> ADD A COMMENT
             </a>
         <?php endif ?>
     </div>
@@ -63,14 +63,14 @@
     <div class="button-center">
         <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Create a comment">
 
-            <a class="btn"
+            <a class="btn btn-custom"
                href='?controller=Post&action=read&post_id=<?= $_GET['post_id']; ?>'>
-                BACK TO THE POST
+                <i class="fas fa-backward"></i> BACK TO THE POST
             </a>
             <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
-                <a class="btn"
+                <a class="btn btn-custom"
                    href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
-                    ADD A COMMENT
+                    <i class="fas fa-comment"></i> ADD A COMMENT
                 </a>
             <?php endif ?>
         </div>
