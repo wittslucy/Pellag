@@ -270,6 +270,7 @@ blockquote.author-bio {
     font-size: 1rem;
     text-align: center;
     border: 1px solid #00868B;
+    background: white;
     border-radius: 5px;
     background:white;
 }
@@ -288,6 +289,7 @@ blockquote.author-bio {
     float: left;
     width: 65%;
     height: 100vh;
+    background: white;
     border: 1px solid #00868B;
     border-radius: 5px;
     margin-top: 2%;
