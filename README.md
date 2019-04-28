@@ -26,16 +26,16 @@ MySQL
 </section>
   
 <section>
-<img title="Create Post" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/create-post.png width="50%">
-<img title="New Comment" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/new-comment.png width="50%">
+<img title="Create Post" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/create-post.png width="300px">
+<img title="New Comment" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/new-comment.png width="300px">
 </section>
 
 <section>
-<img title="No Comments" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/no-comments.png width="50%">
-<img title="Post Read" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-read.png width="50%">
+<img title="No Comments" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/no-comments.png width="300px">
+<img title="Post Read" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-read.png width="300px">
 </section>
 
 <section>
-<img title="Post Comments" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-somments.png width="50%">
+<img title="Post Comments" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-somments.png width="300px">
 </section>
 
