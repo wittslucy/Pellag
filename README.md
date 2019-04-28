@@ -20,17 +20,22 @@ MySQL
 
 ### Images
 
-* **HOME PAGE**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/Home-page.png width="50%">
-* **ALL POSTS**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/all-post-list.png width="50%">
-* **CREATE POST**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/create-post.png width="50%">
-* **NEW COMMENT**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/new-comment.png width="50%">
-* **NO COMMENTS**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/no-comments.png width="50%">
-* **POST READ**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-read.png width="50%">
-* **POST COMMENTS**
-<img src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-somments.png width="50%">
+<section>
+<img title="Home Page" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/Home-page.png width="300px">
+<img title="All Posts" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/all-post-list.png width="300px">
+</section>
+  
+<section>
+<img title="Create Post" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/create-post.png width="50%">
+<img title="New Comment" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/new-comment.png width="50%">
+</section>
+
+<section>
+<img title="No Comments" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/no-comments.png width="50%">
+<img title="Post Read" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-read.png width="50%">
+</section>
+
+<section>
+<img title="Post Comments" align="left" src=https://github.com/EmmaEdgecombe/Pellag/blob/master/PELLAG-screenshots/post-somments.png width="50%">
+</section>
+
