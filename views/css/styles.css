@@ -8,10 +8,21 @@ body {
     min-height: 100vh;
     text-align: left;
     padding: 5%;
-    background-color: white;
+    background-image: url('../images/background/yellow.png');
+    /*background-attachment: fixed;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
     height: 100vh;
+
 }
 
+.jumbotron {
+    background-color: transparent !important;
+}
+nav {
+    background-color: white;
+}
 .main-content {
     padding: 0;
     margin: 2% auto;
@@ -23,8 +34,6 @@ body {
     margin: 0 auto;
     padding: 0;
     text-align: center;
-    background-color: white;
-    width: 80%;
 }
 
 .jumbotron > img {
@@ -144,6 +153,11 @@ blockquote.author-bio {
 
 .card-team {
     margin-top: 2rem;
+}
+
+.card-body {
+    max-height:300px;
+    overflow-y: auto;    
 }
 
 .form-container {

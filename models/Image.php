@@ -1,4 +1,5 @@
 <?php
+
     require_once 'Model.php';
 
     class Image extends Model
@@ -48,7 +49,7 @@
                 if ($_FILES["uploaded_file"]["error"] > 0) {
                     echo "Return Code:" . $_FILES["uploaded_file"]["error"] . "";
                 } else {
-                    move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], 'views/images/' . $image_name);
+                    move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], 'views/images/'.date('d-m-Y_H:i:s-').$image_name);
                     // image details into database table
                     $sql = 'INSERT INTO blog_site.gallery (user_id, image_title, image_description, image_name, date_added) VALUES(:user_id, :image_title, :image_description, :image_name, :date_added)';
                     $stmt = $pdo->prepare($sql);
@@ -75,6 +76,7 @@ SELECT * FROM blog_site.gallery
   LEFT JOIN blog_site.blog_user user on gallery.user_id = user.user_id 
 ORDER BY gallery.date_added DESC
 EOT;
+
 
             /** @var MY_PDO $pdo */
             $result = $pdo->run($sqlQuery);
@@ -121,6 +123,5 @@ EOT;
             $stmt->bindValue(':gallery_id', $gallery_id);
             $result = $stmt->execute();
         }
-
     }
     

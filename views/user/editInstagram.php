@@ -10,7 +10,7 @@
 
             <div class="form-group">
                 <label for="editinstagram"></label>
-                <input name="editinstagram" id="editinstagram" type="text" class="form-control"
+                <input name="editinstagram" id="editinstagram" type="text" class="form-control" required
                        placeholder="Update your Instagram handler"/>
             </div>
 
