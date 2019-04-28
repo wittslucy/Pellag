@@ -106,12 +106,11 @@
                             </div>
                             <div class="team-description-text">
                                 <blockquote class="author-bio">Makes awesome cinnamon swirls, and holds the record for
-                                    the first 'get in to techer' to get a job
+                                    the first 'get into techer' to get a job.
                                 </blockquote>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="carousel-item">
                     <div class="wrapper-team">
@@ -125,9 +124,7 @@
                                 <h1>Emma</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Goes off to Iceland soon, and she laughs at people falling
-                                    over!
-                                </blockquote>
+                                <blockquote class="author-bio">Usually found adhered to a rock (In the sky or underground)</blockquote>
                             </div>
                         </div>
                     </div>
@@ -144,7 +141,7 @@
                                 <h1>Lucy</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio"></blockquote>
+                                <blockquote class="author-bio"> Enjoys very garlicy food (Keep your distance!)</blockquote>
                             </div>
                         </div>
                     </div>
@@ -153,7 +150,7 @@
                     <div class="wrapper-team">
                         <div class="wrapper-team-image">
                             <img class="img-responsive" style="border-radius: 50%;" width="150px" height="150px"
-                                 src="views/images/carousel/louise.JPG"
+                                 src="views/images/carousel/louise.jpg"
                                  alt="Fourth slide - Louise">
                         </div>
                         <div class="wrapper-team-description">
@@ -161,7 +158,7 @@
                                 <h1>Louise</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Louise subscribes to yoga, and she likes music, la la la</blockquote>
+                                <blockquote class="author-bio"> Often found trying to find parking spaces for her exceptionally large electric bike </blockquote>
                             </div>
                         </div>
                     </div>
@@ -178,7 +175,7 @@
                                 <h1>Alex</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio"></blockquote>
+                                <blockquote class="author-bio"> Dancing queen who rocks Powerpoint for a living </blockquote>
                             </div>
                         </div>
                     </div>
@@ -195,13 +192,14 @@
                                 <h1>Gillian</h1>
                             </div>
                             <div class="team-description-text">
-                                <blockquote class="author-bio">Feeling more tired after this course than she did from
+                                <blockquote class="author-bio"> Feeling more tired after this course than she did from
                                     running Stirling Marathon last year.
                                 </blockquote>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
