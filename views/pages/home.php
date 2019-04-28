@@ -30,12 +30,12 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         <?php if (isset($allImages) && $allImages) : ?>
-                        <?php foreach ($allImages as $Image) : ?>
-                            <li class="list-group-item"><?= $Image['image_title']; ?><br>
-                                <small> Image added on <?= $Image['date_added']; ?>
-                                    by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
-                            </li>
-                        <?php endforeach; ?>
+                            <?php foreach ($allImages as $Image) : ?>
+                                <li class="list-group-item"><?= $Image['image_title']; ?><br>
+                                    <small> Image added on <?= $Image['date_added']; ?>
+                                        by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
+                                </li>
+                            <?php endforeach; ?>
                         <? else: ?>
                             <div class="dashboardcard button-center">
                                 <blockquote class="author-bio">No images in the gallery... </blockquote>
@@ -79,7 +79,6 @@
             </div>
 
         <?php endif ?>
-
     </div>
 </div>
 
@@ -213,3 +212,4 @@
             </div>
         </div>
     </div>
+</div>

@@ -4,8 +4,8 @@
 
 <div class="form-container" style="text-align: center; padding: 0; width: 70%; margin: 0 auto">
 
-    <div class="dashboardcard">
-        <h5 style="text-align: center">CREATE NEW POST</h5>
+            <div class="dashboardcard">
+                <h5 style="text-align: center">CREATE NEW POST</h5>
 
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
@@ -20,7 +20,7 @@
                 <small class="form-text text-muted">2500 characters</small>
             </div>
 
-            <button type="submit" name="createpost" style=";" class="btn"><i class="fas fa-save"></i> PUBLISH</button>
+            <button type="submit" name="createpost" class="btn btn-custom"><i class="fas fa-save"></i> PUBLISH</button>
 
         </form>
     </div>
