@@ -5,7 +5,7 @@
 <?php if (isset($allComments) && is_array($allComments) && count($allComments) !== 0) : ?>
     <div class="dashboardcard">
         <h5><?= $allComments[0]['post_title']; ?></h5>
-        <small> created on <?= $allComments[0]['post_date']; ?>
+        <small> created
             by <?= $allComments[0]['first_name']; ?> <?= $allComments[0]['last_name']; ?></small>
     </div>
 
@@ -15,7 +15,7 @@
 
         <?php foreach ($allComments as $Comment) : ?>
             <li class="list-group-item dashboardcard">
-                <small>Comment created on <?= $Comment['date_created']; ?>
+                <small>Comment created 
                     by <?= $Comment['first_name']; ?> <?= $Comment['last_name']; ?>
                 </small>
                 <button type="button" class="btn btn-info collapsed"

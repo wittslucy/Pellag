@@ -38,7 +38,7 @@
             $image_title = filter_input(INPUT_POST, 'image_title', FILTER_SANITIZE_SPECIAL_CHARS);
             $image_description = filter_input(INPUT_POST, 'image_description', FILTER_SANITIZE_SPECIAL_CHARS);
             $image_name = $_FILES['uploaded_file']['name'];
-            $date_added = date('Y/m/d');
+            $date_added = date();
 
             if ($_FILES['uploaded_file']['type'] === 'image/gif'
                 || $_FILES["uploaded_file"]["type"] === "image/jpeg"
@@ -49,7 +49,9 @@
                 if ($_FILES["uploaded_file"]["error"] > 0) {
                     echo "Return Code:" . $_FILES["uploaded_file"]["error"] . "";
                 } else {
-                    move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], 'views/images/'.date('d-m-Y_H:i:s-').$image_name);
+
+                    move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], 'views/images/'.$image_name);
+
                     // image details into database table
                     $sql = 'INSERT INTO blog_site.gallery (user_id, image_title, image_description, image_name, date_added) VALUES(:user_id, :image_title, :image_description, :image_name, :date_added)';
                     $stmt = $pdo->prepare($sql);
