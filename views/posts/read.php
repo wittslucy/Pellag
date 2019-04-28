@@ -14,7 +14,7 @@
             <p class="card-text post-text"><?= $individualPost['post_content']; ?></p>
         </div>
         <div class="card-footer">
-            <a class="btn btn-secondary"
+            <a class="btn btn-custom"
                href='?controller=Comment&action=showAllComments&post_id=<?= $individualPost['post_id']; ?>'>
                 <i class="far fa-comments"></i> <?= $individualPost['allCommentsCounts']; ?></a>
         </div>
@@ -22,22 +22,24 @@
     </div>
 
     <!--    only author can delete the post-->
-    <?php if ($_SESSION['user_id'] && $_SESSION['user_id'] === $individualPost['user_id']) : ?>
-        <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Delete the post">
-            <a class="btn btn-secondary "
-               href='?controller=Post&action=readAll'>
-                BACK TO ALL POSTS
-            </a>
+
+    <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Delete the post">
+        <a class="btn btn-custom"
+           href='?controller=Post&action=readAll'>
+            BACK TO ALL POSTS
+        </a>
+        <?php if ($_SESSION['user_id'] && $_SESSION['user_id'] === $individualPost['user_id']) : ?>
             <a class="btn btn-success"
-               href='?controller=Post&action=update&post_id=<?php echo $individualPost['post_id']; ?>'>
+               href='?controller=Post&action=update&post_id=<?= $individualPost['post_id']; ?>'>
                 UPDATE
             </a>
             <a class="btn btn-warning"
-               href='?controller=Post&action=delete&post_id=<?php echo $individualPost['post_id']; ?>'>
+               href='?controller=Post&action=delete&post_id=<?= $individualPost['post_id']; ?>'>
                 DELETE
             </a>
-        </div>
-    <?php endif ?>
+        <?php endif ?>
+    </div>
+
 
 </div>
 

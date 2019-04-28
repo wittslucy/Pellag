@@ -33,7 +33,7 @@ else :
     <?php include 'views/include/navigation.php'; ?>
 </header>
 
-<main>
+<main class="main-content">
     <!--main component-->
     <div class="container">
         <?php echo $content; ?>

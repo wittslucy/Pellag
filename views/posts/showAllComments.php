@@ -11,7 +11,7 @@
 
     <ul class="dashboardcard">
 
-        <h5><?= count($allComments) === 1 ? count($allComments).' COMMENT' : count($allComments).' COMMENTS';?></h5>
+        <h5><?= count($allComments) === 1 ? count($allComments) . ' COMMENT' : count($allComments) . ' COMMENTS'; ?></h5>
 
         <?php foreach ($allComments as $Comment) : ?>
             <li class="list-group-item dashboardcard">
@@ -43,32 +43,39 @@
     </ul>
 
     <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Create a comment">
-        <a class="btn btn-secondary"
+        <a class="btn btn-custom"
            href='?controller=Post&action=read&post_id=<?= $_GET['post_id']; ?>'>
-            BACK TO THE POST
+            <i class="fas fa-backward"></i> BACK TO THE POST
         </a>
         <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
-            <a class="btn btn-secondary"
+            <a class="btn btn-custom"
                href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
-                ADD A COMMENT
+                <i class="fas fa-comment"></i> ADD A COMMENT
             </a>
         <?php endif ?>
     </div>
 
 <?php else : ?>
 
-    <div class="alert alert-info">This post does not have any comments yet</div>
-
-    <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Create a comment">
-        <a class="btn btn-secondary"
-           href='?controller=Post&action=read&post_id=<?= $_GET['post_id']; ?>'>
-            BACK TO THE POST
-        </a>
-        <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
-            <a class="btn btn-secondary"
-               href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
-                ADD A COMMENT
-            </a>
-        <?php endif ?>
+    <div class="dashboardcard button-center">
+        <blockquote class="author-bio">This post does not have any comments yet</blockquote>
     </div>
+    <div class="button-center">
+        <div class="btn-group-sm" style="text-align: center;" role="group" aria-label="Create a comment">
+
+            <a class="btn btn-custom"
+               href='?controller=Post&action=read&post_id=<?= $_GET['post_id']; ?>'>
+                <i class="fas fa-backward"></i> BACK TO THE POST
+            </a>
+            <?php if (isset($_SESSION['user_id']) && $_SESSION['user_id']) : ?>
+                <a class="btn btn-custom"
+                   href='?controller=Comment&action=create&post_id=<?= $_GET['post_id']; ?>'>
+                    <i class="fas fa-comment"></i> ADD A COMMENT
+                </a>
+            <?php endif ?>
+        </div>
+
+    </div>
+
+
 <?php endif ?>
