@@ -13,14 +13,14 @@
                                         by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
                                 </li>
                             <?php endforeach; ?>
-                        <? else: ?>
+                        <?php else: ?>
                             <div class="dashboardcard button-center">
                                 <blockquote class="author-bio">You have no posts yet... </blockquote>
                             </div>
                             <div class="button-center">
                                 <a href="index.php?controller=Post&action=create" class="btn-custom btn btn-center">Let's get started!</a>
                             </div>
-                        <? endif ?>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>
