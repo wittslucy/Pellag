@@ -5,7 +5,7 @@
 <?php if (isset($allImages) && is_array($allImages) && count($allImages) !== 0) : ?>
     <div class="card-deck">
     <?php foreach ($allImages as $Image) : ?>
-        <div class="card" style="flex: 0.3 0 0">
+        <div class="card" style="min-width: 150px; flex: 0.3 0 0">
             <img alt="image" style="object-fit: contain; max-width:100%; height:auto;" class="card-img-top" src="views/images/<?= $Image['image_name']; ?>"/>
             <div class="card-header">
                 <h5 class="card-title"><?= $Image['image_title']; ?></h5>

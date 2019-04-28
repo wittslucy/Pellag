@@ -1,19 +1,25 @@
-<div class="form-container card-post">
-    <h2>Update post below:</h2>
+<div class="form-container" style="text-align: center; padding: 0; width: 70%; margin: 0 auto">
 
-    <form action="" id="updatepost" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="post_title"></label>
-            <input type="text" value="<?= $individualPost['post_title']; ?>" class="form-control" name="post_title" id="post_title" placeholder="Post title"
-                   required/>
-        </div>
-        <div class="form-group">
-            <label for="post_content"></label>
-            <textarea rows="3" maxlength="2500" class="md-textarea form-control" name="post_content" id="post_content" placeholder="Post Content"><?= $individualPost['post_content']; ?></textarea>
-            <small class="form-text text-muted">2500 characters</small>
-        </div>
+    <div class="dashboardcard">
+        <h5 style="text-align: center">UPDATE THE POST</h5>
 
-        <input type="submit" id="updatepost" class="btn btn-primary"/>
+        <form action="" id="updatepost" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="post_title"></label>
+                <input type="text" value="<?= $individualPost['post_title']; ?>" class="form-control" name="post_title"
+                       id="post_title" placeholder="Post title"
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="post_content"></label>
+                <textarea rows="3" maxlength="2500" class="md-textarea form-control" name="post_content"
+                          id="post_content"
+                          placeholder="Post Content"><?= $individualPost['post_content']; ?></textarea>
+                <small class="form-text text-muted">2500 characters</small>
+            </div>
 
-    </form>
+            <button type="submit" name="updatepost" class="btn btn-custom"><i class="fas fa-save"></i> UPDATE</button>
+
+        </form>
+    </div>
 </div>
