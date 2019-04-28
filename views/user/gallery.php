@@ -22,7 +22,7 @@
                 <?php endif ?>
             </div>
             <div class="card-footer">
-                <small class="text-muted">Created on <?= $Image['date_added']; ?>
+                <small class="text-muted">Created
                     by <?= $Image['first_name'] . ' ' . $Image['last_name']; ?></small>
             </div>
         </div>

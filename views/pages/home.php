@@ -9,7 +9,7 @@
                             <?php foreach ($allPosts as $Post) : ?>
                                 <li class="list-group-item">
                                     <a href="?controller=Post&action=read&post_id=<?= $Post['post_id']; ?>"><?= $Post['post_title']; ?></a><br>
-                                    <small> created on <?= $Post['date_created']; ?>
+                                    <small> created
                                         by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
                                 </li>
                             <?php endforeach; ?>
@@ -32,9 +32,9 @@
                         <?php if (isset($allImages) && $allImages) : ?>
                             <?php foreach ($allImages as $Image) : ?>
                                 <li class="list-group-item">
-                                    <a href="?controller=Image&action=viewAll"<?php $Image['image_title'];?><?=$Image['image_title']?><br></a>
+                                    <a href="?controller=Image&action=viewAll"<? $Image['image_title'];?><?=$Image['image_title']?><br></a>
                                 
-                                    <small> Image added on <?= $Image['date_added']; ?>
+                                    <small> Image added 
                                         by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
                                 </li>
                             <?php endforeach; ?>
