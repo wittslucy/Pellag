@@ -269,6 +269,8 @@ blockquote.author-bio {
     border: 1px solid #00868B;
     border-radius: 5px;
     margin-top: 2%;
+    max-height: 860px;
+    overflow-y: auto;
 }
 
 /* Right column */
