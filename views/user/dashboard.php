@@ -24,8 +24,7 @@
                 <div class="dashboardcard">
 
                     <li class="list-group-item"><?= $Post['post_title'] ?><br>
-                        <small> created on <?= $Post['date_created']; ?>
-                            by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
+                        <small> created by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
                         <button type="button" class="btn-info btn btn-custom collapsed" data-toggle="collapse"
                                 data-target="#mypost-<?= $Post['post_id']; ?>">
                             Open

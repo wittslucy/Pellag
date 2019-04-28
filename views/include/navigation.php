@@ -1,7 +1,6 @@
 <div class="jumbotron jumbotron-nav">
     <img src="views/images/pellag-logo.png" href="index.php?controller=Pages&action=home" alt="Banner"
          class="img-responsive">
-
     <nav class="navbar navbar-expand-lg navbar-light">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"

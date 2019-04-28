@@ -30,10 +30,10 @@ nav {
     flex: 1;
 }
 
-#upper_right {
+#upper_right{
     position: absolute;
-    top: 2%;
-    right: 2%;
+    top:2%;
+    right:2%;
 }
 
 .jumbotron.jumbotron-nav {
@@ -272,6 +272,7 @@ blockquote.author-bio {
     border: 1px solid #00868B;
     background: white;
     border-radius: 5px;
+    background:white;
 }
 
 /* Clear floats after the columns */
@@ -294,6 +295,7 @@ blockquote.author-bio {
     margin-top: 2%;
     max-height: 860px;
     overflow-y: auto;
+    background:white;
 }
 
 /* Right column */
