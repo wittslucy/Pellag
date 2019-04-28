@@ -10,7 +10,7 @@
         <form id="edittwitter" method="post" action="">
 
             <div class="form-group">
-                <input name="edittwitter" id="edittwitter" type="text" class="form-control" placeholder="Update your Twitter handler"/>
+                <input name="edittwitter" id="edittwitter" type="text" class="form-control" placeholder="Update your Twitter handler" required/>
             </div>
 
             <input type="submit" id="edittwitter" class="btn btn-custom"/>
