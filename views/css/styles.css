@@ -30,10 +30,17 @@ nav {
     flex: 1;
 }
 
+#upper_right {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+
 .jumbotron.jumbotron-nav {
     margin: 0 auto;
     padding: 0;
     text-align: center;
+    width: 80%;
 }
 
 .jumbotron > img {
@@ -263,6 +270,7 @@ blockquote.author-bio {
     font-size: 1rem;
     text-align: center;
     border: 1px solid #00868B;
+    background: white;
     border-radius: 5px;
 }
 
@@ -280,6 +288,7 @@ blockquote.author-bio {
     float: left;
     width: 65%;
     height: 100vh;
+    background: white;
     border: 1px solid #00868B;
     border-radius: 5px;
     margin-top: 2%;

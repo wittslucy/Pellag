@@ -1,9 +1,6 @@
 <div class="jumbotron jumbotron-nav">
     <img src="views/images/pellag-logo.png" href="index.php?controller=Pages&action=home" alt="Banner"
          class="img-responsive">
-    <img src="views/images/skylogo.jpg" href="index.php?controller=Pages&action=home" alt="Banner"
-         class="img-responsive" width="240" height="75">
-
 
     <nav class="navbar navbar-expand-lg navbar-light">
 

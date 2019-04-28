@@ -44,6 +44,8 @@ else :
 <footer id="footer">
     <div class="container footer-container">
         <span class="text-muted">&copy; Pellag </span>
+        <img id="upper_right" src="views/images/skylogo.jpg" href="index.php?controller=Pages&action=home" alt="Banner"
+             class="img-responsive" width="240" height="75">
     </div>
 </footer>
 
