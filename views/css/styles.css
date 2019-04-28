@@ -1,5 +1,4 @@
 /*GENERAL CSS*/
-
 body {
     margin: 0;
     font-size: 1rem;
@@ -8,38 +7,34 @@ body {
     line-height: 1.5;
     min-height: 100vh;
     text-align: left;
-    background: #f1f1f1;
-}
-.jumbotron.jumbotron-nav {
-    margin-bottom: 0;
+    padding: 5%;
     background-color: white;
+    height: 100vh;
+}
+
+.main-content {
     padding: 0;
-    text-align:center;
+    margin: 2% auto;
+    width: 80%;
+    flex: 1;
 }
 
-.social-media-buttons {
-    margin-bottom: 1rem;
+.jumbotron.jumbotron-nav {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    background-color: white;
+    width: 80%;
 }
 
-.social-media-buttons > a {
-     color: black;
-     text-decoration: none;
+.jumbotron > img {
+    padding: 2%;
 }
-.social-media-buttons > a:hover {
-    color: #666666;
-    text-decoration: none;
-}
-
-.social-media-buttons > a.btn  {
-    color: white;
-    text-decoration: none;
-}
-
 
 nav {
     border-top: 1px solid darkgrey;
     border-bottom: 1px solid darkgrey;
-    margin: 0 15%;
+    margin: 0;
     text-align: center;
 }
 
@@ -47,6 +42,7 @@ nav {
 .nav-link {
     color: darkgrey;
 }
+
 .nav-link.active,
 .nav-link:hover {
     color: #00868B !important;
@@ -57,12 +53,20 @@ ul.navbar-nav {
     justify-content: space-evenly;
 }
 
-main {
-    flex: 1;
+button,
+.btn-custom {
+    background-color: #00868B;
+    color: white;
+    border: #00868B;
+}
+.btn-sustom:hover {
+    background-color: white;
+    color: #00868B;
+    border: 1px solid #00868B;
 }
 
-main > .container {
-    padding: 1rem 0;
+.button-center {
+    text-align: center;
 }
 
 .container {
@@ -72,9 +76,10 @@ main > .container {
     margin-right: auto;
     margin-left: auto;
 }
+
 .home-page-row {
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 1rem;
 }
 
@@ -93,7 +98,8 @@ main > .container {
 }
 
 .wrapper-team {
-    width: 100%;
+    margin: 0 auto;
+    width: 70%;
     display: flex;
     justify-content: center;
 }
@@ -103,7 +109,8 @@ main > .container {
     flex-direction: column;
     margin-left: 2rem;
 }
-blockquote:before {
+
+blockquote.author-bio:before {
     color: #ccc;
     content: open-quote;
     font-size: 4em;
@@ -117,6 +124,7 @@ blockquote.author-bio {
     border: none;
     padding: 0;
     font-size: 1em;
+    width: 100%;
 }
 
 
@@ -127,6 +135,7 @@ blockquote.author-bio {
 .card-team {
     margin-top: 2rem;
 }
+
 .form-container {
     padding: 20px;
 }
@@ -147,74 +156,74 @@ blockquote.author-bio {
 
 
 .registerForm input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
 }
 
 /* Style the submit button */
 .registerForm input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
+    background-color: #4CAF50;
+    color: white;
 }
 
 /* Style the container for inputs */
 .registerForm .container {
-  background-color: #f1f1f1;
-  padding: 20px;
+    background-color: #f1f1f1;
+    padding: 20px;
 }
 
 /* The message box is shown when the user clicks on the password field */
 .registerForm #message {
-  display:none;
-  background: #f1f1f1;
-  color: #000;
-  position: relative;
-  padding: 20px;
-  margin-top: 10px;
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
 }
 
 .registerForm #message p {
-  padding: 10px 35px;
-  font-size: 18px;
+    padding: 10px 35px;
+    font-size: 18px;
 }
 
 /* Add a green text color and a checkmark when the requirements are right */
 .registerForm .valid {
-  color: green;
+    color: green;
 }
 
 .registerForm .valid:before {
-  position: relative;
-  left: -35px;
-  content: "✔";
+    position: relative;
+    left: -35px;
+    content: "✔";
 }
 
 /* Add a red text color and an "x" when the requirements are wrong */
 .registerForm .invalid {
-  color: red;
+    color: red;
 }
 
 .registerForm .invalid:before {
-  position: relative;
-  left: -35px;
-  content: "✖";
+    position: relative;
+    left: -35px;
+    content: "✖";
 }
 
-.response{
+.response {
     padding: 6px;
     display: none;
 }
 
-.not-exists{
+.not-exists {
     color: green;
 }
 
-.exists{
+.exists {
     color: red;
 }
 
@@ -226,61 +235,78 @@ blockquote.author-bio {
 
 /* Header/Blog Title */
 .dashboardheader {
-  padding: 30px;
-  font-size: 40px;
-  text-align: center;
-  background: white;
-}
-
-/* Create two unequal columns that floats next to each other */
-/* Left column */
-.dashboardleftcolumn { 
-  float: left;
-  width: 75%;
-}
-
-/* Right column */
-.dashboardrightcolumn {
-  float: left;
-  width: 25%;
-  padding-left: 20px;
-}
-
-/* Fake image */
-.dashboardfakeimg {
-  background-color: #aaa;
-  width: 100%;
-  padding: 20px;
-}
-
-/* Add a card effect for articles */
-.dashboardcard {
-  background-color: white;
-  padding: 20px;
-  margin-top: 20px;
+    padding: 30px;
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid #00868B;
+    border-radius: 5px;
 }
 
 /* Clear floats after the columns */
 .dashboardrow:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.dashboardleftcolumn {
+    float: left;
+    width: 65%;
+    height: 100vh;
+    border: 1px solid #00868B;
+    border-radius: 5px;
+    margin-top: 2%;
+}
+
+/* Right column */
+.dashboardrightcolumn {
+    float: left;
+    width: 30%;
+    margin-left: 5%;
+    border: 1px solid #00868B;
+    border-radius: 5px;
+    margin-top: 2%;
+}
+
+/* Fake image */
+.dashboardfakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Add a card effect for articles */
+.dashboardcard {
+    background-color: white;
+    padding: 20px;
+}
+
+h2.gray {
+    color: #00868B;
+}
+
+.posts-dashboard {
+    max-height: 150px;
+    overflow-y: scroll;
 }
 
 /* Footer */
 .dashboardfooter {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-  margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
 }
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .dashboardleftcolumn, .dashboardrightcolumn { 
-    width: 100%;
-    padding: 0;
-  }
+    .dashboardleftcolumn, .dashboardrightcolumn {
+        width: 100%;
+        padding: 0;
+    }
 }
 
 /* Collapsible button for viewing your own posts on dashboard */
@@ -292,12 +318,12 @@ blockquote.author-bio {
 
 /* Icon when the collapsible content is shown */
 .list-group-item .btn-info:after {
-  content: "-";
+    content: "-";
 }
 
 /* Icon when the collapsible content is hidden */
 .list-group-item .btn-info.collapsed:after {
-  content: "+";
+    content: "+";
 }
 
 .gallery-cards.card-deck {

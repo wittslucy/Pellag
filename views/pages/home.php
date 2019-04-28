@@ -5,35 +5,47 @@
                 <div class="card-header">MOST RECENT POSTS</div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <?php foreach ($allPosts as $Post) : ?>
-                            <li class="list-group-item"><?= $Post['post_title']; ?><br>
-                                <small> created on <?= $Post['date_created']; ?>
-                                    by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php if (isset($allPosts) && $allPosts) : ?>
+                            <?php foreach ($allPosts as $Post) : ?>
+                                <li class="list-group-item">
+                                    <a href="?controller=Post&action=read&post_id=<?= $Post['post_id']; ?>"><?= $Post['post_title']; ?></a><br>
+                                    <small> created on <?= $Post['date_created']; ?>
+                                        by <?= $Post['first_name']; ?> <?= $Post['last_name']; ?></small>
+                                </li>
+                            <?php endforeach; ?>
+                        <? else: ?>
+                            <div class="dashboardcard button-center">
+                                <blockquote class="author-bio">You have no posts yet... </blockquote>
+                            </div>
+                            <div class="button-center">
+                                <a href="index.php?controller=Post&action=create" class="btn-custom btn btn-center">Let's get started!</a>
+                            </div>
+                        <? endif ?>
                     </ul>
                 </div>
-                <div class="card-footer">
-                    <a href="index.php?controller=Post&action=readAll"
-                       class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL POSTS</a>
-                </div>
             </div>
-
 
             <div class="card">
                 <div class="card-header">MOST RECENT IMAGES</div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <?php foreach ($allComments as $Comment) : ?>
-                            <li class="list-group-item">Post: <?= $Comment['post_title']; ?><br>
-                                <small> Comment created on <?= $Comment['date_created']; ?></small>
-                            </li>
-                        <?php endforeach; ?>
+                        <?php if (isset($allImages) && $allImages) : ?>
+                            <?php foreach ($allImages as $Image) : ?>
+                                <li class="list-group-item"><?= $Image['image_title']; ?><br>
+                                    <small> Image added on <?= $Image['date_added']; ?>
+                                        by <?= $Image['first_name']; ?> <?= $Image['last_name']; ?></small>
+                                </li>
+                            <?php endforeach; ?>
+                        <? else: ?>
+                            <div class="dashboardcard button-center">
+                                <blockquote class="author-bio">No images in the gallery... </blockquote>
+                            </div>
+                            <div class="button-center">
+                                <a href="index.php?controller=Image&action=upload" class="btn-custom btn btn-center">Let's get started!</a>
+                            </div>
+                        <? endif ?>
+
                     </ul>
-                </div>
-                <div class="card-footer">
-                    <a href="index.php?controller=Post&action=readAll"
-                       class="btn btn-primary"><i class="fas fa-feather-alt"></i> ALL IMAGES</a>
                 </div>
             </div>
 
@@ -48,7 +60,7 @@
                 </div>
                 <div class="card-footer">
                     <a href="index.php?controller=User&action=registerUser"
-                       class="btn btn-primary"><i class="fas fa-user-plus"></i> REGISTER</a>
+                       class="btn btn-custom"><i class="fas fa-user-plus"></i> REGISTER</a>
                 </div>
             </div>
 
@@ -62,12 +74,11 @@
                 </div>
                 <div class="card-footer">
                     <a href="index.php?controller=User&action=logIn"
-                       class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
+                       class="btn btn-custom"><i class="fas fa-sign-in-alt"></i> LOGIN</a>
                 </div>
             </div>
 
         <?php endif ?>
-
     </div>
 </div>
 
@@ -201,3 +212,4 @@
             </div>
         </div>
     </div>
+</div>

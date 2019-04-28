@@ -136,27 +136,25 @@ EOT;
         {
             $pdo = MY_PDO::getInstance();
 
-           // if (isset($_POST['updatepost'])) {
-                $post_id = intval($post_id);
+            $post_id = intval($post_id);
 
-                //Retrieve the field values from our registration form./*/
-                $post_title = $_POST['post_title'];
-                $post_content = $_POST['post_content'];
-                $last_update = date('Y-m-d');
-                //Construct the SQL statement and prepare it.
-                $sql = 'UPDATE blog_site.blog_post set blog_post.post_title= :post_title, blog_post.post_content = :post_content, blog_post.last_update= :last_update where blog_post.post_id = :post_id';
-                $stmt = $pdo->prepare($sql);
+            //Retrieve the field values from our registration form./*/
+            $post_title = $_POST['post_title'];
+            $post_content = $_POST['post_content'];
+            $last_update = date('Y-m-d');
+            //Construct the SQL statement and prepare it.
+            $sql = 'UPDATE blog_site.blog_post set blog_post.post_title= :post_title, blog_post.post_content = :post_content, blog_post.last_update= :last_update where blog_post.post_id = :post_id';
+            $stmt = $pdo->prepare($sql);
 
-                //Bind the provided username to our prepared statement.
-                $stmt->bindValue(':post_id', $post_id);
-                $stmt->bindValue(':post_title', $post_title);
-                $stmt->bindValue(':post_content', $post_content);
-                $stmt->bindValue(':last_update', $last_update);
+            //Bind the provided username to our prepared statement.
+            $stmt->bindValue(':post_id', $post_id);
+            $stmt->bindValue(':post_title', $post_title);
+            $stmt->bindValue(':post_content', $post_content);
+            $stmt->bindValue(':last_update', $last_update);
 
-                //Execute the statement and insert the new account.
-                $result = $stmt->execute();
+            //Execute the statement and insert the new account.
+            $result = $stmt->execute();
 
-            //}
         }
 
         public static function add()
