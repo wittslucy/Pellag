@@ -14,7 +14,7 @@ MySQL
 * **Alex** - https://github.com/Shepherd02
 * **Emma** - https://github.com/EmmaEdgecombe
 * **Gillian** - https://github.com/GillianHills
-* **Lucy** - https://github.com/clarklucy
+* **Lucy** - https://github.com/wittslucy
 * **Louise** - https://github.com/louisejones94
 * **Paula** - https://github.com/paulambanks
 
